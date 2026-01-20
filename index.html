@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Hive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="#">
+          <span class="brand-mark">thehi</span><span class="brand-mark--accent">ve</span>
+        </a>
+
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="sr-only">Open menu</span>
+          <span class="nav__burger" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav__links" id="navMenu">
+          <li><a href="#" class="nav__link">Home</a></li>
+          <li><a href="#" class="nav__link">Community <span aria-hidden="true">●</span></a></li>
+          <li><a href="#" class="nav__link">Get involved <span aria-hidden="true">●</span></a></li>
+          <li><a href="#" class="nav__link">Projects</a></li>
+          <li><a href="#" class="nav__link">Work With Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <h1>Building Real Connections.<br />Growing Practical Skills.</h1>
+            <p class="hero__sub">
+              The Hive is a student-led community built around collaboration, not competition.
+            </p>
+            <p class="hero__sub">
+              We work on real projects, learn from real people, and grow skills that actually matter — together.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#">Get involved</a>
+              <a class="btn btn--ghost" href="#">Learn more</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <img
+              src="assets/hero.jpg"
+              alt="A group photo of Hive members smiling outdoors"
+              class="hero__img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- LOGO STRIP -->
+      <section class="logos" aria-label="Featured on">
+        <div class="container logos__row">
+          <div class="logo-pill">g</div>
+          <div class="logo-pill"></div>
+          <div class="logo-pill">LinkedIn</div>
+          <div class="logo-pill">AFRO</div>
+          <div class="logo-pill">N</div>
+        </div>
+      </section>
+
+      <!-- WHAT WE DO -->
+      <section class="mission">
+        <div class="container mission__wrap">
+          <p class="eyebrow">what we do</p>
+          <h2 class="mission__title">
+            The Hive’s Mission Is To Give Students Real Experience Working In Cross-Functional Teams And To Create A
+            Supportive Space That Helps Them Build Confidence And Access Career Opportunities They Feel Comfortable In
+          </h2>
+        </div>
+      </section>
+
+      <!-- 3 CARDS -->
+      <section class="audiences">
+        <div class="container audiences__grid">
+          <article class="aud-card">
+            <div class="aud-card__top">
+              <p class="aud-card__small">Join as a</p>
+              <p class="aud-card__tag">hive</p>
+            </div>
+            <h3 class="aud-card__title">For Students</h3>
+          </article>
+
+          <article class="aud-card aud-card--tall">
+            <div class="aud-card__top">
+              <p class="aud-card__small">For</p>
+              <p class="aud-card__tag">Professionals</p>
+            </div>
+            <div class="aud-card__mid">
+              <p class="aud-card__desc">
+                Share your experience, guide students, and help them build confidence while learning.
+              </p>
+              <p class="aud-card__tag aud-card__tag--right">Join as a<br><strong>mentor</strong></p>
+            </div>
+          </article>
+
+          <article class="aud-card aud-card--narrow">
+            <div class="aud-card__top">
+              <p class="aud-card__small">Join as a</p>
+              <p class="aud-card__tag">partner</p>
+            </div>
+            <h3 class="aud-card__title">For Organizations</h3>
+            <p class="aud-card__desc">
+              Support student-led projects, events, and initiatives that create real impact.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- WHAT'S NEW (SLIDER) -->
+      <section class="news">
+        <div class="news__bg">
+          <div class="container news__header">
+            <h2 class="news__title">what’s new at the hive</h2>
+            <p class="news__sub">Updates, events, and opportunities you don’t want to miss.</p>
+          </div>
+
+          <div class="container news__controls">
+            <button class="circle-btn" type="button" data-news-prev aria-label="Previous posts">←</button>
+            <button class="circle-btn" type="button" data-news-next aria-label="Next posts">→</button>
+          </div>
+
+          <div class="container">
+            <div class="news__track" data-news-track>
+              <article class="post">
+                <img class="post__img" src="assets/post1.jpg" alt="" loading="lazy" />
+                <div class="post__body">
+                  <h3 class="post__title">Black History Month Community Project</h3>
+                  <p class="post__meta">Coming Soon</p>
+                  <p class="post__text">A student-led project centered on storytelling, collaboration, and community impact.</p>
+                  <a class="btn btn--chip" href="#">Learn More</a>
+                </div>
+              </article>
+
+              <article class="post">
+                <img class="post__img" src="assets/post2.jpg" alt="" loading="lazy" />
+                <div class="post__body">
+                  <h3 class="post__title">Photo Day & LinkedIn Optimization</h3>
+                  <p class="post__meta">Coming Soon</p>
+                  <p class="post__text">A hands-on session to help you build a strong professional presence.</p>
+                  <a class="btn btn--chip" href="#">Learn More</a>
+                </div>
+              </article>
+
+              <article class="post">
+                <img class="post__img" src="assets/post3.jpg" alt="" loading="lazy" />
+                <div class="post__body">
+                  <h3 class="post__title">Portfolio Review & Build Day</h3>
+                  <p class="post__meta">Coming Soon</p>
+                  <p class="post__text">An open working session for refining your portfolio and getting feedback.</p>
+                  <a class="btn btn--chip" href="#">Learn More</a>
+                </div>
+              </article>
+
+              <article class="post">
+                <img class="post__img" src="assets/post4.jpg" alt="" loading="lazy" />
+                <div class="post__body">
+                  <h3 class="post__title">More Opportunities</h3>
+                  <p class="post__meta">Coming Soon</p>
+                  <p class="post__text">More events and ways to get involved are on the way.</p>
+                  <a class="btn btn--chip" href="#">Learn More</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER FORM -->
+      <section class="cta-footer">
+        <div class="container cta-footer__wrap">
+          <h2>Ready to work with us?</h2>
+          <p>Let’s build something meaningful together</p>
+
+          <form class="footer-form">
+            <div class="footer-form__row">
+              <label>
+                <span class="footer-form__label">Name</span>
+                <input type="text" name="name" placeholder="First name" />
+              </label>
+              <label>
+                <span class="footer-form__label"> </span>
+                <input type="text" name="last" placeholder="Last name" />
+              </label>
+            </div>
+
+            <label>
+              <span class="footer-form__label">Email</span>
+              <input type="email" name="email" placeholder="yourname@email.com" />
+            </label>
+
+            <label>
+              <span class="footer-form__label">Message</span>
+              <textarea name="message" rows="4" placeholder="Tell us what you’re looking for..."></textarea>
+            </label>
+
+            <button class="btn btn--primary btn--dark" type="submit">Send</button>
+          </form>
+
+          <div class="footer-meta">
+            <p class="footer-meta__left">thehive.club@uleth.ca</p>
+            <div class="footer-meta__right">
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
