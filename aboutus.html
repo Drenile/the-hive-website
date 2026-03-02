@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About The Hive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">thehi</span><span class="brand-mark--accent">ve</span>
+        </a>
+
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="sr-only">Open menu</span>
+          <span class="nav__burger" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav__links" id="navMenu">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="#" class="nav__link">Community <span aria-hidden="true">●</span></a></li>
+          <li><a href="#" class="nav__link">Get involved <span aria-hidden="true">●</span></a></li>
+          <li><a href="#" class="nav__link">Projects</a></li>
+          <li><a href="#" class="nav__link">Work With Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ABOUT HERO WITH INTEGRATED GALLERY -->
+      <section class="about-hero-integrated">
+        <div class="container">
+          <!-- Decorative Icon - Left -->
+          <div class="about-hero__icon about-hero__icon--left" aria-hidden="true">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+              <circle cx="30" cy="30" r="8" fill="#1a1a1a"/>
+              <circle cx="55" cy="20" r="8" fill="#1a1a1a"/>
+              <circle cx="80" cy="30" r="8" fill="#1a1a1a"/>
+              <circle cx="95" cy="55" r="8" fill="#1a1a1a"/>
+              <circle cx="90" cy="85" r="8" fill="#1a1a1a"/>
+              <circle cx="70" cy="100" r="8" fill="#1a1a1a"/>
+              <circle cx="45" cy="95" r="8" fill="#1a1a1a"/>
+              <circle cx="20" cy="80" r="8" fill="#1a1a1a"/>
+              <circle cx="10" cy="55" r="8" fill="#1a1a1a"/>
+            </svg>
+          </div>
+
+          <!-- Hero Content -->
+          <div class="about-hero-integrated__content">
+            <h1 class="about-hero-integrated__title">About The Hive</h1>
+            <p class="about-hero-integrated__subtitle">
+              The Hive is a student-led community built around collaboration, real experience, and meaningful growth.
+            </p>
+          </div>
+
+          <!-- Decorative Icon - Right -->
+          <div class="about-hero__icon about-hero__icon--right" aria-hidden="true">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="15" r="6" fill="#1a1a1a"/>
+              <circle cx="65" cy="25" r="6" fill="#1a1a1a"/>
+              <circle cx="70" cy="50" r="6" fill="#1a1a1a"/>
+              <circle cx="55" cy="70" r="6" fill="#1a1a1a"/>
+              <circle cx="25" cy="70" r="6" fill="#1a1a1a"/>
+              <circle cx="10" cy="50" r="6" fill="#1a1a1a"/>
+              <circle cx="15" cy="25" r="6" fill="#1a1a1a"/>
+            </svg>
+          </div>
+
+          <!-- Integrated Image Gallery -->
+          <div class="about-hero-integrated__gallery">
+            <div class="gallery-card">
+              <img src="assets/about1.jpg" alt="Students collaborating on laptops" loading="lazy" />
+            </div>
+            <div class="gallery-card">
+              <img src="assets/about2.jpg" alt="Student presenting to group" loading="lazy" />
+            </div>
+            <div class="gallery-card">
+              <img src="assets/about3.jpg" alt="Students attending workshop" loading="lazy" />
+            </div>
+            <div class="gallery-card">
+              <img src="assets/about4.jpg" alt="Students working on project planning" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OUR STORY -->
+      <section class="story">
+        <div class="container story__grid">
+          <div class="story__content">
+            <div class="story__header">
+              <h2 class="story__title">Our Story</h2>
+              <div class="story__icon" aria-hidden="true">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="10" r="4" fill="#a8d5a3"/>
+                  <circle cx="50" cy="20" r="4" fill="#a8d5a3"/>
+                  <circle cx="55" cy="40" r="4" fill="#a8d5a3"/>
+                  <circle cx="45" cy="55" r="4" fill="#a8d5a3"/>
+                  <circle cx="20" cy="55" r="4" fill="#a8d5a3"/>
+                  <circle cx="5" cy="40" r="4" fill="#a8d5a3"/>
+                  <circle cx="10" cy="20" r="4" fill="#a8d5a3"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="story__text">
+              <p>
+                The Hive began with a student stuck in the same loop many of us know too well — you need experience to get an internship, but you need an internship to get experience.
+              </p>
+              <p>
+                When she finally landed an interview, she realized she wasn't ready. Her "training" came from YouTube videos, random notes, and tools she'd only used on her own. She knew the ideas — but not how they worked in practice.
+              </p>
+              <p>
+                She wasn't lazy. She wasn't unmotivated. She was just learning alone.
+              </p>
+              <p>
+                So The Hive was created to change that. A space where students could work on real projects, learn in teams, and build confidence before stepping into professional spaces.
+              </p>
+            </div>
+          </div>
+
+          <div class="story__media">
+            <img src="assets/story.jpg" alt="Notebook, camera, and coffee on desk" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- DECORATIVE WAVE -->
+      <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
+          <path d="M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z" fill="#f9f5e8"/>
+        </svg>
+      </div>
+
+      <!-- FOOTER FORM -->
+      <section class="cta-footer">
+        <div class="container cta-footer__wrap">
+          <h2>Ready to work with us?</h2>
+          <p>Let's build something meaningful together</p>
+
+          <div class="footer-form">
+            <div class="footer-form__row">
+              <label>
+                <span class="footer-form__label">Name</span>
+                <input type="text" name="name" placeholder="First name" />
+              </label>
+              <label>
+                <span class="footer-form__label"> </span>
+                <input type="text" name="last" placeholder="Last name" />
+              </label>
+            </div>
+
+            <label>
+              <span class="footer-form__label">Email</span>
+              <input type="email" name="email" placeholder="yourname@email.com" />
+            </label>
+
+            <label>
+              <span class="footer-form__label">Message</span>
+              <textarea name="message" rows="4" placeholder="Tell us what you're looking for..."></textarea>
+            </label>
+
+            <button class="btn btn--primary btn--dark" type="button">Send</button>
+          </div>
+
+          <div class="footer-meta">
+            <p class="footer-meta__left">thehive.club@uleth.ca</p>
+            <div class="footer-meta__right">
+              <a href="#">Instagram</a>
+              <a href="#">Facebook</a>
+              <a href="#">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

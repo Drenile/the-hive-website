@@ -1,229 +1,299 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Hive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hive — Home</title>
 
-  <body>
-    <!-- NAV -->
-    <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="#">
-          <span class="brand-mark">thehi</span><span class="brand-mark--accent">ve</span>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- SECTION 1: NAV + HERO (YELLOW) -->
+  <section class="section section--yellow section1">
+    <div class="wrap">
+
+      <header class="nav">
+        <a class="logo" href="index.html" aria-label="The Hive home">
+          <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
         </a>
 
-        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
-          <span class="sr-only">Open menu</span>
-          <span class="nav__burger" aria-hidden="true"></span>
-        </button>
+        <nav class="navLinks" aria-label="Primary navigation">
+          <a class="navItem isActive" href="index.html">Home</a>
+          <a class="navItem" href="community.html">Community</a>
+          <a class="navItem" href="getinvolved.html">Get Involved</a>
+          <a class="navItem" href="projects.html">Projects</a>
+          <a class="navItem" href="contactus.html">Work With Us</a>
+        </nav>
 
-        <ul class="nav__links" id="navMenu">
-          <li><a href="#" class="nav__link">Home</a></li>
-          <li><a href="#" class="nav__link">Community <span aria-hidden="true">●</span></a></li>
-          <li><a href="#" class="nav__link">Get involved <span aria-hidden="true">●</span></a></li>
-          <li><a href="#" class="nav__link">Projects</a></li>
-          <li><a href="#" class="nav__link">Work With Us</a></li>
-        </ul>
-      </nav>
+        <!-- ✅ NOTE: class name matches CSS: navMenu (not nav__menu) -->
+        <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
+          ☰
+        </button>
+      </header>
+
+      <!-- mobile -->
+      <div class="mobileNav" id="mobileNav" hidden>
+        <a href="index.html" class="mobileNav__link">Home</a>
+        <a href="community.html" class="mobileNav__link">Community</a>
+        <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+        <a href="projects.html" class="mobileNav__link">Projects</a>
+        <a href="contactus.html" class="mobileNav__link">Work With Us</a>
+      </div>
+
+      <div class="heroGrid">
+        <div class="heroText">
+            <h1>Building Real Connections.<br />Growing Practical Skills.</h1>
+          <p>The Hive is a student-led community built around collaboration, not competition.</p>
+          <p>We work on real projects, learn from real people, and grow skills that actually matter — together.</p>
+
+          <div class="heroBtns">
+            <a class="btnGreen" href="getinvolved.html">Get Involved</a>
+            <a class="btnWhite" href="aboutus.html">Learn More</a>
+          </div>
+        </div>
+
+        <div class="heroImgWrap">
+          <img class="heroImg" src="assets/students smiling.jpg" alt="A group photo of students smiling." />
+          <img class="heroDoodle" src="assets/pink emphasis.png" alt="" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS (WHITE) -->
+  <section class="section section--white stats">
+  <div class="wrap stats__inner">
+
+    <div class="stat">
+      <svg class="statSvg" viewBox="0 0 260 120" role="img" aria-label="100 plus">
+        <text x="0" y="92" class="statSvgText">100+</text>
+      </svg>
+      <div class="stat__label">members</div>
+    </div>
+
+    <div class="stat">
+      <svg class="statSvg" viewBox="0 0 220 120" role="img" aria-label="25 plus">
+        <text x="0" y="92" class="statSvgText">25+</text>
+      </svg>
+      <div class="stat__label">projects</div>
+    </div>
+
+    <div class="stat">
+      <svg class="statSvg" viewBox="0 0 220 120" role="img" aria-label="10 plus">
+        <text x="0" y="92" class="statSvgText">10+</text>
+      </svg>
+      <div class="stat__label">partners</div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- MISSION (WHITE) -->
+   
+ <section class="section section--white mission section--lined" id="community">
+  <div class="wrap">
+    <div class="missionBanner">
+      <img class="missionBg" src="assets/paperplanes.png" alt="" aria-hidden="true" />
+
+      <div class="missionContent">
+        <div class="missionKicker">what we do</div>
+
+        <p class="missionText">
+          The Hive’s Mission Is To Give Students Real Experience Working In Cross-Functional Teams And To Create A
+          Supportive Space That Helps Them Build Confidence And Access Career Opportunities They Feel Comfortable In
+        </p>
+
+        <div class="missionScribble" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <section class="section section--white roles" id="get-involved">
+  <div class="wrap">
+    <div class="rolesStage" id="rolesStage">
+
+      <!-- LEFT (GREEN) -->
+      <article class="roleCard roleCard--green is-left" data-slot="left" tabindex="0">
+        <img class="clipImg clipImg--left" src="assets/pin.png" alt="" aria-hidden="true" />
+
+        <div class="roleTop">
+          <div class="roleKicker">Join as a</div>
+          <div class="roleTitleBig">hiver</div>
+        </div>
+
+        <h3 class="roleHeading">For<br>Students</h3>
+
+        <p class="roleBody">
+          We partner with organizations to deliver hands-on experience to students through real projects in design,
+          marketing & development.
+        </p>
+      </article>
+
+      <!-- CENTER (PINK) -->
+      <article class="roleCard roleCard--pink is-center is-active" data-slot="center" tabindex="0">
+        <img class="clipImg clipImg--center" src="assets/pin polka.png" alt="" aria-hidden="true" />
+
+        <h3 class="roleHeading">For<br>Professionals</h3>
+
+        <p class="roleBody">
+          Share your experience, guide students, and help shape real-world learning.
+        </p>
+
+        <div class="roleBottom">
+          <div class="roleKicker">Join as a</div>
+          <div class="roleTitleBig">mentor</div>
+        </div>
+      </article>
+
+      <!-- RIGHT (YELLOW) -->
+      <article class="roleCard roleCard--yellow is-right" data-slot="right" tabindex="0">
+        <img class="clipImg clipImg--right" src="assets/clip.png" alt="" aria-hidden="true" />
+
+        <div class="roleTop roleTop--right">
+          <div class="roleKicker">Join as a</div>
+          <div class="roleTitleBig">partner</div>
+        </div>
+
+        <h3 class="roleHeading">For<br>Organizations</h3>
+
+        <p class="roleBody">
+          Support student-led projects, events, and initiatives that create real impact.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+  <!-- NEWS / CAROUSEL SECTION -->
+<section class="section section--green hiveNews" id="news">
+  <div class="wrap hiveNews__inner">
+
+    <!-- doodles (assets) -->
+    <img class="hiveNews__star hiveNews__star--left" src="assets/4 star.png" alt="" aria-hidden="true" />
+    <img class="hiveNews__star hiveNews__star--right" src="assets/pink upside empasis.png" alt="" aria-hidden="true" />
+
+    <header class="hiveNews__header">
+      <h2>what’s new at the hive</h2>
+      <p>Updates, events, and opportunities you don’t want to miss.</p>
     </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero__grid">
-          <div class="hero__copy">
-            <h1>Building Real Connections.<br />Growing Practical Skills.</h1>
-            <p class="hero__sub">
-              The Hive is a student-led community built around collaboration, not competition.
-            </p>
-            <p class="hero__sub">
-              We work on real projects, learn from real people, and grow skills that actually matter — together.
-            </p>
+    <div class="hiveNews__carousel" data-carousel>
+      <button class="newsArrow newsArrow--left" type="button" data-prev aria-label="Previous">
+        ←
+      </button>
 
-            <div class="hero__cta">
-              <a class="btn btn--primary" href="#">Get involved</a>
-              <a class="btn btn--ghost" href="#">Learn more</a>
-            </div>
-          </div>
-
-          <div class="hero__media">
-            <img
-              src="assets/hero.jpg"
-              alt="A group photo of Hive members smiling outdoors"
-              class="hero__img"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- LOGO STRIP -->
-      <section class="logos" aria-label="Featured on">
-        <div class="container logos__row">
-          <div class="logo-pill">g</div>
-          <div class="logo-pill"></div>
-          <div class="logo-pill">LinkedIn</div>
-          <div class="logo-pill">AFRO</div>
-          <div class="logo-pill">N</div>
-        </div>
-      </section>
-
-      <!-- WHAT WE DO -->
-      <section class="mission">
-        <div class="container mission__wrap">
-          <p class="eyebrow">what we do</p>
-          <h2 class="mission__title">
-            The Hive’s Mission Is To Give Students Real Experience Working In Cross-Functional Teams And To Create A
-            Supportive Space That Helps Them Build Confidence And Access Career Opportunities They Feel Comfortable In
-          </h2>
-        </div>
-      </section>
-
-      <!-- 3 CARDS -->
-      <section class="audiences">
-        <div class="container audiences__grid">
-          <article class="aud-card">
-            <div class="aud-card__top">
-              <p class="aud-card__small">Join as a</p>
-              <p class="aud-card__tag">hive</p>
-            </div>
-            <h3 class="aud-card__title">For Students</h3>
-          </article>
-
-          <article class="aud-card aud-card--tall">
-            <div class="aud-card__top">
-              <p class="aud-card__small">For</p>
-              <p class="aud-card__tag">Professionals</p>
-            </div>
-            <div class="aud-card__mid">
-              <p class="aud-card__desc">
-                Share your experience, guide students, and help them build confidence while learning.
-              </p>
-              <p class="aud-card__tag aud-card__tag--right">Join as a<br><strong>mentor</strong></p>
+      <!-- viewport clips the “cut off” cards -->
+      <div class="newsViewport">
+        <div class="newsTrack" data-track>
+          <!-- card 1 -->
+          <article class="newsCard">
+            <img src="assets/IMG_0943.JPG" alt="Black History Month Community Project" />
+            <div class="newsCard__body">
+              <h3>Black History Month Community Project</h3>
+              <span class="pill">Coming Soon</span>
+              <p>A student-led project centered on storytelling, collaboration, and community impact.</p>
+              <a class="btnMini btnMini--yellow" href="#">Learn More</a>
             </div>
           </article>
 
-          <article class="aud-card aud-card--narrow">
-            <div class="aud-card__top">
-              <p class="aud-card__small">Join as a</p>
-              <p class="aud-card__tag">partner</p>
+          <!-- card 2 -->
+          <article class="newsCard">
+            <img src="assets/IMG_4270.jpg" alt="Photo Day & LinkedIn Optimization" />
+            <div class="newsCard__body">
+              <h3>Photo Day &amp; LinkedIn Optimization</h3>
+              <span class="pill">Coming Soon</span>
+              <p>A hands-on session to help you build a strong professional presence, from headshots to profile feedback.</p>
+              <a class="btnMini btnMini--green" href="#">Learn More</a>
             </div>
-            <h3 class="aud-card__title">For Organizations</h3>
-            <p class="aud-card__desc">
-              Support student-led projects, events, and initiatives that create real impact.
-            </p>
+          </article>
+
+          <!-- card 3 -->
+          <article class="newsCard">
+            <img src="assets/porfolio.jpg" alt="Portfolio Review & Build Day" />
+            <div class="newsCard__body">
+              <h3>Portfolio Review &amp; Build Day</h3>
+              <span class="pill">Coming Soon</span>
+              <p>An open working session for refining your portfolio, getting feedback, and learning how to present your work.</p>
+              <a class="btnMini btnMini--pink" href="#">Learn More</a>
+            </div>
+          </article>
+
+          <!-- extra cards (these are the ones that will be “cut off” at the ends) -->
+          <article class="newsCard">
+            <img src="assets/leadfest 3 smile.JPG" alt="Collab Night" />
+            <div class="newsCard__body">
+              <h3>Collab Night</h3>
+              <span class="pill">Coming Soon</span>
+              <p>Meet people across majors and build something small together.</p>
+              <a class="btnMini btnMini--yellow" href="#">Learn More</a>
+            </div>
+          </article>
+
+          <article class="newsCard">
+            <img src="assets/event-workshop.jpg" alt="Workshop Series" />
+            <div class="newsCard__body">
+              <h3>Workshop Series</h3>
+              <span class="pill">Coming Soon</span>
+              <p>Short, practical sessions to level up your skills and confidence.</p>
+              <a class="btnMini btnMini--green" href="#">Learn More</a>
+            </div>
           </article>
         </div>
-      </section>
+      </div>
 
-      <!-- WHAT'S NEW (SLIDER) -->
-      <section class="news">
-        <div class="news__bg">
-          <div class="container news__header">
-            <h2 class="news__title">what’s new at the hive</h2>
-            <p class="news__sub">Updates, events, and opportunities you don’t want to miss.</p>
+      <button class="newsArrow newsArrow--right" type="button" data-next aria-label="Next">
+        →
+      </button>
+    </div>
+  </div>
+</section>
+
+  <!-- FOOTER (BLACK) -->
+  <footer class="section section--black footer" id="work">
+    <div class="wrap footer__inner">
+      <h2>Let’s Keep In Touch</h2>
+      <p class="footer__sub">Join Our Newsletter!!!</p>
+
+      <form class="newsletter" onsubmit="return false;">
+        <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+        <button class="newsletter__btn" type="submit">
+          <span class="mailIcon" aria-hidden="true">✉</span>
+          SUBSCRIBE
+        </button>
+      </form>
+
+      <div class="footer__bottom">
+        <div class="footer__links">
+          <div class="footer__col">
+            <div class="footer__title">Homepage</div>
+            <a href="#community">About</a>
+            <a href="#work">Contacts</a>
           </div>
-
-          <div class="container news__controls">
-            <button class="circle-btn" type="button" data-news-prev aria-label="Previous posts">←</button>
-            <button class="circle-btn" type="button" data-news-next aria-label="Next posts">→</button>
-          </div>
-
-          <div class="container">
-            <div class="news__track" data-news-track>
-              <article class="post">
-                <img class="post__img" src="assets/post1.jpg" alt="" loading="lazy" />
-                <div class="post__body">
-                  <h3 class="post__title">Black History Month Community Project</h3>
-                  <p class="post__meta">Coming Soon</p>
-                  <p class="post__text">A student-led project centered on storytelling, collaboration, and community impact.</p>
-                  <a class="btn btn--chip" href="#">Learn More</a>
-                </div>
-              </article>
-
-              <article class="post">
-                <img class="post__img" src="assets/post2.jpg" alt="" loading="lazy" />
-                <div class="post__body">
-                  <h3 class="post__title">Photo Day & LinkedIn Optimization</h3>
-                  <p class="post__meta">Coming Soon</p>
-                  <p class="post__text">A hands-on session to help you build a strong professional presence.</p>
-                  <a class="btn btn--chip" href="#">Learn More</a>
-                </div>
-              </article>
-
-              <article class="post">
-                <img class="post__img" src="assets/post3.jpg" alt="" loading="lazy" />
-                <div class="post__body">
-                  <h3 class="post__title">Portfolio Review & Build Day</h3>
-                  <p class="post__meta">Coming Soon</p>
-                  <p class="post__text">An open working session for refining your portfolio and getting feedback.</p>
-                  <a class="btn btn--chip" href="#">Learn More</a>
-                </div>
-              </article>
-
-              <article class="post">
-                <img class="post__img" src="assets/post4.jpg" alt="" loading="lazy" />
-                <div class="post__body">
-                  <h3 class="post__title">More Opportunities</h3>
-                  <p class="post__meta">Coming Soon</p>
-                  <p class="post__text">More events and ways to get involved are on the way.</p>
-                  <a class="btn btn--chip" href="#">Learn More</a>
-                </div>
-              </article>
-            </div>
+          <div class="footer__col">
+            <div class="footer__title">Partner with Us</div>
+            <a href="#learn">FAQ</a>
+            <a href="#projects">Projects</a>
           </div>
         </div>
-      </section>
 
-      <!-- FOOTER FORM -->
-      <section class="cta-footer">
-        <div class="container cta-footer__wrap">
-          <h2>Ready to work with us?</h2>
-          <p>Let’s build something meaningful together</p>
-
-          <form class="footer-form">
-            <div class="footer-form__row">
-              <label>
-                <span class="footer-form__label">Name</span>
-                <input type="text" name="name" placeholder="First name" />
-              </label>
-              <label>
-                <span class="footer-form__label"> </span>
-                <input type="text" name="last" placeholder="Last name" />
-              </label>
-            </div>
-
-            <label>
-              <span class="footer-form__label">Email</span>
-              <input type="email" name="email" placeholder="yourname@email.com" />
-            </label>
-
-            <label>
-              <span class="footer-form__label">Message</span>
-              <textarea name="message" rows="4" placeholder="Tell us what you’re looking for..."></textarea>
-            </label>
-
-            <button class="btn btn--primary btn--dark" type="submit">Send</button>
-          </form>
-
-          <div class="footer-meta">
-            <p class="footer-meta__left">thehive.club@uleth.ca</p>
-            <div class="footer-meta__right">
-              <a href="#">Instagram</a>
-              <a href="#">Facebook</a>
-              <a href="#">LinkedIn</a>
-            </div>
-          </div>
+        <div class="footer__socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Facebook">f</a>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
+  </footer>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="app.js"></script>
+</body>
 </html>
