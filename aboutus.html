@@ -50,18 +50,14 @@
       </nav>
 
       <button class="navMenu" id="menuBtn"
-              aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
+              aria-expanded="false" aria-controls="mobileNav">☰</button>
     </header>
 
     <!-- mobile nav -->
     <div class="mobileNav" id="mobileNav" hidden>
       <a href="index.html"       class="mobileNav__link">Home</a>
-      <a href="aboutus.html"     class="mobileNav__link isActive">About</a>
-      <span class="mobileNav__section">Community</span>
-      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
-      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <a href="community.html"   class="mobileNav__link">Community</a>
       <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
       <a href="projects.html"    class="mobileNav__link">Projects</a>
       <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
@@ -139,7 +135,7 @@
 
         <!-- image -->
         <div class="aboutImgCard reveal reveal-delay-2">
-          <img src="assets/students smiling.jpg"
+          <img src="assets/the hive smiling 3.JPG"
                alt="Students smiling together" />
         </div>
 
@@ -157,14 +153,14 @@
 
         <!-- image LEFT -->
         <div class="aboutImgCard ourMission__img reveal">
-          <img src="assets/IMG_0922.JPG"
+          <img src="assets/mission.jpg"
                alt="Two silhouettes on a rocky landscape at sunset" />
         </div>
 
         <!-- text RIGHT -->
         <div class="ourMission__text reveal reveal-delay-2" style="position:relative;">
           <img class="deco deco--squiggle"
-               src="assets/pink doodle hollow.png"
+               src="assets/squiggle doodle.png"
                alt="" aria-hidden="true" />
 
           <div class="sectionKicker">✦ Our Mission</div>
@@ -207,7 +203,7 @@
 
         <!-- image RIGHT -->
         <div class="aboutImgCard reveal reveal-delay-2">
-          <img src="assets/hands together laptop.jpg"
+          <img src="assets/bulb.jpg"
                alt="A hand holding a glowing lightbulb at sunset" />
         </div>
 
@@ -316,11 +312,9 @@
   const mobileNav = document.getElementById('mobileNav');
   if (menuBtn && mobileNav) {
     menuBtn.addEventListener('click', () => {
-      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      menuBtn.classList.toggle('is-open', !isOpen);
-      mobileNav.hidden = isOpen;
+      const open = !mobileNav.hidden;
+      mobileNav.hidden = open;
+      menuBtn.setAttribute('aria-expanded', String(!open));
     });
   }
 
