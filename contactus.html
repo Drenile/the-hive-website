@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Hive — Home</title>
+  <title>Contact Us — The Hive</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,41 +11,196 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
 
-  <!-- SECTION 1: NAV + HERO (YELLOW) -->
-  <section class="section section--yellow section1">
-    <div class="wrap">
+<!-- HERO (YELLOW) -->
+<section class="section section--yellow section1">
+  <div class="wrap">
 
-      <header class="nav">
-        <a class="logo" href="index.html" aria-label="The Hive home">
-          <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
-        </a>
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
 
-        <nav class="navLinks" aria-label="Primary navigation">
-          <a class="navItem isActive" href="index.html">Home</a>
-          <a class="navItem" href="community.html">Community</a>
-          <a class="navItem" href="getinvolved.html">Get Involved</a>
-          <a class="navItem" href="projects.html">Projects</a>
-          <a class="navItem" href="contactus.html">Work With Us</a>
-        </nav>
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem" href="aboutus.html">About</a>
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item" href="news.html">News</a>
+          </div>
+        </div>
+        <a class="navItem" href="getinvolved.html">Get Involved</a>
+        <a class="navItem" href="projects.html">Projects</a>
+        <a class="navItem isActive" href="contactus.html">Contact Us</a>
+      </nav>
 
-        <!-- ✅ NOTE: class name matches CSS: navMenu (not nav__menu) -->
-        <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
-          ☰
-        </button>
-      </header>
+      <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
 
-      <!-- mobile -->
-      <div class="mobileNav" id="mobileNav" hidden>
-        <a href="index.html" class="mobileNav__link">Home</a>
-        <a href="community.html" class="mobileNav__link">Community</a>
-        <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
-        <a href="projects.html" class="mobileNav__link">Projects</a>
-        <a href="contactus.html" class="mobileNav__link">Work With Us</a>
-      </div>
-</div>
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link isActive">Contact Us</a>
+    </div>
+
+    <!-- hero text -->
+    <div class="contactHero">
+      <h1>Let's Talk</h1>
+      <p>Have a question, want to partner with us, or just want to say hi? We'd love to hear from you.</p>
+    </div>
+
+  </div>
 </section>
+
+<!-- CONTACT FORM (WHITE) -->
+<section class="section section--white" style="padding: 80px 0 100px; border-top: 2px solid #000;">
+  <div class="wrap" style="max-width: 720px; margin: 0 auto;">
+
+    <form class="contactForm" onsubmit="return false;">
+
+      <div class="contactForm__row">
+        <div class="contactForm__field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Victoria" />
+        </div>
+        <div class="contactForm__field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Morgan" />
+        </div>
+      </div>
+
+      <div class="contactForm__field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="hello@thehive.com" />
+      </div>
+
+      <div class="contactForm__field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="I'd love to partner with The Hive..." />
+      </div>
+
+      <div class="contactForm__field">
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" placeholder="Tell us more..."></textarea>
+      </div>
+
+      <button class="btnGreen" type="submit" style="width: 100%; justify-content: center; font-size: 18px;">
+        Send Message
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="section section--black footer" id="work">
+  <div class="wrap footer__inner">
+    <h2>Let's Keep In Touch</h2>
+    <p class="footer__sub">Join Our Newsletter!!!</p>
+    <form class="newsletter" onsubmit="return false;">
+      <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+        <span class="mailIcon" aria-hidden="true">✉</span> SUBSCRIBE
+      </button>
+    </form>
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <div class="footer__title">Homepage</div>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <div class="footer__title">Partner with Us</div>
+          <a href="#">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .contactHero {
+    padding: 80px 0 60px;
+    max-width: 600px;
+  }
+  .contactHero h1 {
+    font-size: clamp(56px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 1.0;
+    margin: 0 0 18px;
+  }
+  .contactHero p {
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.7;
+    opacity: .75;
+    max-width: 46ch;
+  }
+  .contactForm { display: flex; flex-direction: column; gap: 22px; }
+  .contactForm__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contactForm__field { display: flex; flex-direction: column; gap: 8px; }
+  .contactForm__field label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: .6;
+  }
+  .contactForm__field input,
+  .contactForm__field textarea {
+    padding: 14px 16px;
+    border: 2px solid #000;
+    border-radius: 14px;
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    background: #fff;
+    outline: none;
+    resize: vertical;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .contactForm__field input:focus,
+  .contactForm__field textarea:focus {
+    border-color: #7EBD3E;
+    box-shadow: 0 0 0 3px rgba(126,189,62,.18);
+  }
+  @media (max-width: 600px) {
+    .contactForm__row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const menuBtn   = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
+    });
+  }
+</script>
+
 </body>
 </html>

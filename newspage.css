@@ -1,0 +1,91 @@
+/* =========================================================
+   THE HIVE — EVENT RECAP PAGE
+   Load AFTER article.css
+========================================================= */
+
+/* ── STATS BAR ── */
+.recapStats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 18px;
+  padding: 28px 36px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.recapStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.recapStat__num {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  color: #FFDB5A;
+  line-height: 1;
+}
+.recapStat__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: .7;
+}
+.recapStat__divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,.15);
+  flex-shrink: 0;
+}
+
+/* ── HIGHLIGHTS LIST ── */
+.recapHighlights {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.recapHighlight {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: #F8F8F8;
+  border: 2px solid #000;
+  border-radius: 14px;
+}
+.recapHighlight__icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.recapHighlight strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.recapHighlight p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .65;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .recapStats {
+    padding: 20px;
+    gap: 16px;
+    justify-content: center;
+  }
+  .recapStat__divider { display: none; }
+  .recapStat { flex: 1 1 40%; }
+}

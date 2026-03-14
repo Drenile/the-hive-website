@@ -1,0 +1,641 @@
+/* =========================================================
+   THE HIVE — EVENTS PAGE
+   Load AFTER styles.css
+========================================================= */
+
+:root {
+  --forest: #02462E;
+  --ev-green: #35703D;
+}
+
+/* ─────────────────────────────────────────
+   NAV OVERRIDES — green hero background
+───────────────────────────────────────── */
+.eventsHero .navItem:hover::after {
+  background: #FF66C4;
+  transform: scaleX(1);
+}
+
+.eventsHero .navItem.isActive::after,
+.eventsHero .navDropdown__trigger.isActive::after {
+  background: var(--yellow);
+  transform: scaleX(1);
+}
+
+.eventsHero .navDropdown__trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--yellow);
+  transform: scaleX(1);
+}
+
+/* ─────────────────────────────────────────
+   HERO (GREEN GRID + GRAIN)
+───────────────────────────────────────── */
+.eventsHero {
+  padding: 28px 0 70px;
+  position: relative;
+  min-height: 520px;
+  isolation: isolate;
+}
+
+.eventsHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.70;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  mix-blend-mode: multiply;
+}
+
+.eventsHero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.eventsHero__content {
+  text-align: center;
+  padding-top: 52px;
+  position: relative;
+}
+
+.eventsHero__doodle {
+  position: absolute;
+  top: -10px;
+  left: clamp(0px, 1vw, 20px);
+  width: clamp(140px, 16vw, 220px);
+  opacity: 0.85;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
+.flagshipBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 999px;
+  padding: 8px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+
+/* Title — HIVECONNECT on line 1, 2026 on line 2 */
+.eventsHero__title {
+  font-size: clamp(36px, 10vw, 110px);
+  font-weight: 900;
+  line-height: 1.0;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #fff;
+  -webkit-text-stroke: 2.5px var(--forest);
+  paint-order: stroke fill;
+}
+
+.eventsHero__titleLine1,
+.eventsHero__titleLine2 {
+  display: block;
+}
+
+.eventsHero__sub {
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--forest);
+  margin: 0 auto 38px;
+  max-width: 58ch;
+}
+
+/* ─────────────────────────────────────────
+   COUNTDOWN
+───────────────────────────────────────── */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 22px);
+  margin: 0 auto 40px;
+  flex-wrap: nowrap; /* stay on one line */
+}
+
+.countdown__unit {
+  background: #fff;
+  border-radius: 14px;
+  min-width: clamp(72px, 10vw, 130px);
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  flex: 1 1 0;         /* grow/shrink evenly */
+  max-width: 130px;
+}
+
+.countdown__num {
+  display: block;
+  font-size: clamp(28px, 5.5vw, 72px);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  padding: 16px 12px 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown__label {
+  display: block;
+  background: var(--ev-green);
+  color: #fff;
+  font-size: clamp(9px, 1vw, 13px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 7px 4px;
+}
+
+/* ─────────────────────────────────────────
+   CTA BUTTON
+───────────────────────────────────────── */
+.eventsHero__cta {
+  background: #fff;
+  border: 2.5px solid var(--forest);
+  color: var(--forest);
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 700;
+  padding: 14px 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  transition: background .18s ease, color .18s ease, transform .15s ease;
+  text-decoration: none;
+}
+.eventsHero__cta:hover {
+  background: var(--forest);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+/* ─────────────────────────────────────────
+   WHAT IS HIVECONNECT (WHITE)
+───────────────────────────────────────── */
+.whatIs {
+  padding: 80px 0 90px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  position: relative;
+  overflow: visible;
+}
+
+.whatIs__inner {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.whatIs__doodle {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+}
+.whatIs__doodle--left {
+  width: clamp(80px, 8vw, 120px);
+  left: clamp(12px, 3vw, 48px);
+  transform: translateY(-50%);
+}
+.whatIs__doodle--right {
+  width: clamp(90px, 9vw, 130px);
+  right: clamp(12px, 3vw, 48px);
+  transform: translateY(-20%);
+}
+
+.whatIs__text h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.whatIs__underline {
+  width: clamp(120px, 16vw, 200px);
+  height: 22px;
+  margin: 0 auto 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 22'%3E%3Cpath d='M2 14 Q30 4 60 12 Q90 20 120 10 Q150 2 198 10' stroke='%231E1E1E' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.whatIs__text p {
+  font-size: clamp(14px, 1.35vw, 17px);
+  line-height: 1.85;
+  opacity: .75;
+  margin: 0;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────
+   UPCOMING EVENTS
+───────────────────────────────────────── */
+.upcomingEvents {
+  padding: 80px 0 90px;
+  border-bottom: 2px solid #000;
+}
+
+.upcomingEvents__inner { position: relative; }
+
+.upcomingEvents__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.upcomingEvents__header h2 {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 900;
+  margin: 0 0 16px;
+}
+.upcomingEvents__header p {
+  font-size: clamp(14px, 1.35vw, 17px);
+  line-height: 1.75;
+  opacity: .7;
+  max-width: 62ch;
+  margin: 0 auto;
+}
+
+.upcomingEvents__arrowsMobile {
+  display: none;
+}
+
+/* ─────────────────────────────────────────
+   UPCOMING EVENTS — CAROUSEL
+───────────────────────────────────────── */
+
+/* Outer wrapper — arrows sit inside this */
+.eventsCarouselWrap {
+  position: relative;
+}
+
+/* Overlaid arrow buttons */
+.evArrow {
+  position: absolute;
+  top: calc(180px / 2);        /* vertically centered over the photo */
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  transition: transform .15s ease, background .15s;
+  color: var(--ink);
+}
+.evArrow:hover         { transform: translateY(-50%) scale(1.08); }
+.evArrow:disabled      { opacity: .3; cursor: default; pointer-events: none; }
+.evArrow--prev         { left: 10px; }
+.evArrow--next         { right: 10px; }
+
+/* Scrollable track */
+.eventsCarousel {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 20px;
+  /* bleed to edges so peek works naturally */
+  margin-inline: calc(-1 * var(--side-pad));
+  padding-inline: var(--side-pad);
+  /* add horizontal padding so arrows don't overlap first/last card */
+  padding-left: calc(var(--side-pad) + 56px);
+  padding-right: calc(var(--side-pad) + 56px);
+  scroll-behavior: smooth;
+}
+.eventsCarousel::-webkit-scrollbar { display: none; }
+
+/* CARD */
+.eventsCard {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.eventsCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.16);
+}
+.eventsCard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.eventsCard__body {
+  padding: 16px 16px 20px;
+}
+.eventsCard__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.eventsCard__date {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .55;
+  white-space: nowrap;
+}
+.eventsCard__body h3 {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+.eventsCard__body p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .8;
+  margin: 0 0 14px;
+}
+
+/* Past event card — subtle dimming */
+.eventsCard--past {
+  opacity: .78;
+}
+.eventsCard--past img {
+  filter: grayscale(25%);
+}
+
+/* Pill colour variants */
+.pill--green  { background: #7EBD3E; color: var(--ink); border-color: #7EBD3E; }
+.pill--pink   { background: #FF66C4; color: var(--ink); border-color: #FF66C4; }
+.pill--yellow { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.pill--grey   { background: #e0e0e0; color: #555; border-color: #ccc; }
+
+/* DOT INDICATORS */
+.eventsCarousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.evDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.18);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.evDot.is-active {
+  background: var(--ink);
+  transform: scale(1.3);
+}
+
+/* ─────────────────────────────────────────
+   EXPLORE PAST EVENTS
+───────────────────────────────────────── */
+.pastEvents {
+  padding: 80px 0 100px;
+  border-top: 2px solid #000;
+}
+
+.pastEvents__header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.pastEvents__header h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  margin: 0;
+}
+
+.pastEvents__filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pastEvents__filterRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pastEvents__filterLabel {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: .55;
+}
+
+.filterBtn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, transform .12s ease;
+  border: 2px solid #000;
+}
+
+.filterBtn--active {
+  background: #7EBD3E;
+  color: var(--ink);
+}
+.filterBtn--active:hover { background: #8FD44D; }
+
+.filterBtn--outline {
+  background: #fff;
+  color: var(--ink);
+}
+.filterBtn--outline:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.pastEvents__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.pastCard {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.pastCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+.pastCard img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+.pastCard__body {
+  padding: 18px 18px 22px;
+}
+.pastCard__body h3 {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 10px;
+}
+.pastCard__body p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .75;
+  margin: 10px 0 16px;
+}
+
+.pastCard.is-hidden { display: none; }
+
+/* Load More */
+.pastEvents__loadMore {
+  text-align: center;
+  margin-top: 44px;
+}
+.pastEvents__loadMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 36px;
+  border-radius: 999px;
+  border: 2px solid #000;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .18s, color .18s, transform .15s;
+}
+.pastEvents__loadMoreBtn:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: scale(1.03);
+}
+.pastEvents__loadMoreBtn svg {
+  transition: transform .2s;
+}
+.pastEvents__loadMoreBtn:hover svg {
+  transform: translateY(2px);
+}
+.pastEvents__loadMoreBtn.is-loading {
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 860px) {
+  .whatIs__doodle { display: none; }
+  .pastEvents__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  /* Hide arrows on mobile/tablet — swipe only */
+  .evArrow { display: none; }
+
+  /* Pull the wrapper edge-to-edge so carousel bleeds properly */
+  .eventsCarouselWrap {
+    margin-left:  calc(-1 * var(--side-pad));
+    margin-right: calc(-1 * var(--side-pad));
+  }
+
+  /* Reset desktop carousel to a clean mobile track */
+  .eventsCarousel {
+    margin-inline: 0;           /* wrapper handles bleed */
+    padding-left:  20px;
+    padding-right: 20px;
+    scroll-padding-left: 20px;  /* snap always starts at left pad */
+    gap: 14px;
+  }
+
+  /* 75 vw = 1 full card comfortably on screen, ~25% of next card peeks */
+  .eventsCard { flex: 0 0 75vw; }
+}
+
+@media (max-width: 700px) {
+  .eventsHero { padding-bottom: 52px; }
+  .eventsHero__title { -webkit-text-stroke: 1.5px var(--forest); }
+  .eventsHero__doodle { display: none; }
+
+  /* Filter bar — stack label + buttons neatly */
+  .pastEvents__filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pastEvents__filterRight {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pastEvents__filterLabel {
+    width: 100%;
+  }
+
+  /* Countdown — tight but stays on one row */
+  .countdown {
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  .countdown__unit {
+    min-width: 0;
+    border-radius: 10px;
+  }
+  .countdown__num {
+    font-size: clamp(22px, 7vw, 32px);
+    padding: 10px 6px 6px;
+  }
+  .countdown__label {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    padding: 5px 2px;
+  }
+
+  .upcomingEvents__arrowsMobile { display: flex; }
+  .whatIs__text h2 { text-align: center; }
+  .whatIs__underline { margin: 0 auto 28px; }
+}
+
+@media (max-width: 560px) {
+  .pastEvents__grid { grid-template-columns: 1fr; }
+  .pastEvents__filters { flex-direction: column; align-items: flex-start; }
+
+  /* Upcoming events single column on very small screens */
+  .upcomingEvents .newsTrack {
+    grid-template-columns: 1fr;
+  }
+}

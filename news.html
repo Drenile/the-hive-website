@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — The Hive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="news.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO SPOTLIGHT (YELLOW)
+══════════════════════════════════════ -->
+<section class="section section--yellow newsHero">
+  <div class="wrap">
+
+    <!-- NAV -->
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem" href="aboutus.html">About</a>
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item isActive" href="news.html">News</a>
+          </div>
+        </div>
+        <a class="navItem" href="getinvolved.html">Get Involved</a>
+        <a class="navItem" href="projects.html">Projects</a>
+        <a class="navItem" href="contactus.html">Contact Us</a>
+      </nav>
+      <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub isActive">News</a>
+      <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
+    </div>
+
+  </div>
+
+  <!-- SPOTLIGHT — full-width split: image left, text right -->
+  <div class="spotlight reveal">
+    <div class="spotlight__img">
+      <img src="assets/face portrait.png" alt="Adesola — Hiver of the Month" />
+    </div>
+    <div class="spotlight__body">
+      <span class="spotlightBadge">✦ Membership Spotlight</span>
+      <h1>Meet Adesola:<br />Hiver Of The Month!!</h1>
+      <p>
+        Adesola is a Computer Science student passionate about building real solutions
+        that create impact. Through The Hive, she has contributed to cross-functional
+        projects, supported team collaboration, and continuously pushed herself to grow
+        beyond the classroom. Her consistency, leadership, and willingness to help others
+        make her a true Hiver of the Month.
+      </p>
+      <a class="btnPink" href="hotm.html">Read More</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     EXPLORE THE HIVE NEWS
+══════════════════════════════════════ -->
+<section class="section section--white newsExplore">
+  <div class="wrap">
+
+    <div class="newsExplore__header reveal">
+      <h2>Explore The Hive News</h2>
+      <p>Explore event recaps, member spotlights, project updates, and practical resources to stay informed and involved with The Hive.</p>
+    </div>
+
+    <!-- FILTER BAR — same pattern as events page -->
+    <div class="pastEvents__filters reveal reveal-delay-1">
+      <button class="filterBtn filterBtn--active" data-filter="all">All Blogs</button>
+      <div class="pastEvents__filterRight">
+        <span class="pastEvents__filterLabel">Filter by</span>
+        <button class="filterBtn filterBtn--outline" data-filter="spotlight">Spotlight</button>
+        <button class="filterBtn filterBtn--outline" data-filter="event">Event Recap</button>
+        <button class="filterBtn filterBtn--outline" data-filter="resource">Resource</button>
+      </div>
+    </div>
+
+    <!-- NEWS GRID — same .pastCard style as events page -->
+    <div class="pastEvents__grid" id="newsGrid">
+
+      <article class="pastCard reveal reveal-delay-1" data-tags="spotlight">
+        <img src="assets/IMG_0943.JPG" alt="Black History Month Community Project" />
+        <div class="pastCard__body">
+          <h3>Black History Month Community Project</h3>
+          <span class="pill pill--green">Spotlight</span>
+          <p>A student-led project centered on storytelling, collaboration, and community impact.</p>
+          <a class="btnMini btnMini--yellow" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-2" data-tags="event">
+        <img src="assets/leadfest 3 smile.JPG" alt="LeadFest 2026" />
+        <div class="pastCard__body">
+          <h3>LeadFest 2026 Recap</h3>
+          <span class="pill pill--pink">Event Recap</span>
+          <p>A dynamic event where students connected with leaders, mentors, and peers across disciplines.</p>
+          <a class="btnMini btnMini--green" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-3" data-tags="resource">
+        <img src="assets/porfolio.jpg" alt="Portfolio Review & Build Day" />
+        <div class="pastCard__body">
+          <h3>How To Build A Portfolio That Stands Out</h3>
+          <span class="pill pill--yellow">Resource</span>
+          <p>Practical tips from our Portfolio Review day to help you present your work with confidence.</p>
+          <a class="btnMini btnMini--pink" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-1" data-tags="event">
+        <img src="assets/IMG_4270.jpg" alt="Photo Day & LinkedIn Optimization" />
+        <div class="pastCard__body">
+          <h3>Photo Day &amp; LinkedIn Recap</h3>
+          <span class="pill pill--pink">Event Recap</span>
+          <p>A hands-on session to help students build a strong professional presence — here's what happened.</p>
+          <a class="btnMini btnMini--pink" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-2" data-tags="spotlight">
+        <img src="assets/the hive smiling 3.JPG" alt="Member Spotlight" />
+        <div class="pastCard__body">
+          <h3>Meet Adesola: Hiver Of The Month</h3>
+          <span class="pill pill--green">Spotlight</span>
+          <p>Meet the students making an impact inside and outside The Hive community this semester.</p>
+          <a class="btnMini btnMini--yellow" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-3" data-tags="resource">
+        <img src="assets/hands together laptop.jpg" alt="Workshop Series" />
+        <div class="pastCard__body">
+          <h3>5 Skills You Can Build Right Now</h3>
+          <span class="pill pill--yellow">Resource</span>
+          <p>Short, practical sessions to level up your skills and confidence — here's what went down.</p>
+          <a class="btnMini btnMini--green" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-1" data-tags="event">
+        <img src="assets/leadfest 3 smile.JPG" alt="Collab Night Recap" />
+        <div class="pastCard__body">
+          <h3>Collab Night Recap</h3>
+          <span class="pill pill--pink">Event Recap</span>
+          <p>Meet people across majors and build something small together — here's how it went.</p>
+          <a class="btnMini btnMini--yellow" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-2" data-tags="spotlight">
+        <img src="assets/teamroundchair.jpg" alt="Hiver of the Month" />
+        <div class="pastCard__body">
+          <h3>Hiver of the Month: February</h3>
+          <span class="pill pill--green">Spotlight</span>
+          <p>Every month we spotlight a Hiver making waves. Meet February's standout member.</p>
+          <a class="btnMini btnMini--pink" href="#">Learn More</a>
+        </div>
+      </article>
+
+      <article class="pastCard reveal reveal-delay-3" data-tags="resource">
+        <img src="assets/post it.jpg" alt="Industry Connect" />
+        <div class="pastCard__body">
+          <h3>How To Prep For Industry Connect Night</h3>
+          <span class="pill pill--yellow">Resource</span>
+          <p>Real conversations, real opportunities — here's how to make the most of them.</p>
+          <a class="btnMini btnMini--green" href="#">Learn More</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- LOAD MORE — same style as events page -->
+    <div class="pastEvents__loadMore" id="newsLoadMoreWrap">
+      <button class="pastEvents__loadMoreBtn" id="newsLoadMoreBtn" type="button">
+        Load More
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER (BLACK)
+══════════════════════════════════════ -->
+<footer class="section section--black footer">
+  <div class="wrap footer__inner">
+    <h2 class="reveal">Let's Keep In Touch</h2>
+    <p class="footer__sub reveal reveal-delay-1">Join Our Newsletter!!!</p>
+    <form class="newsletter reveal reveal-delay-2" onsubmit="return false;">
+      <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+        <span class="mailIcon" aria-hidden="true">✉</span> SUBSCRIBE
+      </button>
+    </form>
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <div class="footer__title">Homepage</div>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <div class="footer__title">Partner with Us</div>
+          <a href="#">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+/* ── NEWS FILTER ── */
+(function () {
+  const grid  = document.getElementById('newsGrid');
+  if (!grid) return;
+  const cards = grid.querySelectorAll('[data-tags]');
+  const btns  = grid.closest('section').querySelectorAll('.filterBtn');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      btns.forEach(b => { b.classList.remove('filterBtn--active'); b.classList.add('filterBtn--outline'); });
+      btn.classList.add('filterBtn--active');
+      btn.classList.remove('filterBtn--outline');
+      cards.forEach(card => {
+        card.classList.toggle('is-hidden', filter !== 'all' && !card.dataset.tags.includes(filter));
+      });
+    });
+  });
+})();
+
+/* ── NEWS LOAD MORE ── */
+(function () {
+  const grid = document.getElementById('newsGrid');
+  const btn  = document.getElementById('newsLoadMoreBtn');
+  const wrap = document.getElementById('newsLoadMoreWrap');
+  if (!grid || !btn) return;
+
+  const extra = [
+    { img: 'assets/IMG_0943.JPG', title: 'Project Update: Black History Month',   tags: 'event',    pill: 'pill--pink',   pillLabel: 'Event Recap', desc: 'How the team pulled together a meaningful community project in under three weeks.',     btnCls: 'btnMini--yellow' },
+    { img: 'assets/leadfest 3 smile.JPG', title: 'Networking Tips From Hivers',   tags: 'resource', pill: 'pill--yellow', pillLabel: 'Resource',    desc: 'Real advice from students who have been in the room and made it count.',              btnCls: 'btnMini--green'  },
+    { img: 'assets/hands together laptop.jpg', title: 'Hiver Spotlight: March',   tags: 'spotlight', pill: 'pill--green', pillLabel: 'Spotlight',   desc: 'This month we spotlight a Hiver who turned a small idea into a real project.',         btnCls: 'btnMini--pink'   },
+  ];
+
+  let loaded = 0;
+
+  btn.addEventListener('click', () => {
+    btn.classList.add('is-loading');
+    setTimeout(() => {
+      extra.slice(loaded, loaded + 3).forEach(c => {
+        const el = document.createElement('article');
+        el.className = 'pastCard';
+        el.dataset.tags = c.tags;
+        el.innerHTML = `
+          <img src="${c.img}" alt="${c.title}" />
+          <div class="pastCard__body">
+            <h3>${c.title}</h3>
+            <span class="pill ${c.pill}">${c.pillLabel}</span>
+            <p>${c.desc}</p>
+            <a class="btnMini ${c.btnCls}" href="#">Learn More</a>
+          </div>`;
+        grid.appendChild(el);
+      });
+      loaded += 3;
+      btn.classList.remove('is-loading');
+      if (loaded >= extra.length) wrap.style.display = 'none';
+    }, 500);
+  });
+})();
+</script>
+
+</body>
+</html>
