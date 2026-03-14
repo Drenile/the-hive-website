@@ -1,0 +1,28 @@
+.statsBar {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  background: #fff;
+  padding: 28px 0;
+  overflow: hidden;
+}
+.inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 6vw, 90px);
+  width: max-content;
+  animation: statsScroll 8s linear infinite;
+  padding-inline: clamp(28px, 4vw, 48px);
+}
+.statsBar:hover .inner { animation-play-state: paused; }
+.statItem  { display: flex; align-items: baseline; gap: 10px; flex-shrink: 0; }
+.statNum   { font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: var(--green); -webkit-text-stroke: 2px #1E1E1E; paint-order: stroke fill; line-height: 1; }
+.statLabel { font-size: clamp(16px, 2vw, 24px); font-weight: 600; color: var(--ink); opacity: .75; }
+.statDivider { width: 2px; height: clamp(40px, 5vw, 64px); background: rgba(0,0,0,.12); border-radius: 2px; flex-shrink: 0; }
+@keyframes statsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 700px) {
+  .statNum   { font-size: clamp(28px, 8vw, 48px); }
+  .statLabel { font-size: clamp(14px, 4vw, 18px); }
+}

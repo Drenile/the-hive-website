@@ -1,0 +1,76 @@
+.section {
+  background: var(--yellow);
+  padding: 28px 0 60px;
+  min-height: 92vh;
+  width: 100%;
+}
+.wrap {
+  max-width: 1860px;
+  margin: 0 auto;
+  padding-inline: clamp(28px, 3vw, 60px);
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.heroGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.15fr minmax(460px, 640px);
+  gap: clamp(18px, 3vw, 50px);
+  align-items: center;
+  padding-top: 34px;
+}
+.heroText h1 {
+  margin: 0 0 18px;
+  font-weight: 900;
+  font-size: clamp(44px, 4.8vw, 86px);
+  line-height: 1.02;
+}
+.heroText p {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+.heroBtns {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.btnGreen, .btnWhite {
+  border: var(--border);
+  border-radius: var(--radius-btn);
+  padding: 16px 32px;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+  cursor: pointer;
+}
+.btnGreen { background: var(--green); }
+.btnWhite { background: #fff; }
+.btnGreen:hover { background: #8FD44D; transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 26px rgba(0,0,0,.16); }
+.btnWhite:hover { background: #F2F2F2; transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 26px rgba(0,0,0,.16); }
+.heroImgWrap { position: relative; width: 100%; border-radius: var(--radius-img); }
+.heroImg {
+  width: 100%;
+  aspect-ratio: 720 / 580;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  border: 2px solid rgba(0,0,0,.15);
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+@media (max-width: 1024px) {
+  .heroGrid { grid-template-columns: 1fr; padding-top: 20px; gap: 24px; }
+  .heroImgWrap { order: -1; }
+  .heroText h1 { font-size: clamp(36px, 9vw, 56px); }
+  .heroText p  { font-size: clamp(15px, 4vw, 18px); }
+  .heroBtns { flex-direction: column; gap: 12px; margin-top: 20px; }
+  .btnGreen, .btnWhite { width: 100%; font-size: 18px; padding: 14px 24px; justify-content: center; }
+}

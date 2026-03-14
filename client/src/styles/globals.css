@@ -1,25 +1,28 @@
-/* globals.css — site-wide base styles */
-*, *::before, *::after {
-  box-sizing: border-box;
+:root {
+  --yellow:     #FFDB5A;
+  --pink:       #FF66C4;
+  --green:      #7EBD3E;
+  --ink:        #1E1E1E;
+  --news-green: #8BC34A;
+  --side-pad:   clamp(28px, 4vw, 48px);
+  --radius:     18px;
+  --radius-btn: 999px;
+  --radius-img: 12px;
+  --border:     1.5px solid #000;
+  --shadow:     0 10px 24px rgba(0,0,0,.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
   margin: 0;
   padding: 0;
+  font-family: "Outfit", system-ui, sans-serif;
+  color: var(--ink);
+  background-color: #fff;
+  color-scheme: light;
+  overflow-x: hidden;
 }
 
-:root {
-  font-family: Inter, system-ui, sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-body {
-  min-height: 100vh;
-}
-
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-input, button, textarea, select {
-  font: inherit;
-}
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
