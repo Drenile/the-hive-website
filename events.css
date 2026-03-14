@@ -250,6 +250,7 @@
 .upcomingEvents {
   padding: 80px 0 90px;
   border-bottom: 2px solid #000;
+  overflow-x: hidden;   /* prevent carousel negative-margin from creating page scroll */
 }
 
 .upcomingEvents__inner { position: relative; }
@@ -431,26 +432,94 @@
   margin: 0;
 }
 
-.pastEvents__filters {
+/* ── SEARCH BAR ── */
+.pastEvents__searchWrap {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.pastEvents__searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: .45;
+  pointer-events: none;
+}
+.pastEvents__searchInput {
+  width: 100%;
+  padding: 12px 18px 12px 46px;
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s;
+}
+.pastEvents__searchInput:focus {
+  border-color: #7EBD3E;
+  box-shadow: 0 0 0 3px rgba(126,189,62,.15);
+}
+.pastEvents__searchInput::placeholder { color: rgba(30,30,30,.38); }
+
+/* ── FILTER BAR: [All Events] [⊟ Filter] ── */
+.pastEvents__filterBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
 }
 
-.pastEvents__filterRight {
-  display: flex;
+/* filter icon toggle button */
+.filterBtn--icon {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 6px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  position: relative;
+}
+.filterBtn--icon:hover,
+.filterBtn--icon[aria-expanded="true"] { background: var(--ink); color: #fff; }
+.filterBtn--icon[aria-expanded="true"] svg { stroke: #fff; }
+
+/* pink dot shown when a tag filter is active */
+.filterBtn__dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 10px;
+  height: 10px;
+  background: #FF66C4;
+  border: 2px solid #fff;
+  border-radius: 50%;
 }
 
-.pastEvents__filterLabel {
-  font-size: 14px;
-  font-weight: 600;
-  opacity: .55;
+/* tag chips dropdown */
+.filterDropdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+  animation: filterFadeIn .15s ease;
+}
+.filterDropdown[hidden] { display: none; }
+
+@keyframes filterFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .filterBtn {
@@ -592,19 +661,8 @@
   .eventsHero__title { -webkit-text-stroke: 1.5px var(--forest); }
   .eventsHero__doodle { display: none; }
 
-  /* Filter bar — stack label + buttons neatly */
-  .pastEvents__filters {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .pastEvents__filterRight {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .pastEvents__filterLabel {
-    width: 100%;
-  }
+  /* filter dropdown wraps on narrow screens */
+  .filterDropdown { gap: 8px; }
 
   /* Countdown — tight but stays on one row */
   .countdown {
@@ -631,8 +689,8 @@
 }
 
 @media (max-width: 560px) {
+  /* single column on small mobile — cards are less cramped */
   .pastEvents__grid { grid-template-columns: 1fr; }
-  .pastEvents__filters { flex-direction: column; align-items: flex-start; }
 
   /* Upcoming events single column on very small screens */
   .upcomingEvents .newsTrack {

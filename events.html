@@ -241,15 +241,25 @@
       <h2>Explore Past Events</h2>
     </div>
 
+    <!-- SEARCH BAR -->
+    <div class="pastEvents__searchWrap reveal">
+      <svg class="pastEvents__searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="pastEvents__searchInput" type="search" id="eventsSearch" placeholder="Search events…" autocomplete="off" />
+    </div>
+
     <!-- FILTER BAR -->
-    <div class="pastEvents__filters reveal reveal-delay-1">
+    <div class="pastEvents__filterBar reveal reveal-delay-1">
       <button class="filterBtn filterBtn--active" data-filter="all">All Events</button>
-      <div class="pastEvents__filterRight">
-        <span class="pastEvents__filterLabel">Filter by</span>
-        <button class="filterBtn filterBtn--outline" data-filter="networking">Networking</button>
-        <button class="filterBtn filterBtn--outline" data-filter="portfolio">Portfolio</button>
-        <button class="filterBtn filterBtn--outline" data-filter="community">Community</button>
-      </div>
+      <button class="filterBtn--icon" id="eventsFilterToggle" type="button" aria-expanded="false" aria-controls="eventsFilterDropdown">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filter
+        <span class="filterBtn__dot" id="eventsFilterDot" hidden></span>
+      </button>
+    </div>
+    <div class="filterDropdown" id="eventsFilterDropdown" hidden>
+      <button class="filterBtn filterBtn--outline" data-filter="networking">Networking</button>
+      <button class="filterBtn filterBtn--outline" data-filter="portfolio">Portfolio</button>
+      <button class="filterBtn filterBtn--outline" data-filter="community">Community</button>
     </div>
 
     <!-- EVENTS GRID -->
@@ -347,13 +357,13 @@
     <div class="footer__bottom">
       <div class="footer__links">
         <div class="footer__col">
-          <div class="footer__title">Homepage</div>
+          <a href="index.html">Home</a>
           <a href="aboutus.html">About</a>
-          <a href="contactus.html">Contacts</a>
+          <a href="contactus.html">Contact Us</a>
         </div>
         <div class="footer__col">
-          <div class="footer__title">Partner with Us</div>
-          <a href="#">FAQ</a>
+          <a href="getinvolved.html">Get Involved</a>
+          <a href="faq.html">FAQ</a>
           <a href="projects.html">Projects</a>
         </div>
       </div>
@@ -368,6 +378,21 @@
 
 <script src="app.js"></script>
 <script>
+/* ── EVENTS SEARCH ── */
+(function () {
+  const input = document.getElementById('eventsSearch');
+  const grid  = document.getElementById('pastEventsGrid');
+  if (!input || !grid) return;
+  input.addEventListener('input', function () {
+    const q = input.value.toLowerCase().trim();
+    grid.querySelectorAll('.pastCard').forEach(card => {
+      const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+      const tags  = (card.dataset.tags || '').toLowerCase();
+      card.classList.toggle('is-hidden', !!q && !title.includes(q) && !tags.includes(q));
+    });
+  });
+})();
+
 /* ── LIVE COUNTDOWN ── */
 const EVENT_DATE = new Date('2027-01-17T09:00:00');
 
@@ -456,25 +481,56 @@ setInterval(updateCountdown, 1000);
 </script>
 
 <script>
-/* ── PAST EVENTS FILTER ── */
-const filterBtns = document.querySelectorAll('.filterBtn');
-const pastCards  = document.querySelectorAll('.pastCard');
+/* ── PAST EVENTS FILTER + DROPDOWN TOGGLE ── */
+(function () {
+  const toggle   = document.getElementById('eventsFilterToggle');
+  const dropdown = document.getElementById('eventsFilterDropdown');
+  const dot      = document.getElementById('eventsFilterDot');
+  const filterBtns = document.querySelectorAll('[data-filter]');
+  const pastCards  = document.querySelectorAll('.pastCard');
 
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter;
-    filterBtns.forEach(b => {
-      b.classList.remove('filterBtn--active');
-      b.classList.add('filterBtn--outline');
-    });
-    btn.classList.add('filterBtn--active');
-    btn.classList.remove('filterBtn--outline');
-    pastCards.forEach(card => {
-      const match = filter === 'all' || card.dataset.tags.includes(filter);
-      card.classList.toggle('is-hidden', !match);
+  /* toggle dropdown open/close */
+  toggle.addEventListener('click', () => {
+    const open = dropdown.hidden;
+    dropdown.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  /* close dropdown when clicking outside */
+  document.addEventListener('click', e => {
+    if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* filter cards + manage active state */
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      const isAll  = filter === 'all';
+
+      /* active highlight */
+      filterBtns.forEach(b => {
+        b.classList.remove('filterBtn--active');
+        b.classList.add('filterBtn--outline');
+      });
+      btn.classList.add('filterBtn--active');
+      btn.classList.remove('filterBtn--outline');
+
+      /* dot indicator */
+      dot.hidden = isAll;
+
+      /* close dropdown after picking a tag */
+      if (!isAll) { dropdown.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+
+      /* filter cards */
+      pastCards.forEach(card => {
+        card.classList.toggle('is-hidden', !isAll && !card.dataset.tags.includes(filter));
+      });
     });
   });
-});
+})();
 </script>
 
 <script>

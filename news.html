@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="events.css" />
   <link rel="stylesheet" href="news.css" />
 </head>
 <body>
@@ -92,15 +93,25 @@
       <p>Explore event recaps, member spotlights, project updates, and practical resources to stay informed and involved with The Hive.</p>
     </div>
 
-    <!-- FILTER BAR — same pattern as events page -->
-    <div class="pastEvents__filters reveal reveal-delay-1">
+    <!-- SEARCH BAR -->
+    <div class="pastEvents__searchWrap reveal">
+      <svg class="pastEvents__searchIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="pastEvents__searchInput" type="search" id="newsSearch" placeholder="Search news…" autocomplete="off" />
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="pastEvents__filterBar reveal reveal-delay-1">
       <button class="filterBtn filterBtn--active" data-filter="all">All Blogs</button>
-      <div class="pastEvents__filterRight">
-        <span class="pastEvents__filterLabel">Filter by</span>
-        <button class="filterBtn filterBtn--outline" data-filter="spotlight">Spotlight</button>
-        <button class="filterBtn filterBtn--outline" data-filter="event">Event Recap</button>
-        <button class="filterBtn filterBtn--outline" data-filter="resource">Resource</button>
-      </div>
+      <button class="filterBtn--icon" id="newsFilterToggle" type="button" aria-expanded="false" aria-controls="newsFilterDropdown">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filter
+        <span class="filterBtn__dot" id="newsFilterDot" hidden></span>
+      </button>
+    </div>
+    <div class="filterDropdown" id="newsFilterDropdown" hidden>
+      <button class="filterBtn filterBtn--outline" data-filter="spotlight">Spotlight</button>
+      <button class="filterBtn filterBtn--outline" data-filter="event">Event Recap</button>
+      <button class="filterBtn filterBtn--outline" data-filter="resource">Resource</button>
     </div>
 
     <!-- NEWS GRID — same .pastCard style as events page -->
@@ -147,7 +158,7 @@
       </article>
 
       <article class="pastCard reveal reveal-delay-2" data-tags="spotlight">
-        <img src="assets/the hive smiling 3.JPG" alt="Member Spotlight" />
+        <img src="assets/hiver1.jpg" alt="Member Spotlight" />
         <div class="pastCard__body">
           <h3>Meet Adesola: Hiver Of The Month</h3>
           <span class="pill pill--green">Spotlight</span>
@@ -177,7 +188,7 @@
       </article>
 
       <article class="pastCard reveal reveal-delay-2" data-tags="spotlight">
-        <img src="assets/teamroundchair.jpg" alt="Hiver of the Month" />
+        <img src="assets/hiver2.jpg" alt="Hiver of the Month" />
         <div class="pastCard__body">
           <h3>Hiver of the Month: February</h3>
           <span class="pill pill--green">Spotlight</span>
@@ -187,7 +198,7 @@
       </article>
 
       <article class="pastCard reveal reveal-delay-3" data-tags="resource">
-        <img src="assets/post it.jpg" alt="Industry Connect" />
+        <img src="assets/IMG_0944.JPG" alt="Industry Connect" />
         <div class="pastCard__body">
           <h3>How To Prep For Industry Connect Night</h3>
           <span class="pill pill--yellow">Resource</span>
@@ -226,13 +237,13 @@
     <div class="footer__bottom">
       <div class="footer__links">
         <div class="footer__col">
-          <div class="footer__title">Homepage</div>
+          <a href="index.html">Home</a>
           <a href="aboutus.html">About</a>
-          <a href="contactus.html">Contacts</a>
+          <a href="contactus.html">Contact Us</a>
         </div>
         <div class="footer__col">
-          <div class="footer__title">Partner with Us</div>
-          <a href="#">FAQ</a>
+          <a href="getinvolved.html">Get Involved</a>
+          <a href="faq.html">FAQ</a>
           <a href="projects.html">Projects</a>
         </div>
       </div>
@@ -247,21 +258,64 @@
 
 <script src="app.js"></script>
 <script>
-/* ── NEWS FILTER ── */
+/* ── NEWS SEARCH ── */
 (function () {
+  const input = document.getElementById('newsSearch');
   const grid  = document.getElementById('newsGrid');
-  if (!grid) return;
-  const cards = grid.querySelectorAll('[data-tags]');
-  const btns  = grid.closest('section').querySelectorAll('.filterBtn');
+  if (!input || !grid) return;
+  input.addEventListener('input', function () {
+    const q = input.value.toLowerCase().trim();
+    grid.querySelectorAll('.pastCard').forEach(card => {
+      const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+      const tags  = (card.dataset.tags || '').toLowerCase();
+      card.classList.toggle('is-hidden', !!q && !title.includes(q) && !tags.includes(q));
+    });
+  });
+})();
 
-  btns.forEach(btn => {
+/* ── NEWS FILTER + DROPDOWN TOGGLE ── */
+(function () {
+  const toggle   = document.getElementById('newsFilterToggle');
+  const dropdown = document.getElementById('newsFilterDropdown');
+  const dot      = document.getElementById('newsFilterDot');
+  const grid     = document.getElementById('newsGrid');
+  if (!toggle || !dropdown || !grid) return;
+
+  const cards      = grid.querySelectorAll('[data-tags]');
+  const filterBtns = document.querySelectorAll('#newsGrid [data-tags], [data-filter]');
+  const allBtns    = document.querySelectorAll('[data-filter]');
+
+  /* toggle dropdown */
+  toggle.addEventListener('click', () => {
+    const open = dropdown.hidden;
+    dropdown.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  /* close on outside click */
+  document.addEventListener('click', e => {
+    if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* filter logic */
+  allBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
-      btns.forEach(b => { b.classList.remove('filterBtn--active'); b.classList.add('filterBtn--outline'); });
+      if (!filter) return;
+      const isAll = filter === 'all';
+
+      allBtns.forEach(b => { b.classList.remove('filterBtn--active'); b.classList.add('filterBtn--outline'); });
       btn.classList.add('filterBtn--active');
       btn.classList.remove('filterBtn--outline');
+
+      dot.hidden = isAll;
+      if (!isAll) { dropdown.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+
       cards.forEach(card => {
-        card.classList.toggle('is-hidden', filter !== 'all' && !card.dataset.tags.includes(filter));
+        card.classList.toggle('is-hidden', !isAll && !card.dataset.tags.includes(filter));
       });
     });
   });

@@ -32,6 +32,8 @@ html, body {
   padding: 0;
   font-family: "Outfit", system-ui, sans-serif;
   color: var(--ink);
+  background-color: #fff;   /* prevent browser dark-mode default */
+  color-scheme: light;       /* site is light-only */
   overflow-x: hidden;
 }
 img { display: block; max-width: 100%; }
@@ -52,12 +54,18 @@ a   { color: inherit; text-decoration: none; }
 .section--yellow { background: var(--yellow); }
 .section--white  { background: #fff; }
 .section--green  {
+  position: relative;
+  isolation: isolate;
   background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E"),
     linear-gradient(0deg,  rgba(0,0,0,.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
-  background-size: 44px 44px;
+  background-size: 300px 300px, 44px 44px, 44px 44px;
   background-color: var(--news-green);
 }
+
+/* ensure section children sit above the grain layer */
+.section--green > * { position: relative; z-index: 1; }
 .section--black { background: #000; color: #fff; }
 
 /* =========================
@@ -977,10 +985,41 @@ a   { color: inherit; text-decoration: none; }
   .statNum            { font-size: clamp(28px, 8vw, 48px); }
   .statLabel          { font-size: clamp(14px, 4vw, 18px); }
 
-  .hiveNews__carousel { gap: 8px; }
-  .newsArrow          { width: 44px; height: 44px; font-size: 16px; }
-  .newsCard           { flex-basis: 82vw; }
-  .newsTrack          { padding: 14px 20px 22px; }
+  /* ── DECO STARS: smaller + pushed to edges so they don't overlap text ── */
+  .hiveNews__star          { width: 26px; }
+  .hiveNews__star--left    { left: 10px;  top: 10px; }
+  .hiveNews__star--right   { right: 10px; top: 64px; transform: rotate(18deg); }
+
+  /* ── CAROUSEL: switch to native swipe on mobile ── */
+  .newsArrow          { display: none; }           /* hide arrows */
+
+  .hiveNews__carousel { gap: 0; }
+
+  /* viewport becomes the scroll container */
+  .newsViewport {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    border-radius: 0;
+  }
+  .newsViewport::-webkit-scrollbar { display: none; }
+
+  /* disable JS transform so native scroll takes over */
+  .newsTrack {
+    transform: none !important;
+    padding: 14px 0 22px 16px;
+    gap: 14px;
+  }
+
+  /* one full card + ~20vw of next card peeking */
+  .newsCard {
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 600px) {
