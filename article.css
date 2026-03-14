@@ -1,0 +1,433 @@
+/* =========================================================
+   THE HIVE — ARTICLE / NEWS POST
+   Shared by hotm.html and event-recap.html
+========================================================= */
+
+/* ─────────────────────────────────────────
+   HERO — FULL BLEED
+───────────────────────────────────────── */
+.articleHero {
+  position: relative;
+  height: clamp(380px, 55vw, 560px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.articleHero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.articleHero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* gradient so text always readable */
+.articleHero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.45) 0%,
+    rgba(0,0,0,.10) 40%,
+    rgba(0,0,0,.55) 100%
+  );
+}
+
+.articleHero__nav {
+  position: relative;
+  z-index: 10;
+  padding-top: 28px;
+}
+
+/* white nav items on dark hero */
+.articleHero__nav .navItem { color: #fff; }
+.articleHero__nav .navItem::after { }
+.articleHero__nav .navItem:hover::after { background: #FF66C4; transform: scaleX(1); }
+.articleHero__nav .navMenu span { background: #fff; }
+
+.articleHero__title {
+  position: relative;
+  z-index: 10;
+  padding-bottom: clamp(28px, 4vw, 52px);
+}
+
+.articleHero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFDB5A;
+  border: 2px solid #000;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.articleHero__title h1 {
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.95;
+  margin: 0 0 14px;
+  text-shadow: 0 4px 24px rgba(0,0,0,.35);
+  letter-spacing: -0.02em;
+}
+
+.articleHero__sub {
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 0.5px;
+}
+
+/* ─────────────────────────────────────────
+   ARTICLE BODY
+───────────────────────────────────────── */
+.articleBody {
+  padding: 60px 0 80px;
+  border-bottom: 2px solid #000;
+}
+
+.articleBody__inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Tags row */
+.articleTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Headline */
+.articleHeadline {
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+/* Meta row */
+.articleMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: .5;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.articleMeta__dot { opacity: .4; }
+
+/* ─────────────────────────────────────────
+   PROFILE CARD (HOTM only) — magazine style
+───────────────────────────────────────── */
+.profileCard {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  margin-bottom: 48px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0,0,0,.10);
+}
+
+/* large rectangular image on left */
+.profileCard__img {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
+  border-right: 2px solid #000;
+  box-shadow: none;
+}
+.profileCard__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* placeholder label */
+.profileCard__imgLabel {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+}
+
+.profileCard__info {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.profileCard__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFDB5A;
+  border: 2px solid #000;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+.profileCard__name {
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.profileCard__details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profileCard__detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(30,30,30,.7);
+}
+
+.profileCard__detailIcon { font-size: 15px; flex-shrink: 0; }
+
+/* Social link buttons */
+.hiverLinks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.hiverLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: #fff;
+  color: var(--ink);
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+  text-decoration: none;
+}
+.hiverLink:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: scale(1.04);
+}
+
+/* ─────────────────────────────────────────
+   PULL QUOTE
+───────────────────────────────────────── */
+.pullQuote {
+  border-left: 5px solid #FFDB5A;
+  padding: 20px 28px;
+  margin: 40px 0;
+  background: #FFFBEE;
+  border-radius: 0 14px 14px 0;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--ink);
+}
+.pullQuote cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  font-style: normal;
+  opacity: .6;
+}
+
+/* alt quote — pink accent */
+.pullQuote--alt {
+  border-left-color: #FF66C4;
+  background: #FFF0F8;
+}
+
+/* ─────────────────────────────────────────
+   ARTICLE SECTIONS
+───────────────────────────────────────── */
+.articleSection {
+  margin-bottom: 44px;
+}
+.articleSection h3 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 900;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+}
+.articleSection p {
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.85;
+  opacity: .78;
+  margin: 0 0 14px;
+}
+
+/* ─────────────────────────────────────────
+   PHOTO GRID
+───────────────────────────────────────── */
+.articlePhotoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 14px;
+  margin: 44px 0;
+  align-items: end;
+}
+
+.articlePhotoGrid__item {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid #000;
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+.articlePhotoGrid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* staggered heights for editorial feel */
+.articlePhotoGrid__item--tall  { height: 280px; transform: rotate(-1.5deg); }
+.articlePhotoGrid__item--mid   { height: 320px; transform: rotate(1deg); margin-top: -40px; }
+.articlePhotoGrid__item--short { height: 250px; transform: rotate(-0.5deg); }
+
+/* ─────────────────────────────────────────
+   ACHIEVEMENTS LIST (HOTM only)
+───────────────────────────────────────── */
+.achievementList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.achievementList li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #F8F8F8;
+  border: 2px solid #000;
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+.achievementIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.achievementList strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.achievementList p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .65;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   BACK BUTTON
+───────────────────────────────────────── */
+.articleBack {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1.5px solid rgba(0,0,0,.12);
+  display: flex;
+  justify-content: flex-end;
+}
+.articleBack__btn {
+  font-size: 15px;
+  padding: 13px 28px;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 860px) {
+  .articlePhotoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .articlePhotoGrid__item--short {
+    display: none;
+  }
+  .articlePhotoGrid__item--tall,
+  .articlePhotoGrid__item--mid {
+    height: 220px;
+    transform: none;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .profileCard {
+    grid-template-columns: 1fr;
+  }
+  .profileCard__img {
+    min-height: 260px;
+    border-right: none;
+    border-bottom: 2px solid #000;
+  }
+  .profileCard__info { padding: 20px; }
+  .hiverLinks { justify-content: flex-start; }
+
+  .articlePhotoGrid {
+    grid-template-columns: 1fr;
+  }
+  .articlePhotoGrid__item--mid { 
+    display: none;
+ }
+  .articlePhotoGrid__item--tall {
+    height: 260px;
+    transform: none;
+  }
+
+  .articleBack { justify-content: center; }
+}

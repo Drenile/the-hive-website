@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — The Hive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- HERO (YELLOW) -->
+<section class="section section--yellow section1">
+  <div class="wrap">
+
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
+
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem" href="aboutus.html">About</a>
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item" href="news.html">News</a>
+          </div>
+        </div>
+        <a class="navItem isActive" href="getinvolved.html">Get Involved</a>
+        <a class="navItem" href="projects.html">Projects</a>
+        <a class="navItem" href="contactus.html">Contact Us</a>
+      </nav>
+
+      <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="getinvolved.html" class="mobileNav__link isActive">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
+    </div>
+
+    <!-- hero -->
+    <div style="padding: 80px 0 60px; max-width: 680px;">
+      <h1 style="font-size: clamp(56px, 8vw, 100px); font-weight: 900; line-height: 1.0; margin: 0 0 20px;">
+        Get Involved
+      </h1>
+      <p style="font-size: clamp(16px, 1.6vw, 22px); line-height: 1.7; opacity: .75; max-width: 44ch; margin: 0 0 32px;">
+        This page is coming soon. In the meantime, reach out and we'll get you connected.
+      </p>
+      <a class="btnGreen" href="contactus.html">Contact Us</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="section section--black footer" id="work">
+  <div class="wrap footer__inner">
+    <h2>Let's Keep In Touch</h2>
+    <p class="footer__sub">Join Our Newsletter!!!</p>
+    <form class="newsletter" onsubmit="return false;">
+      <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+        <span class="mailIcon" aria-hidden="true">✉</span> SUBSCRIBE
+      </button>
+    </form>
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <div class="footer__title">Homepage</div>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <div class="footer__title">Partner with Us</div>
+          <a href="#">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn   = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
+    });
+  }
+</script>
+
+</body>
+</html>

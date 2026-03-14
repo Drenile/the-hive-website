@@ -3,45 +3,339 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Hive — Home</title>
+  <title>About Us — The Hive</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="aboutus.css" />
 </head>
-
 <body>
 
-  <!-- SECTION 1: NAV + HERO (YELLOW) -->
-  <section class="section section--yellow section1">
+<!-- ══════════════════════════════════════
+     HERO  (yellow)
+     Grid bg comes from body in aboutus.css
+     Yellow section bg covers the grid here
+══════════════════════════════════════ -->
+<section class="section section--yellow aboutHero">
+
+  <div class="wrap">
+
+    <!-- NAV -->
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
+
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem isActive" href="aboutus.html">About</a>
+
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button"
+                  aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item" href="news.html">News</a>
+          </div>
+        </div>
+
+        <a class="navItem" href="getinvolved.html">Get Involved</a>
+        <a class="navItem" href="projects.html">Projects</a>
+        <a class="navItem" href="contactus.html">Contact Us</a>
+      </nav>
+
+      <button class="navMenu" id="menuBtn"
+              aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link isActive">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
+    </div>
+
+    <!-- hero title -->
+    <div class="aboutHero__text reveal">
+      <h1>About The Hive</h1>
+      <p>The Hive is a student-led community built around collaboration,
+         real experience, and meaningful growth.</p>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <!-- photo strip — outside wrap, half bleeds into white below -->
+  <div class="aboutHero__photos reveal reveal-delay-2">
+    <div class="aboutHero__photo">
+      <img src="assets/hands together laptop.jpg" alt="Students collaborating at laptops" />
+    </div>
+    <div class="aboutHero__photo">
+      <img src="assets/teamroundchair.jpg" alt="Students in a group meeting" />
+    </div>
+    <div class="aboutHero__photo">
+      <img src="assets/group talk.jpg" alt="Workshop session in progress" />
+    </div>
+    <div class="aboutHero__photo">
+      <img src="assets/post it.jpg" alt="Students presenting at a whiteboard" />
+    </div>
+  </div>
+
+</section><!-- /hero -->
+
+
+<!-- ══════════════════════════════════════
+     PAGE MIDDLE WRAPPER
+     Doodle sits here, anchored to these sections,
+     scrolls naturally with the page.
+     Grid bg shows through from body (white sections have no solid bg override).
+══════════════════════════════════════ -->
+<div class="pageMiddle">
+
+  <!-- faint doodle behind all white/gray sections -->
+  <img class="pageDoodle"
+       src="assets/pink doodle hollow.png"
+       alt="" aria-hidden="true" />
+
+
+  <!-- ══════════════════════════════════════
+       OUR STORY  (white)
+  ══════════════════════════════════════ -->
+  <section class="section section--white ourStory">
+    <div class="wrap">
+      <div class="ourStory__grid">
+
+        <!-- text -->
+        <div class="ourStory__text reveal">
+          <img class="deco deco--pencil"
+               src="assets/green clip.png"
+               alt="" aria-hidden="true" />
+
+          <div class="sectionKicker">✦ Our Story</div>
+          <h2>Our Story</h2>
+          <p>The Hive began with a student stuck in the same loop many of us
+             know too well — you need experience to get an internship, but you
+             need an internship to get experience.</p>
+          <p>When she finally landed an interview, she realized she wasn't
+             ready. Her "training" came from YouTube videos, random notes, and
+             tools she'd only used on her own. She knew the ideas — but not how
+             they worked in practice. She wasn't lazy. She wasn't unmotivated.
+             She was just learning alone.</p>
+          <p>So The Hive was created to change that. A space where students
+             could work on real projects, learn in teams, and build confidence
+             before stepping into professional spaces.</p>
+        </div>
+
+        <!-- image -->
+        <div class="aboutImgCard reveal reveal-delay-2">
+          <img src="assets/students smiling.jpg"
+               alt="Students smiling together" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       OUR MISSION  (light gray)
+  ══════════════════════════════════════ -->
+  <section class="section ourMission">
+    <div class="wrap">
+      <div class="ourMission__grid">
+
+        <!-- image LEFT -->
+        <div class="aboutImgCard ourMission__img reveal">
+          <img src="assets/IMG_0922.JPG"
+               alt="Two silhouettes on a rocky landscape at sunset" />
+        </div>
+
+        <!-- text RIGHT -->
+        <div class="ourMission__text reveal reveal-delay-2" style="position:relative;">
+          <img class="deco deco--squiggle"
+               src="assets/pink doodle hollow.png"
+               alt="" aria-hidden="true" />
+
+          <div class="sectionKicker">✦ Our Mission</div>
+          <h2>Our Mission</h2>
+          <p>Our mission is simple: give students real experience, real
+             confidence, and real connections.</p>
+          <p>We do this by working in cross-functional teams, learning from
+             professionals, and creating a space where exploring career paths
+             feels safe, supported, and exciting.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       OUR VISION  (white)
+  ══════════════════════════════════════ -->
+  <section class="section section--white ourVision">
+    <div class="wrap">
+      <div class="ourVision__grid">
+
+        <!-- text LEFT -->
+        <div class="ourVision__text reveal" style="position:relative;">
+          <div class="sectionKicker">✦ Our Vision</div>
+          <h2>Our Vision</h2>
+          <p>We imagine a future where students don't have to choose between
+             learning and experience.</p>
+          <p>A future where collaboration replaces competition, and career
+             growth starts before graduation — not after.</p>
+          <p>The Hive aims to be a launchpad where students feel prepared to
+             step into professional spaces without feeling lost, unqualified,
+             or alone.</p>
+
+          <img class="deco deco--puzzle"
+               src="assets/green puzzle.png"
+               alt="" aria-hidden="true" />
+        </div>
+
+        <!-- image RIGHT -->
+        <div class="aboutImgCard reveal reveal-delay-2">
+          <img src="assets/hands together laptop.jpg"
+               alt="A hand holding a glowing lightbulb at sunset" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       HOW WE WORK  (white)
+  ══════════════════════════════════════ -->
+  <section class="section howWeWork">
     <div class="wrap">
 
-      <header class="nav">
-        <a class="logo" href="index.html" aria-label="The Hive home">
-          <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
-        </a>
-
-        <nav class="navLinks" aria-label="Primary navigation">
-          <a class="navItem isActive" href="index.html">Home</a>
-          <a class="navItem" href="community.html">Community</a>
-          <a class="navItem" href="getinvolved.html">Get Involved</a>
-          <a class="navItem" href="projects.html">Projects</a>
-          <a class="navItem" href="contactus.html">Work With Us</a>
-        </nav>
-
-        <!-- ✅ NOTE: class name matches CSS: navMenu (not nav__menu) -->
-        <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
-          ☰
-        </button>
-      </header>
-
-      <!-- mobile -->
-      <div class="mobileNav" id="mobileNav" hidden>
-        <a href="index.html" class="mobileNav__link">Home</a>
-        <a href="community.html" class="mobileNav__link">Community</a>
-        <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
-        <a href="projects.html" class="mobileNav__link">Projects</a>
-        <a href="contactus.html" class="mobileNav__link">Work With Us</a>
+      <div class="howWeWork__header reveal">
+        <h2>How We Work</h2>
+        <p>Our approach centers on working together, learning through
+           experience, and supporting one another as we grow.</p>
       </div>
+
+      <div class="howWeWork__grid">
+
+        <div class="workCard reveal reveal-delay-1">
+          <div class="workCard__icon">
+            <img src="assets/teams .png" alt="" aria-hidden="true" />
+          </div>
+          <h3>Cross-functional teams</h3>
+          <p>Students collaborate across different skills and roles.</p>
+        </div>
+
+        <div class="workCard reveal reveal-delay-2">
+          <div class="workCard__icon">
+            <img src="assets/projects.png" alt="" aria-hidden="true" />
+          </div>
+          <h3>Real-world projects</h3>
+          <p>Work on hands-on projects that mirror professional environments.</p>
+        </div>
+
+        <div class="workCard reveal reveal-delay-3">
+          <div class="workCard__icon">
+            <img src="assets/mentor.png" alt="" aria-hidden="true" />
+          </div>
+          <h3>Mentorship and peer learning</h3>
+          <p>Learn with support from mentors and fellow students.</p>
+        </div>
+
+        <div class="workCard reveal reveal-delay-4">
+          <div class="workCard__icon">
+            <img src="assets/community.png" alt="" aria-hidden="true" />
+          </div>
+          <h3>Community-driven growth</h3>
+          <p>Skills and confidence are built through doing, not just theory.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /pageMiddle -->
+
+
+<!-- ══════════════════════════════════════
+     FOOTER  (black) — same as index.html
+     Black bg covers the grid
+══════════════════════════════════════ -->
+<footer class="section section--black footer" id="work">
+  <div class="wrap footer__inner">
+    <h2>Let's Keep In Touch</h2>
+    <p class="footer__sub">Join Our Newsletter!!!</p>
+
+    <form class="newsletter" onsubmit="return false;">
+      <input class="newsletter__input" type="email"
+             placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+        <span class="mailIcon" aria-hidden="true">✉</span>
+        SUBSCRIBE
+      </button>
+    </form>
+
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <div class="footer__title">Homepage</div>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <div class="footer__title">Partner with Us</div>
+          <a href="#">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Mobile nav
+  const menuBtn   = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
+    });
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
