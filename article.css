@@ -49,7 +49,6 @@
 
 /* white nav items on dark hero */
 .articleHero__nav .navItem { color: #fff; }
-.articleHero__nav .navItem::after { }
 .articleHero__nav .navItem:hover::after { background: #FF66C4; transform: scaleX(1); }
 .articleHero__nav .navMenu span { background: #fff; }
 
