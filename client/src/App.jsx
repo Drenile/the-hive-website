@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Events from './pages/Events/Events';
@@ -11,23 +13,30 @@ import Projects from './pages/Projects/Projects';
 import GetInvolved from './pages/GetInvolved/GetInvolved';
 import HOTM from './pages/HOTM/HOTM';
 import NotFound from './pages/NotFound/NotFound';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/events/booking" element={<EventBooking />} />
-      <Route path="/news" element={<News />} />
-      <Route path="/news/:id" element={<NewsArticle />} />
-      <Route path="/faq" element={<FAQ />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/get-involved" element={<GetInvolved />} />
-      <Route path="/hotm" element={<HOTM />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <div className={styles.app}>
+      <Navbar />
+      <main className={styles.main}>
+        <Routes>
+          <Route path="/"               element={<Home />} />
+          <Route path="/about"          element={<About />} />
+          <Route path="/events"         element={<Events />} />
+          <Route path="/events/booking" element={<EventBooking />} />
+          <Route path="/news"           element={<News />} />
+          <Route path="/news/:id"       element={<NewsArticle />} />
+          <Route path="/faq"            element={<FAQ />} />
+          <Route path="/contact"        element={<Contact />} />
+          <Route path="/projects"       element={<Projects />} />
+          <Route path="/get-involved"   element={<GetInvolved />} />
+          <Route path="/hotm"           element={<HOTM />} />
+          <Route path="*"               element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
