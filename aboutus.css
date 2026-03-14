@@ -10,10 +10,11 @@
    naturally cover it where not wanted.
 ───────────────────────────────────────── */
 body {
-  background-image: url('assets/grid about.png');
-  background-repeat: repeat;
-  background-size: 400px;
-  background-attachment: local;
+  background-color: #fff;
+  background-image:
+    linear-gradient(0deg,  rgba(0,0,0,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.055) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
 /* ─────────────────────────────────────────
@@ -22,7 +23,28 @@ body {
 .aboutHero {
   padding: 28px 0 0;
   position: relative;
-  overflow: visible;
+  overflow: visible;  /* keep photo strip bleed intact */
+}
+
+/* wrapper clips the doodle without cutting the photo strip */
+.aboutHero__doodleWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* full-bleed low-opacity doodle across the hero */
+.aboutHero__doodle {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: .42;
+  mix-blend-mode: multiply;   /* makes the cream shapes visible against yellow */
+  display: block;
+  user-select: none;
 }
 
 /* lift nav + text above doodle/bg */
@@ -56,9 +78,9 @@ body {
    negative margin-bottom = photos bleed half into the white section below
 ─────────────────── */
 .aboutHero__photos {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(10px, 1.4vw, 18px);
-  justify-content: center;
   align-items: flex-end;
   margin-top: 48px;
   padding: 0 var(--side-pad);
@@ -68,18 +90,16 @@ body {
 }
 
 .aboutHero__photo {
-  width: clamp(120px, 10vw, 150px);
   aspect-ratio: 1.3 / 1.0;
   border-radius: 14px;
   overflow: hidden;
   border: 2px solid #000;
   box-shadow: 0 12px 28px rgba(0,0,0,.18);
-  flex-shrink: 0;
   background: #c8bfb0;
 }
 
-.aboutHero__photo:nth-child(odd)  { transform: translateY(0px);   }
-.aboutHero__photo:nth-child(even) { transform: translateY(-24px); }
+.aboutHero__photo:nth-child(2) { transform: translateY(-20px); }
+.aboutHero__photo:nth-child(4) { transform: translateY(-20px); }
 
 .aboutHero__photo img {
   width: 100%;
@@ -111,6 +131,30 @@ body {
   user-select: none;
   opacity: .10;
   z-index: 0;
+}
+
+
+/* ─────────────────────────────────────────
+   FAINT GRID ON CONTENT SECTIONS
+   Applied to each solid-bg section so the
+   grid is consistently visible site-wide.
+───────────────────────────────────────── */
+.ourStory,
+.ourVision,
+.howWeWork,
+.meetTeam {
+  background-image:
+    linear-gradient(0deg,  rgba(0,0,0,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-color: #fff;
+}
+
+.ourMission {
+  background-image:
+    linear-gradient(0deg,  rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
 
@@ -189,6 +233,47 @@ body {
   bottom: 10px;
   right: -48px;
   width: clamp(44px, 4.5vw, 68px);
+}
+
+/* ── scattered page decos ──────────────────── */
+
+/* pink doodle blob — large faint shape in section corners */
+.deco--pinkBlob {
+  opacity: 0.18;
+  z-index: 0;
+}
+.deco--pinkBlob-story {
+  width: clamp(160px, 22vw, 280px);
+  bottom: -40px;
+  right: -20px;
+  transform: rotate(-14deg);
+}
+.deco--pinkBlob-work {
+  width: clamp(140px, 18vw, 240px);
+  top: 10px;
+  left: -30px;
+  transform: rotate(18deg);
+  opacity: 0.14;
+}
+
+/* yellow suitcase — small charming accent */
+.deco--suitcase {
+  width: clamp(72px, 7vw, 105px);
+  top: -36px;
+  right: -10px;
+  transform: rotate(8deg);
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.10));
+}
+
+/* pink puzzle — green puzzle tinted pink via hue-rotate */
+.deco--pinkPuzzle {
+  width: clamp(60px, 6vw, 90px);
+  bottom: 16px;
+  right: -16px;
+  transform: rotate(-10deg);
+  z-index: 2;
+  filter: hue-rotate(220deg) saturate(1.4) drop-shadow(0 3px 7px rgba(0,0,0,.12));
 }
 
 /* image cards */
@@ -311,8 +396,8 @@ body {
 }
 
 .workCard__icon img {
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
 }
 
@@ -332,6 +417,93 @@ body {
   margin: 0;
 }
 
+
+/* ─────────────────────────────────────────
+   MEET THE TEAM
+───────────────────────────────────────── */
+.meetTeam {
+  padding: 90px 0 100px;
+  border-top: 1.5px solid #000;
+}
+
+.meetTeam__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.meetTeam__header h2 {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 900;
+  margin: 0 0 12px;
+}
+.meetTeam__header p {
+  font-size: clamp(14px, 1.3vw, 17px);
+  opacity: .6;
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+.meetTeam__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+/* Each card = 1 of 4 columns, accounting for 3 gaps of 28px */
+.teamCard {
+  flex: 0 0 calc(25% - 21px);
+  min-width: 140px;
+  max-width: 210px;
+}
+
+.teamCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  /* sizing set in .meetTeam__grid .teamCard rule above */
+}
+
+.teamCard__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  background: #e8e0d6;
+}
+.teamCard__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.teamCard__name {
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 800;
+  margin: 0;
+}
+.teamCard__role {
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 400;
+  opacity: .55;
+  margin: -6px 0 0;
+}
+
+@media (max-width: 860px) {
+  /* 3 per row on tablet — each card ~30% */
+  .meetTeam__grid { gap: 20px; }
+  .teamCard { flex: 0 0 calc(33.333% - 14px); max-width: 240px; }
+}
+@media (max-width: 560px) {
+  /* 2 per row on mobile */
+  .meetTeam__grid { gap: 14px; }
+  .teamCard { flex: 0 0 calc(50% - 7px); max-width: none; min-width: 0; }
+}
 
 /* ─────────────────────────────────────────
    SCROLL REVEAL
@@ -362,17 +534,17 @@ body {
   .ourMission__img  { order: 0; }
 
   .aboutHero__photos {
-    overflow-x: auto;
-    justify-content: flex-start;
-    scrollbar-width: none;
+    grid-template-columns: repeat(2, 1fr);
     margin-bottom: -50px;
   }
-  .aboutHero__photos::-webkit-scrollbar { display: none; }
   .ourStory { padding-top: 90px; }
 
   .deco--pencil,
   .deco--squiggle,
-  .deco--puzzle { display: none; }
+  .deco--puzzle,
+  .deco--pinkBlob,
+  .deco--suitcase,
+  .deco--pinkPuzzle { display: none; }
 }
 
 @media (max-width: 600px) {

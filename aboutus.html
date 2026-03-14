@@ -21,6 +21,11 @@
 ══════════════════════════════════════ -->
 <section class="section section--yellow aboutHero">
 
+  <!-- low-opacity doodle — wrapper clips the img without affecting the photo strip -->
+  <div class="aboutHero__doodleWrap">
+    <img class="aboutHero__doodle" src="assets/yellow doodle.png" alt="" aria-hidden="true" />
+  </div>
+
   <div class="wrap">
 
     <!-- NAV -->
@@ -50,14 +55,18 @@
       </nav>
 
       <button class="navMenu" id="menuBtn"
-              aria-expanded="false" aria-controls="mobileNav">☰</button>
+              aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </header>
 
     <!-- mobile nav -->
     <div class="mobileNav" id="mobileNav" hidden>
       <a href="index.html"       class="mobileNav__link">Home</a>
-      <a href="aboutus.html"     class="mobileNav__link">About</a>
-      <a href="community.html"   class="mobileNav__link">Community</a>
+      <a href="aboutus.html"     class="mobileNav__link isActive">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
       <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
       <a href="projects.html"    class="mobileNav__link">Projects</a>
       <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
@@ -78,13 +87,13 @@
       <img src="assets/hands together laptop.jpg" alt="Students collaborating at laptops" />
     </div>
     <div class="aboutHero__photo">
-      <img src="assets/teamroundchair.jpg" alt="Students in a group meeting" />
+      <img src="assets/leadfest 3 smile.JPG" alt="Students in a group meeting" />
     </div>
     <div class="aboutHero__photo">
-      <img src="assets/group talk.jpg" alt="Workshop session in progress" />
+      <img src="assets/IMG_0943.JPG" alt="Workshop session in progress" />
     </div>
     <div class="aboutHero__photo">
-      <img src="assets/post it.jpg" alt="Students presenting at a whiteboard" />
+      <img src="assets/IMG_0915.JPG" alt="Students presenting at a whiteboard" />
     </div>
   </div>
 
@@ -109,6 +118,9 @@
        OUR STORY  (white)
   ══════════════════════════════════════ -->
   <section class="section section--white ourStory">
+    <!-- pink doodle blob — bottom-right corner accent -->
+    <img class="deco deco--pinkBlob deco--pinkBlob-story"
+         src="assets/pink doodle.png" alt="" aria-hidden="true" />
     <div class="wrap">
       <div class="ourStory__grid">
 
@@ -135,7 +147,7 @@
 
         <!-- image -->
         <div class="aboutImgCard reveal reveal-delay-2">
-          <img src="assets/the hive smiling 3.JPG"
+          <img src="assets/students smiling.jpg"
                alt="Students smiling together" />
         </div>
 
@@ -153,8 +165,8 @@
 
         <!-- image LEFT -->
         <div class="aboutImgCard ourMission__img reveal">
-          <img src="assets/mission.jpg"
-               alt="Two silhouettes on a rocky landscape at sunset" />
+          <img src="assets/hiver3.jpg"
+               alt="Hive members collaborating" />
         </div>
 
         <!-- text RIGHT -->
@@ -186,6 +198,9 @@
 
         <!-- text LEFT -->
         <div class="ourVision__text reveal" style="position:relative;">
+          <!-- yellow suitcase accent -->
+          <img class="deco deco--suitcase"
+               src="assets/yellow suitcase.png" alt="" aria-hidden="true" />
           <div class="sectionKicker">✦ Our Vision</div>
           <h2>Our Vision</h2>
           <p>We imagine a future where students don't have to choose between
@@ -203,8 +218,8 @@
 
         <!-- image RIGHT -->
         <div class="aboutImgCard reveal reveal-delay-2">
-          <img src="assets/bulb.jpg"
-               alt="A hand holding a glowing lightbulb at sunset" />
+          <img src="assets/IMG_4270.jpg"
+               alt="Hive members at an event" />
         </div>
 
       </div>
@@ -216,6 +231,12 @@
        HOW WE WORK  (white)
   ══════════════════════════════════════ -->
   <section class="section howWeWork">
+    <!-- pink puzzle — bottom-right accent (green puzzle hue-rotated to pink) -->
+    <img class="deco deco--pinkPuzzle"
+         src="assets/green puzzle.png" alt="" aria-hidden="true" />
+    <!-- pink doodle — top-left ghost -->
+    <img class="deco deco--pinkBlob deco--pinkBlob-work"
+         src="assets/pink doodle.png" alt="" aria-hidden="true" />
     <div class="wrap">
 
       <div class="howWeWork__header reveal">
@@ -266,6 +287,80 @@
 
 
 <!-- ══════════════════════════════════════
+     MEET THE TEAM
+══════════════════════════════════════ -->
+<section class="section section--white meetTeam">
+  <div class="wrap">
+
+    <div class="meetTeam__header reveal">
+      <h2>Meet The Team</h2>
+      <p>The people behind The Hive — students leading, building, and growing together.</p>
+    </div>
+
+    <div class="meetTeam__grid">
+
+      <div class="teamCard reveal reveal-delay-1">
+        <div class="teamCard__img">
+          <img src="assets/face portrait.png" alt="Victoria Morgas" />
+        </div>
+        <div class="teamCard__name">Victoria Morgas</div>
+        <div class="teamCard__role">Queen Bee</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-2">
+        <div class="teamCard__img">
+          <img src="assets/hiver1.jpg" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-3">
+        <div class="teamCard__img">
+          <img src="assets/hiver2.jpg" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-4">
+        <div class="teamCard__img">
+          <img src="assets/hiver3.jpg" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-1">
+        <div class="teamCard__img">
+          <img src="assets/IMG_0943.JPG" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-2">
+        <div class="teamCard__img">
+          <img src="assets/IMG_0915.JPG" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+      <div class="teamCard reveal reveal-delay-3">
+        <div class="teamCard__img">
+          <img src="assets/leadfest 3 smile.JPG" alt="Adeola Owo" />
+        </div>
+        <div class="teamCard__name">Adeola Owo</div>
+        <div class="teamCard__role">Vice President</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
      FOOTER  (black) — same as index.html
      Black bg covers the grid
 ══════════════════════════════════════ -->
@@ -286,13 +381,13 @@
     <div class="footer__bottom">
       <div class="footer__links">
         <div class="footer__col">
-          <div class="footer__title">Homepage</div>
+          <a href="index.html">Home</a>
           <a href="aboutus.html">About</a>
-          <a href="contactus.html">Contacts</a>
+          <a href="contactus.html">Contact Us</a>
         </div>
         <div class="footer__col">
-          <div class="footer__title">Partner with Us</div>
-          <a href="#">FAQ</a>
+          <a href="getinvolved.html">Get Involved</a>
+          <a href="faq.html">FAQ</a>
           <a href="projects.html">Projects</a>
         </div>
       </div>
@@ -312,11 +407,23 @@
   const mobileNav = document.getElementById('mobileNav');
   if (menuBtn && mobileNav) {
     menuBtn.addEventListener('click', () => {
-      const open = !mobileNav.hidden;
-      mobileNav.hidden = open;
-      menuBtn.setAttribute('aria-expanded', String(!open));
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
     });
   }
+
+  // Community dropdown click (for touch devices)
+  document.querySelectorAll('.navDropdown__trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      const menu = trigger.nextElementSibling;
+      if (menu) menu.style.display = expanded ? '' : 'block';
+    });
+  });
 
   // Scroll reveal
   const obs = new IntersectionObserver((entries) => {

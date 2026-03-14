@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — The Hive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── PROJECTS COMING SOON ── */
+    .projectsHero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 0 0;
+      background:
+        linear-gradient(0deg,  rgba(0,0,0,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.07) 1px, transparent 1px);
+      background-size: 44px 44px;
+      background-color: var(--yellow);
+    }
+
+    .projectsHero__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px var(--side-pad) 80px;
+      gap: 0;
+    }
+
+    .projectsHero__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 999px;
+      padding: 8px 20px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .projectsHero__title {
+      font-size: clamp(64px, 14vw, 160px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      margin: 0 0 24px;
+    }
+
+    .projectsHero__title span {
+      display: block;
+    }
+
+    .projectsHero__title .line2 {
+      -webkit-text-stroke: 3px var(--ink);
+      color: transparent;
+    }
+
+    .projectsHero__sub {
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 400;
+      line-height: 1.65;
+      opacity: .7;
+      max-width: 46ch;
+      margin: 0 0 40px;
+    }
+
+    .projectsHero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      padding: 14px 32px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .15s, transform .15s;
+    }
+    .projectsHero__cta:hover {
+      background: #3a3a3a;
+      transform: scale(1.04);
+    }
+
+    /* decorative doodles */
+    .projectsDeco {
+      position: absolute;
+      pointer-events: none;
+    }
+    .projectsHero { position: relative; }
+
+    .projectsDeco--tl {
+      top: clamp(80px, 10vw, 140px);
+      left: clamp(16px, 4vw, 60px);
+      width: clamp(60px, 7vw, 100px);
+      transform: rotate(-15deg);
+      opacity: .8;
+    }
+    .projectsDeco--br {
+      bottom: clamp(60px, 8vw, 120px);
+      right: clamp(16px, 4vw, 60px);
+      width: clamp(50px, 6vw, 84px);
+      transform: rotate(20deg);
+      opacity: .8;
+    }
+    .projectsDeco--star {
+      top: clamp(100px, 15vw, 200px);
+      right: clamp(60px, 10vw, 160px);
+      width: clamp(36px, 4vw, 56px);
+      opacity: .7;
+    }
+
+    @media (max-width: 560px) {
+      .projectsHero__title .line2 { -webkit-text-stroke: 2px var(--ink); }
+      .projectsDeco--tl,
+      .projectsDeco--star { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="projectsHero">
+
+  <!-- decorative doodles -->
+  <img class="projectsDeco projectsDeco--tl"  src="assets/green puzzle.png"        alt="" aria-hidden="true" />
+  <img class="projectsDeco projectsDeco--br"  src="assets/yellow doodle.png"        alt="" aria-hidden="true" />
+  <img class="projectsDeco projectsDeco--star" src="assets/4 star.png"              alt="" aria-hidden="true" />
+
+  <!-- NAV -->
+  <div class="wrap">
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem" href="aboutus.html">About</a>
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item" href="news.html">News</a>
+          </div>
+        </div>
+        <a class="navItem" href="getinvolved.html">Get Involved</a>
+        <a class="navItem isActive" href="projects.html">Projects</a>
+        <a class="navItem" href="contactus.html">Contact Us</a>
+      </nav>
+      <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link isActive">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="projectsHero__body">
+    <div class="projectsHero__kicker">✦ Coming Soon</div>
+
+    <h1 class="projectsHero__title">
+      <span class="line1">Real</span>
+      <span class="line2">Projects.</span>
+    </h1>
+
+    <p class="projectsHero__sub">
+      We're building something great. The Projects showcase is on its way —
+      featuring real work from real Hivers. Check back soon.
+    </p>
+
+    <a class="projectsHero__cta" href="contactus.html">
+      Get Involved →
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="section section--black footer">
+  <div class="wrap footer__inner">
+    <h2>Let's Keep In Touch</h2>
+    <p class="footer__sub">Join Our Newsletter!!!</p>
+
+    <form class="newsletter" onsubmit="return false;">
+      <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+        <img src="assets/subscribe.png" alt="" aria-hidden="true" width="20" height="20" />
+        SUBSCRIBE
+      </button>
+    </form>
+
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <a href="index.html">Home</a>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contact Us</a>
+        </div>
+        <div class="footer__col">
+          <a href="getinvolved.html">Get Involved</a>
+          <a href="faq.html">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="app.js"></script>
+
+<script>
+  const menuBtn   = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
+    });
+  }
+  document.querySelectorAll('.navDropdown__trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      const menu = trigger.nextElementSibling;
+      if (menu) menu.style.display = expanded ? '' : 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

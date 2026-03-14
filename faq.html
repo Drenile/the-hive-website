@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — The Hive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="faq.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO  (photo + yellow overlay)
+══════════════════════════════════════ -->
+<section class="faqHero">
+
+  <!-- background photo -->
+  <div class="faqHero__bg">
+    <img src="assets/hands together laptop.jpg" alt="" aria-hidden="true" />
+  </div>
+  <!-- yellow tint overlay -->
+  <div class="faqHero__overlay"></div> 
+
+  <div class="wrap faqHero__wrap">
+
+    <!-- NAV -->
+    <header class="nav">
+      <a class="logo" href="index.html" aria-label="The Hive home">
+        <img class="logoImg" src="assets/hive logo.png" alt="thehive logo" />
+      </a>
+      <nav class="navLinks" aria-label="Primary navigation">
+        <a class="navItem" href="index.html">Home</a>
+        <a class="navItem" href="aboutus.html">About</a>
+        <div class="navDropdown">
+          <button class="navItem navDropdown__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            Community <span class="navChevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="navDropdown__menu" aria-label="Community submenu">
+            <a class="navDropdown__item" href="events.html">Events</a>
+            <a class="navDropdown__item" href="news.html">News</a>
+          </div>
+        </div>
+        <a class="navItem" href="getinvolved.html">Get Involved</a>
+        <a class="navItem" href="projects.html">Projects</a>
+        <a class="navItem" href="contactus.html">Contact Us</a>
+      </nav>
+      <button class="navMenu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div class="mobileNav" id="mobileNav" hidden>
+      <a href="index.html"       class="mobileNav__link">Home</a>
+      <a href="aboutus.html"     class="mobileNav__link">About</a>
+      <span class="mobileNav__section">Community</span>
+      <a href="events.html"      class="mobileNav__link mobileNav__link--sub">Events</a>
+      <a href="news.html"        class="mobileNav__link mobileNav__link--sub">News</a>
+      <a href="getinvolved.html" class="mobileNav__link">Get Involved</a>
+      <a href="projects.html"    class="mobileNav__link">Projects</a>
+      <a href="contactus.html"   class="mobileNav__link">Contact Us</a>
+    </div>
+
+    <!-- HERO TEXT -->
+    <div class="faqHero__text reveal">
+      <div class="faqHero__kicker">✦ Got Questions?</div>
+      <h1>Frequently Asked<br />Questions</h1>
+      <p>Everything you need to know about The Hive — membership, events, projects, and more.</p>
+
+      <!-- SEARCH -->
+      <div class="faqHero__searchWrap">
+        <svg class="faqHero__searchIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="faqHero__searchInput" type="search" id="faqGlobalSearch"
+               placeholder="Search all questions…" autocomplete="off" aria-label="Search FAQ" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CATEGORY TABS
+══════════════════════════════════════ -->
+<section class="section section--white faqBody">
+  <div class="wrap">
+
+    <!-- CATEGORY PILLS -->
+    <div class="faqCats reveal" id="faqCats" role="tablist" aria-label="FAQ categories">
+      <button class="faqCat faqCat--active" data-cat="all" role="tab" aria-selected="true">All</button>
+      <button class="faqCat" data-cat="general"    role="tab" aria-selected="false">General</button>
+      <button class="faqCat" data-cat="membership" role="tab" aria-selected="false">Membership</button>
+      <button class="faqCat" data-cat="events"     role="tab" aria-selected="false">Events</button>
+      <button class="faqCat" data-cat="projects"   role="tab" aria-selected="false">Projects</button>
+      <button class="faqCat" data-cat="partner"    role="tab" aria-selected="false">Partnering</button>
+    </div>
+
+    <!-- FAQ LIST -->
+    <div class="faqPage__list" id="faqPageList">
+
+      <!-- ── GENERAL ── -->
+      <div class="faqItem reveal reveal-delay-1" data-cat="general">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>What is The Hive?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>The Hive is a student-led community at the University of Lethbridge built around collaboration, real experience, and meaningful growth. We bring together students from different programs to work on real projects, learn from each other, and build confidence before stepping into professional spaces.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-2" data-cat="general">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Who can join The Hive?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Any University of Lethbridge student is welcome, regardless of program, year, or experience level. Whether you're in business, computer science, design, or another field, there's a place for you here. We believe diverse perspectives make better projects and stronger communities.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-3" data-cat="general">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Is The Hive officially recognized by the university?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Yes, The Hive is a registered student club at the University of Lethbridge. We operate under the university's student association and follow all relevant policies and guidelines for recognized student organizations.</p>
+        </div>
+      </div>
+
+      <!-- ── MEMBERSHIP ── -->
+      <div class="faqItem reveal reveal-delay-1" data-cat="membership">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>How do I become a member?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Joining is simple — visit our Get Involved page and fill in the interest form, or show up to any of our events to connect with the team. We welcome new members throughout the year and will be in touch about the next onboarding session.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-2" data-cat="membership">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Is there a membership fee?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>No — joining The Hive is completely free. Some specific events (like HiveConnect) may have a small ticket fee to cover venue and logistics costs, but general membership and most activities are always free to all students.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-3" data-cat="membership">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>How much time commitment is expected?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>There's no minimum commitment. You can show up to as many or as few events as your schedule allows. Members working on active projects typically meet a few times a month, but we always work around academic schedules — school comes first.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-4" data-cat="membership">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Can I take on a leadership role?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Absolutely. The Hive is student-led from top to bottom. We encourage members to step into project leads, committee roles, and exec positions as they grow within the community. Open roles are announced at the start of each semester.</p>
+        </div>
+      </div>
+
+      <!-- ── EVENTS ── -->
+      <div class="faqItem reveal reveal-delay-1" data-cat="events">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>What kinds of events does The Hive run?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>We run a variety of events throughout the year: networking nights, workshops, portfolio review sessions, collab nights, speaker panels, and our annual flagship event HiveConnect. Events are always practical, low-pressure, and designed to be worth your time.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-2" data-cat="events">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>What is HiveConnect?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>HiveConnect is our annual flagship event — a full-day showcase and networking event where students present their work, connect with industry professionals, and explore real opportunities. It's one of the most anticipated events of the year and open to all U of L students.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-3" data-cat="events">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Do I need to RSVP for events?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>For most events a quick RSVP helps us plan — details are shared on our Instagram and through member emails. Some ticketed events (like HiveConnect) require registration through our booking page in advance. Walk-ins are welcome at community events when space allows.</p>
+        </div>
+      </div>
+
+      <!-- ── PROJECTS ── -->
+      <div class="faqItem reveal reveal-delay-1" data-cat="projects">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>What kind of projects does The Hive work on?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Our projects span marketing, design, tech, and community — all real deliverables, not just exercises. Past projects have included brand campaigns, research reports, app concepts, and community initiatives. Members self-select into teams based on their interests and skills.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-2" data-cat="projects">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Can I pitch my own project idea?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Yes! We love member-driven ideas. If you have a concept you'd like to build with a team, bring it to a community meeting or reach out to an exec member. We'll help you shape it and recruit collaborators from across the club.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-3" data-cat="projects">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Will my project work count toward my portfolio?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Absolutely. All Hive projects are real, documented work that you can feature in your portfolio. We encourage members to treat every project as a professional case study — and we'll help you frame your contribution clearly and confidently.</p>
+        </div>
+      </div>
+
+      <!-- ── PARTNERING ── -->
+      <div class="faqItem reveal reveal-delay-1" data-cat="partner">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>How can my organization partner with The Hive?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>We love working with organizations that want to support students and get something meaningful in return. Partnerships can include sponsoring events, providing real-world project briefs, offering mentorship, or co-hosting sessions. Reach out to us at thehive.club@uleth.ca to start the conversation.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-2" data-cat="partner">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>What do partners get in return?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Partners gain access to motivated, skilled students across multiple disciplines, brand visibility at our events and online channels, authentic connections with the next generation of professionals, and the chance to shape real project outcomes. We tailor every partnership to be mutually valuable.</p>
+        </div>
+      </div>
+
+      <div class="faqItem reveal reveal-delay-3" data-cat="partner">
+        <button class="faqItem__btn" aria-expanded="false">
+          <span>Can a company sponsor HiveConnect specifically?</span>
+          <svg class="faqItem__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faqItem__body" hidden>
+          <p>Yes — HiveConnect sponsorship packages are available and include branding at the event, social media promotion, a speaking or tabling opportunity, and direct access to students. Sponsorship spots are limited so we recommend reaching out early in the semester.</p>
+        </div>
+      </div>
+
+    </div><!-- /faqPage__list -->
+
+    <!-- EMPTY STATE (hidden by default, shown when search finds nothing) -->
+    <div class="faqEmpty" id="faqEmpty" hidden>
+      <p>No questions match your search. Try different words or <button class="faqEmpty__reset" id="faqResetBtn">clear the search</button>.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     STILL HAVE QUESTIONS CTA
+══════════════════════════════════════ -->
+<section class="section section--yellow faqCta">
+  <div class="wrap">
+    <div class="faqCta__inner reveal">
+      <div class="faqCta__text">
+        <h2>Still have questions?</h2>
+        <p>Can't find what you're looking for? We're happy to help — reach out directly and we'll get back to you.</p>
+      </div>
+      <a class="btnPink faqCta__btn" href="contactus.html">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="section section--black footer">
+  <div class="wrap footer__inner">
+    <h2 class="reveal">Let's Keep In Touch</h2>
+    <p class="footer__sub reveal reveal-delay-1">Join Our Newsletter!!!</p>
+
+    <form class="newsletter reveal reveal-delay-2" onsubmit="return false;">
+      <input class="newsletter__input" type="email" placeholder="EMAIL" aria-label="Email" />
+      <button class="newsletter__btn" type="submit">
+         <img src="assets/subscribe.png" alt="" aria-hidden="true" width="20" height="20" />
+  SUBSCRIBE
+      </button>
+    </form>
+
+    <div class="footer__bottom">
+      <div class="footer__links">
+        <div class="footer__col">
+          <a href="index.html">Home</a>
+          <a href="aboutus.html">About</a>
+          <a href="contactus.html">Contact Us</a>
+        </div>
+        <div class="footer__col">
+          <a href="getinvolved.html">Get Involved</a>
+          <a href="faq.html">FAQ</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="footer__socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  /* ── Mobile nav ── */
+  const menuBtn   = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      menuBtn.classList.toggle('is-open', !isOpen);
+      mobileNav.hidden = isOpen;
+    });
+  }
+  document.querySelectorAll('.navDropdown__trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!expanded));
+      const menu = trigger.nextElementSibling;
+      if (menu) menu.style.display = expanded ? '' : 'block';
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faqItem__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.faqItem');
+      const body   = item.querySelector('.faqItem__body');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      /* close all others */
+      document.querySelectorAll('.faqItem').forEach(i => {
+        i.classList.remove('is-open');
+        i.querySelector('.faqItem__btn').setAttribute('aria-expanded', 'false');
+        i.querySelector('.faqItem__body').hidden = true;
+      });
+      if (!isOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.hidden = false;
+      }
+    });
+  });
+
+  /* ── Category filter ── */
+  const catBtns = document.querySelectorAll('.faqCat');
+  const faqItems = document.querySelectorAll('.faqItem[data-cat]');
+
+  function filterByCat(cat) {
+    faqItems.forEach(item => {
+      const match = cat === 'all' || item.dataset.cat === cat;
+      item.style.display = match ? '' : 'none';
+    });
+    catBtns.forEach(b => {
+      b.classList.toggle('faqCat--active', b.dataset.cat === cat);
+      b.setAttribute('aria-selected', String(b.dataset.cat === cat));
+    });
+    checkEmpty();
+  }
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterByCat(btn.dataset.cat);
+      /* also clear search */
+      const input = document.getElementById('faqGlobalSearch');
+      if (input) { input.value = ''; }
+    });
+  });
+
+  /* ── Global search ── */
+  function checkEmpty() {
+    const visible = Array.from(faqItems).filter(i => i.style.display !== 'none');
+    document.getElementById('faqEmpty').hidden = visible.length > 0;
+  }
+
+  document.getElementById('faqGlobalSearch').addEventListener('input', function () {
+    const q = this.value.toLowerCase().trim();
+    if (!q) {
+      /* reset to All */
+      filterByCat('all');
+      return;
+    }
+    /* deselect category pills */
+    catBtns.forEach(b => { b.classList.remove('faqCat--active'); b.setAttribute('aria-selected','false'); });
+
+    faqItems.forEach(item => {
+      const text = item.querySelector('.faqItem__btn span')?.textContent.toLowerCase() || '';
+      const body = item.querySelector('.faqItem__body p')?.textContent.toLowerCase() || '';
+      item.style.display = (text.includes(q) || body.includes(q)) ? '' : 'none';
+    });
+    checkEmpty();
+  });
+
+  document.getElementById('faqResetBtn').addEventListener('click', () => {
+    document.getElementById('faqGlobalSearch').value = '';
+    filterByCat('all');
+  });
+</script>
+
+</body>
+</html>

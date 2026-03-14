@@ -7,8 +7,7 @@
 ───────────────────────────────────────── */
 .contactHero {
   position: relative;
-  height: clamp(300px, 42vw, 480px);
-  overflow: hidden;
+  min-height: clamp(300px, 42vw, 480px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,6 +17,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 .contactHero__bg img {
   width: 100%;
@@ -45,6 +45,13 @@
   padding-top: 28px;
 }
 
+/* Mobile nav sits above the hero photo */
+.contactHero .mobileNav {
+  position: relative;
+  z-index: 20;
+  margin-inline: var(--side-pad);
+}
+
 .contactHero__nav .navItem              { color: #fff; }
 .contactHero__nav .navItem:hover::after { background: #FF66C4; transform: scaleX(1); }
 .contactHero__nav .navItem.isActive::after { background: var(--yellow); transform: scaleX(1); }
@@ -54,6 +61,7 @@
   position: relative;
   z-index: 10;
   padding-bottom: clamp(24px, 4vw, 48px);
+  text-align: center;
 }
 
 .contactHero__title h1 {
@@ -205,11 +213,11 @@
 
 .contactFormCard__mouse {
   position: absolute;
-  top: 48px;
-  left: 36px;
-  width: 62px;
+  top: 20px;
+  right: 32px;
+  left: auto;
+  width: 54px;
   pointer-events: none;
-
 }
 
 .contactFormCard h2 {
@@ -362,10 +370,12 @@
 
 @media (max-width: 480px) {
   .quickReach__grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
     margin: 0 auto;
   }
   .contactFormCard { padding: 28px 20px; }
   .contactHero__title h1 { font-size: clamp(48px, 14vw, 80px); }
+  .cForm__submit { align-self: center; }
+  .contactFormCard__mouse { display: none; }
 }

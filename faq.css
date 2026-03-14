@@ -1,0 +1,303 @@
+/* =========================================================
+   THE HIVE — FAQ PAGE
+   Load AFTER styles.css
+========================================================= */
+
+/* ─────────────────────────────────────────
+   HERO  (photo + yellow overlay)
+───────────────────────────────────────── */
+.faqHero {
+  position: relative;
+  padding: 28px 0 72px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+/* background photo */
+.faqHero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.faqHero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+/* yellow tint overlay — keeps the brand colour, darkened slightly for legibility */
+.faqHero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(66, 65, 61, 0.55);
+  opacity: 0.3;
+}
+
+/* content sits above the overlay */
+.faqHero__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.faqHero__text {
+  text-align: center;
+  padding-top: 52px;
+  max-width: 680px;
+  margin: 0 auto;
+  
+}
+
+.faqHero__kicker {
+  color: #F5F5F5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: .5;
+  margin-bottom: 14px;
+}
+
+.faqHero__text h1 {
+  color: var(--yellow);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+
+.faqHero__text > p {
+  font-size: clamp(14px, 1.4vw, 18px);
+  line-height: 1.7;
+  opacity: .75;
+  margin: 0 auto 36px;
+  max-width: 52ch;
+  color: #F5F5F5;
+}
+
+/* search bar in hero */
+.faqHero__searchWrap {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.faqHero__searchIcon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .45;
+  pointer-events: none;
+}
+
+.faqHero__searchInput {
+  width: 100%;
+  padding: 14px 20px 14px 52px;
+  border: 2px solid #000;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.faqHero__searchInput:focus {
+  border-color: #FF66C4;
+  box-shadow: 0 0 0 3px rgba(255,102,196,.15);
+}
+
+
+/* ─────────────────────────────────────────
+   FAQ BODY  (white)
+───────────────────────────────────────── */
+.faqBody {
+  padding: 72px 0 100px;
+  border-top: 2px solid #000;
+}
+
+
+/* ── CATEGORY PILLS ── */
+.faqCats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.faqCat {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border: 2px solid #000;
+  border-radius: 999px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s, transform .1s;
+}
+
+.faqCat:hover {
+  background: #F5F5F5;
+}
+
+.faqCat--active {
+  background: var(--ink);
+  color: #fff;
+}
+
+
+/* ── FAQ LIST + ITEMS ── */
+.faqPage__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* inherit the pink card style from eventsbooking */
+.faqItem {
+  background: #F9C8E4;
+  border: 2px solid #000;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: background .2s;
+}
+
+.faqItem.is-open {
+  background: #FF66C4;
+}
+
+.faqItem__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+.faqItem__btn:hover { opacity: .85; }
+
+.faqItem__chevron {
+  flex-shrink: 0;
+  transition: transform .25s ease;
+}
+.faqItem.is-open .faqItem__chevron {
+  transform: rotate(180deg);
+}
+
+.faqItem__body {
+  padding: 4px 24px 22px;
+}
+.faqItem__body p {
+  font-size: clamp(13px, 1.2vw, 15px);
+  line-height: 1.75;
+  margin: 0;
+  opacity: .9;
+}
+
+
+/* ── EMPTY STATE ── */
+.faqEmpty {
+  text-align: center;
+  padding: 48px 0;
+  font-size: 16px;
+  opacity: .6;
+}
+.faqEmpty__reset {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+
+/* ─────────────────────────────────────────
+   STILL HAVE QUESTIONS CTA  (yellow)
+───────────────────────────────────────── */
+.faqCta {
+  border-top: 2px solid #000;
+}
+
+.faqCta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 60px 0;
+}
+
+.faqCta__text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.faqCta__text h2 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+
+.faqCta__text p {
+  font-size: clamp(14px, 1.3vw, 16px);
+  line-height: 1.7;
+  opacity: .75;
+  margin: 0;
+  max-width: 50ch;
+}
+
+.faqCta__btn {
+  flex-shrink: 0;
+  padding: 16px 36px;
+  white-space: nowrap;
+  font-size: 16px;
+  align-self: center;
+}
+
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 700px) {
+  .faqHero { min-height: 380px; }
+  .faqHero__text h1 { font-size: clamp(34px, 11vw, 56px); }
+  .faqCats { gap: 8px; }
+  .faqCat  { font-size: 13px; padding: 8px 16px; }
+  .faqCta__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 48px 0;
+  }
+  .faqCta__btn { width: 100%; justify-content: center; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .faqHero__searchInput { font-size: 14px; }
+}

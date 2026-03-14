@@ -89,7 +89,10 @@ initTabs();
   function visible() { return Math.max(1, Math.floor((track.parentElement.offsetWidth + GAP) / (cardW() + GAP))); }
   function maxIdx()  { return Math.max(0, cards.length - visible()); }
 
+  const isMobile = () => window.innerWidth <= 700;
+
   function goTo(n) {
+    if (isMobile()) return;          // native scroll handles it on mobile
     idx = Math.max(0, Math.min(n, maxIdx()));
     track.style.transform = `translateX(-${idx * (cardW() + GAP)}px)`;
     arrowLeft.disabled  = idx === 0;
@@ -104,7 +107,10 @@ initTabs();
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => goTo(Math.min(idx, maxIdx())), 120);
+    resizeTimer = setTimeout(() => {
+      if (isMobile()) { track.style.transform = ''; return; }
+      goTo(Math.min(idx, maxIdx()));
+    }, 120);
   });
 
   goTo(0);
