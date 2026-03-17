@@ -1,0 +1,7 @@
+.hero { background: var(--yellow); min-height: 92vh; padding: 28px 0 60px; }
+.wrap { width: 100%; max-width: 1860px; margin: 0 auto; padding-inline: var(--side-pad); }
+.body { padding: 80px 0 60px; max-width: 680px; }
+.body h1 { font-size: clamp(56px, 8vw, 100px); font-weight: 900; line-height: 1.0; margin: 0 0 20px; }
+.body p  { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.7; opacity: .75; max-width: 44ch; margin: 0 0 32px; }
+.btn { display: inline-flex; align-items: center; background: var(--green); border: var(--border); border-radius: var(--radius-btn); padding: 16px 32px; font-size: 18px; font-family: inherit; font-weight: 600; transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 26px rgba(0,0,0,.16); }

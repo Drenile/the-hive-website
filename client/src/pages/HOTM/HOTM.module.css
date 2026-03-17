@@ -1,0 +1,67 @@
+.wrap { width: 100%; max-width: 1860px; margin: 0 auto; padding-inline: var(--side-pad); }
+
+.hero { position: relative; min-height: clamp(400px, 55vw, 600px); display: flex; flex-direction: column; justify-content: flex-end; }
+.heroBg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.heroBg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.heroOverlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(0,0,0,.65) 100%); }
+.heroTitle { position: relative; z-index: 2; padding-bottom: clamp(32px, 5vw, 56px); }
+.heroKicker { display: inline-flex; align-items: center; gap: 6px; background: var(--yellow); border: 2px solid #000; border-radius: 999px; padding: 6px 16px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; color: var(--ink); }
+.heroTitle h1 { font-size: clamp(48px, 8vw, 96px); font-weight: 900; color: #fff; line-height: 1.0; margin: 0 0 12px; }
+.heroSub { font-size: clamp(13px, 1.4vw, 16px); font-weight: 600; color: rgba(255,255,255,.75); }
+
+.article { background: #fff; border-top: 2px solid #000; }
+.articleInner { max-width: 780px; margin: 0 auto; padding-top: 64px; padding-bottom: 80px; }
+
+.tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; border: 2px solid #000; text-transform: uppercase; letter-spacing: .5px; }
+.pillGreen  { background: #7EBD3E; }
+.pillPink   { background: #FF66C4; }
+.pillYellow { background: var(--yellow); }
+
+.headline { font-size: clamp(24px, 3.5vw, 40px); font-weight: 900; margin: 0 0 12px; line-height: 1.1; }
+.meta { display: flex; align-items: center; gap: 8px; font-size: 13px; opacity: .55; font-weight: 600; margin-bottom: 40px; flex-wrap: wrap; }
+.metaDot { opacity: .4; }
+
+.profileCard { display: grid; grid-template-columns: 200px 1fr; gap: 32px; background: #F9F9F9; border: 2px solid #000; border-radius: 20px; overflow: hidden; margin-bottom: 40px; }
+.profileImg { aspect-ratio: 1/1; overflow: hidden; }
+.profileImg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.profileInfo { padding: 24px 24px 24px 0; display: flex; flex-direction: column; gap: 10px; }
+.profileBadge { display: inline-flex; background: var(--yellow); border: 2px solid #000; border-radius: 999px; padding: 5px 14px; font-size: 12px; font-weight: 700; width: fit-content; }
+.profileName  { font-size: clamp(20px, 2.5vw, 28px); font-weight: 900; }
+.profileDetails { display: flex; flex-direction: column; gap: 6px; }
+.profileDetail  { display: flex; align-items: center; gap: 8px; font-size: 13px; opacity: .75; }
+.hiverLinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.hiverLink  { display: inline-flex; align-items: center; gap: 6px; background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 700; text-decoration: none; transition: background .15s; }
+.hiverLink:hover { background: #333; }
+
+.pullQuote { border-left: 4px solid #FF66C4; margin: 40px 0; padding: 20px 28px; background: #FFF0F8; border-radius: 0 14px 14px 0; font-size: clamp(15px, 1.6vw, 19px); font-weight: 700; font-style: italic; line-height: 1.6; color: var(--ink); }
+.pullQuote cite { display: block; margin-top: 12px; font-size: 13px; font-weight: 600; font-style: normal; opacity: .6; }
+.pullQuoteAlt { border-left-color: var(--green); background: #F0FAE8; }
+
+.section { margin-bottom: 40px; }
+.section h3 { font-size: clamp(18px, 2vw, 24px); font-weight: 900; margin: 0 0 16px; }
+.section p  { font-size: clamp(14px, 1.3vw, 16px); line-height: 1.8; opacity: .8; margin: 0 0 12px; }
+
+.photoGrid { display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; gap: 12px; margin: 40px 0; border-radius: 16px; overflow: hidden; border: 2px solid #000; }
+.photoItem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photoTall  { aspect-ratio: 3/4; }
+.photoMid   { aspect-ratio: 4/3; }
+.photoShort { aspect-ratio: 1/1; }
+
+.achievementList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; }
+.achievementList li { display: flex; gap: 16px; align-items: flex-start; }
+.achievementIcon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.achievementList strong { font-size: 15px; font-weight: 800; display: block; margin-bottom: 4px; }
+.achievementList p { font-size: 13px; line-height: 1.6; opacity: .7; margin: 0; }
+
+.back { margin-top: 56px; padding-top: 32px; border-top: 2px solid rgba(0,0,0,.1); }
+.backBtn { display: inline-flex; align-items: center; background: var(--green); border: var(--border); border-radius: var(--radius-btn); padding: 13px 28px; font-size: 15px; font-weight: 700; font-family: inherit; transition: transform .15s, box-shadow .15s; }
+.backBtn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 26px rgba(0,0,0,.16); }
+
+@media (max-width: 640px) {
+  .profileCard { grid-template-columns: 1fr; }
+  .profileImg  { aspect-ratio: 16/9; }
+  .profileInfo { padding: 20px; }
+  .photoGrid   { grid-template-columns: 1fr; }
+  .photoTall, .photoMid, .photoShort { aspect-ratio: 16/9; }
+}

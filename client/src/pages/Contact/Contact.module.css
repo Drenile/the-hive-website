@@ -1,0 +1,60 @@
+.wrap { width: 100%; max-width: 1860px; margin: 0 auto; padding-inline: var(--side-pad); }
+
+.hero { position: relative; min-height: clamp(300px, 42vw, 480px); display: flex; flex-direction: column; justify-content: space-between; }
+.heroBg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.heroBg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.heroOverlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 40%, rgba(0,0,0,.45) 100%); }
+.heroNav { position: relative; z-index: 10; padding-top: 28px; }
+.heroTitle { position: relative; z-index: 10; padding-bottom: clamp(24px, 4vw, 48px); text-align: center; }
+.heroTitle h1 { font-size: clamp(56px, 10vw, 120px); font-weight: 900; color: var(--yellow); -webkit-text-stroke: 2px rgba(0,0,0,.25); paint-order: stroke fill; line-height: 0.95; margin: 0 0 10px; letter-spacing: -0.02em; }
+.heroTitle p  { font-size: clamp(14px, 1.5vw, 18px); font-weight: 600; color: #fff; opacity: .85; margin: 0; }
+
+.quickReach { padding: 72px 0 80px; border-bottom: 2px solid #000; position: relative; }
+.quickHeading { font-size: clamp(26px, 3.5vw, 48px); font-weight: 900; text-align: center; margin: 0 0 48px; }
+.deco { position: absolute; pointer-events: none; width: clamp(60px, 7vw, 100px); top: 50%; transform: translateY(-50%); }
+.decoLeft  { left:  clamp(12px, 2vw, 40px); }
+.decoRight { right: clamp(12px, 2vw, 40px); }
+.quickGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 860px; margin: 0 auto; }
+.reachCard { background: #fff; border: 2px solid #000; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,.07); transition: transform .18s, box-shadow .18s; }
+.reachCard:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+.reachCardTitle { font-size: clamp(16px, 1.6vw, 20px); font-weight: 900; background: var(--yellow); width: 100%; padding: 16px 12px; border-bottom: 2px solid #000; }
+.reachCardDesc  { font-size: 13px; line-height: 1.5; opacity: .65; flex: 1; padding: 16px 16px 12px; }
+.reachCardBtn   { display: inline-flex; align-items: center; gap: 6px; background: #FF66C4; border: 1.5px solid #000; border-radius: 999px; padding: 7px 18px; font-size: 12px; font-weight: 500; letter-spacing: .5px; color: #F0F0F0; text-decoration: none; margin-bottom: 16px; transition: background .15s, transform .15s; }
+.reachCardBtn:hover { background: #ff4db8; transform: scale(1.04); }
+
+.formSection { padding: 60px 0 70px; background-color: var(--yellow); background-image: linear-gradient(0deg, rgba(0,0,0,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.07) 1px, transparent 1px); background-size: 44px 44px; border-top: 2px solid #000; border-bottom: 2px solid #000; }
+.formCard { background: #111; border-radius: 24px; padding: clamp(32px, 5vw, 56px); max-width: 860px; margin: 0 auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,.25); color: #fff; display: flex; flex-direction: column; align-items: center; }
+.formMouse { position: absolute; top: 20px; right: 32px; width: 54px; pointer-events: none; }
+.formCard h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 900; margin: 0 0 6px; text-align: center; width: 100%; }
+.formSub { font-size: 14px; opacity: .6; margin: 0 0 32px; text-align: center; width: 100%; }
+.formInner { display: grid; grid-template-columns: 1fr 200px; gap: 48px; align-items: start; width: 100%; }
+.form { display: flex; flex-direction: column; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: .5; }
+.field input, .field select, .field textarea { background: transparent; border: none; border-bottom: 1.5px solid rgba(255,255,255,.3); color: #fff; font-family: inherit; font-size: 15px; padding: 10px 0; outline: none; transition: border-color .15s; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.3); }
+.field select { cursor: pointer; }
+.field select option { background: #222; color: #fff; }
+.field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: #FF66C4; }
+.submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF66C4; border: 2px solid #FF66C4; border-radius: 999px; color: var(--ink); font-family: inherit; font-size: 15px; font-weight: 800; padding: 13px 36px; cursor: pointer; width: fit-content; margin-top: 8px; transition: background .15s, transform .15s; }
+.submit:hover    { background: #ff4db8; transform: scale(1.03); }
+.submit:disabled { opacity: .6; cursor: not-allowed; }
+.success { font-size: 14px; font-weight: 700; color: #7EBD3E; margin-top: 4px; }
+.formRight { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 8px; }
+.formEmail { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.7); text-decoration: none; word-break: break-all; transition: color .15s; }
+.formEmail:hover { color: #FF66C4; }
+.formSocials { display: flex; gap: 14px; }
+.formSocial { width: 42px; height: 42px; border: 2px solid rgba(255,255,255,.2); border-radius: 12px; display: grid; place-items: center; color: #fff; transition: background .15s, border-color .15s, transform .15s; }
+.formSocial:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.5); transform: scale(1.08); }
+
+@media (max-width: 860px) {
+  .quickGrid { grid-template-columns: repeat(2, 1fr); max-width: 520px; margin: 0 auto; }
+  .deco { display: none; }
+  .formInner { grid-template-columns: 1fr; gap: 32px; }
+  .formRight { flex-direction: row; align-items: center; flex-wrap: wrap; }
+}
+@media (max-width: 480px) {
+  .formCard { padding: 28px 20px; }
+  .formMouse { display: none; }
+  .heroTitle h1 { font-size: clamp(48px, 14vw, 80px); }
+}
