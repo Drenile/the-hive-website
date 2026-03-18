@@ -3,13 +3,14 @@ import { body, validationResult } from 'express-validator';
 import supabase from '../config/db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
+import { validatePagination } from '../middleware/pagination.js';
 
 const router = Router();
 
 // GET /api/events — public
-router.get('/', async (req, res) => {
+router.get('/', validatePagination, async (req, res) => {
   try {
-    const { status, limit = 20, offset = 0 } = req.query;
+    const { status, limit, offset } = req.query;
     let query = supabase
       .from('events')
       .select('*')
@@ -46,7 +47,7 @@ router.get('/:id', async (req, res) => {
 router.post('/',
   requireAuth, requireAdmin,
   [
-    body('title').notEmpty().trim(),
+    body('title').notEmpty().trim().isLength({ max: 200 }),
     body('event_date').isISO8601(),
     body('status').isIn(['upcoming', 'past', 'cancelled']),
   ],

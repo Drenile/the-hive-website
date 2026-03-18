@@ -3,11 +3,13 @@ import { body, validationResult } from 'express-validator';
 import supabase from '../config/db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
+import { formLimiter } from '../middleware/rateLimits.js';
 
 const router = Router();
 
-// POST /api/newsletter — public
+// POST /api/newsletter — public, strict rate limit
 router.post('/',
+  formLimiter,
   [body('email').isEmail().normalizeEmail()],
   async (req, res) => {
     const errors = validationResult(req);

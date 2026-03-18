@@ -3,16 +3,18 @@ import { body, validationResult } from 'express-validator';
 import supabase from '../config/db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
+import { formLimiter } from '../middleware/rateLimits.js';
 
 const router = Router();
 
-// POST /api/contact — public
+// POST /api/contact — public, strict rate limit
 router.post('/',
+  formLimiter,
   [
-    body('name').notEmpty().trim().escape(),
+    body('name').notEmpty().trim().isLength({ max: 100 }),
     body('email').isEmail().normalizeEmail(),
-    body('message').notEmpty().trim().escape(),
-    body('reason').optional().trim().escape(),
+    body('message').notEmpty().trim().isLength({ min: 10, max: 2000 }),
+    body('reason').optional().trim().isLength({ max: 100 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -25,6 +27,7 @@ router.post('/',
       if (error) throw error;
       res.status(201).json({ message: 'Message sent successfully' });
     } catch (err) {
+      console.error(err);
       res.status(500).json({ error: 'Failed to send message' });
     }
   }

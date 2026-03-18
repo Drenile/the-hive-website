@@ -4,30 +4,41 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
+dotenv.config();
+
+import { validateEnv } from './config/validateEnv.js';
+import { logger } from './middleware/logger.js';
 import eventsRouter     from './routes/events.js';
 import articlesRouter   from './routes/articles.js';
 import contactRouter    from './routes/contact.js';
 import newsletterRouter from './routes/newsletter.js';
 import profilesRouter   from './routes/profiles.js';
 
-dotenv.config();
+// Validate environment on startup
+validateEnv();
 
 const app = express();
 
 // ─── Security Middleware ───────────────────────────────
 app.use(helmet());
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL,
   credentials: true,
 }));
 
-// Rate limiter
-const limiter = rateLimit({
+// Global rate limiter
+const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
 });
-app.use('/api', limiter);
+app.use('/api', globalLimiter);
+
+// ─── Logging ──────────────────────────────────────────
+app.use(logger);
 
 // ─── Body Parsing ─────────────────────────────────────
 app.use(express.json({ limit: '10kb' }));
@@ -61,7 +72,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 export default app;

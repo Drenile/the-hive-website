@@ -3,13 +3,14 @@ import { body, validationResult } from 'express-validator';
 import supabase from '../config/db.js';
 import { requireAuth, optionalAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
+import { validatePagination } from '../middleware/pagination.js';
 
 const router = Router();
 
 // GET /api/articles — public (published only), admin sees all
-router.get('/', optionalAuth, async (req, res) => {
+router.get('/', optionalAuth, validatePagination, async (req, res) => {
   try {
-    const { tag, limit = 20, offset = 0 } = req.query;
+    const { tag, limit, offset } = req.query;
     const isAdmin = req.user?.role === 'admin';
 
     let query = supabase
@@ -52,7 +53,10 @@ router.get('/:id', optionalAuth, async (req, res) => {
 // POST /api/articles — admin only
 router.post('/',
   requireAuth, requireAdmin,
-  [body('title').notEmpty().trim()],
+  [
+    body('title').notEmpty().trim().isLength({ max: 200 }),
+    body('tag').isIn(['spotlight', 'event', 'resource']),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
@@ -96,7 +100,10 @@ router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
 // DELETE /api/articles/:id — admin only
 router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const { error } = await supabase.from('articles').delete().eq('id', req.params.id);
+    const { error } = await supabase
+      .from('articles')
+      .delete()
+      .eq('id', req.params.id);
     if (error) throw error;
     res.json({ message: 'Article deleted' });
   } catch (err) {
