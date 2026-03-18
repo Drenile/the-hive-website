@@ -4,19 +4,24 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
+import eventsRouter     from './routes/events.js';
+import articlesRouter   from './routes/articles.js';
+import contactRouter    from './routes/contact.js';
+import newsletterRouter from './routes/newsletter.js';
+import profilesRouter   from './routes/profiles.js';
+
 dotenv.config();
 
 const app = express();
 
 // ─── Security Middleware ───────────────────────────────
 app.use(helmet());
-
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true,
 }));
 
-// Rate limiter — max 100 requests per 15 minutes per IP
+// Rate limiter
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -33,6 +38,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'The Hive API is running' });
 });
 
+app.use('/api/events',     eventsRouter);
+app.use('/api/articles',   articlesRouter);
+app.use('/api/contact',    contactRouter);
+app.use('/api/newsletter', newsletterRouter);
+app.use('/api/profiles',   profilesRouter);
+
 // ─── 404 Handler ──────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
@@ -48,7 +59,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
