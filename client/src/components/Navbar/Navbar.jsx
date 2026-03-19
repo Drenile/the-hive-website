@@ -1,14 +1,23 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
 import logo from '../../assets/hive logo.png';
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { user, profile, signOut } = useAuth();
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen]       = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
   const closeMenu  = () => setMenuOpen(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+    closeMenu();
+  };
 
   return (
     <header className={styles.nav}>
@@ -21,18 +30,12 @@ function Navbar() {
         <NavLink to="/"            className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Home</NavLink>
         <NavLink to="/about"       className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>About</NavLink>
 
-        {/* Dropdown */}
         <div
           className={styles.navDropdown}
           onMouseEnter={() => setDropdownOpen(true)}
           onMouseLeave={() => setDropdownOpen(false)}
         >
-          <button
-            className={styles.navDropdownTrigger}
-            aria-haspopup="true"
-            aria-expanded={dropdownOpen}
-            type="button"
-          >
+          <button className={styles.navDropdownTrigger} aria-haspopup="true" aria-expanded={dropdownOpen} type="button">
             Community <span className={styles.navChevron} aria-hidden="true">▾</span>
           </button>
           {dropdownOpen && (
@@ -46,6 +49,22 @@ function Navbar() {
         <NavLink to="/get-involved" className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Get Involved</NavLink>
         <NavLink to="/projects"     className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Projects</NavLink>
         <NavLink to="/contact"      className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Contact Us</NavLink>
+
+        {/* Auth */}
+        {user ? (
+          <div className={styles.authWrap}>
+            <span className={styles.authName}>{profile?.full_name || user.email}</span>
+            {profile?.role === 'admin' && (
+              <span className={styles.adminBadge}>Admin</span>
+            )}
+            <button className={styles.signOutBtn} onClick={handleSignOut}>Sign Out</button>
+          </div>
+        ) : (
+          <div className={styles.authWrap}>
+            <NavLink to="/login"  className={styles.loginBtn}>Login</NavLink>
+            <NavLink to="/signup" className={styles.signupBtn}>Join Us</NavLink>
+          </div>
+        )}
       </nav>
 
       {/* Hamburger */}
@@ -62,14 +81,25 @@ function Navbar() {
       {/* Mobile Nav */}
       {menuOpen && (
         <div className={styles.mobileNav} id="mobileNav">
-          <NavLink to="/"            className={styles.mobileNavLink} onClick={closeMenu}>Home</NavLink>
-          <NavLink to="/about"       className={styles.mobileNavLink} onClick={closeMenu}>About</NavLink>
+          <NavLink to="/"             className={styles.mobileNavLink} onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/about"        className={styles.mobileNavLink} onClick={closeMenu}>About</NavLink>
           <span className={styles.mobileNavSection}>Community</span>
-          <NavLink to="/events"      className={`${styles.mobileNavLink} ${styles.mobileNavLinkSub}`} onClick={closeMenu}>Events</NavLink>
-          <NavLink to="/news"        className={`${styles.mobileNavLink} ${styles.mobileNavLinkSub}`} onClick={closeMenu}>News</NavLink>
+          <NavLink to="/events"       className={`${styles.mobileNavLink} ${styles.mobileNavLinkSub}`} onClick={closeMenu}>Events</NavLink>
+          <NavLink to="/news"         className={`${styles.mobileNavLink} ${styles.mobileNavLinkSub}`} onClick={closeMenu}>News</NavLink>
           <NavLink to="/get-involved" className={styles.mobileNavLink} onClick={closeMenu}>Get Involved</NavLink>
-          <NavLink to="/projects"    className={styles.mobileNavLink} onClick={closeMenu}>Projects</NavLink>
-          <NavLink to="/contact"     className={styles.mobileNavLink} onClick={closeMenu}>Contact Us</NavLink>
+          <NavLink to="/projects"     className={styles.mobileNavLink} onClick={closeMenu}>Projects</NavLink>
+          <NavLink to="/contact"      className={styles.mobileNavLink} onClick={closeMenu}>Contact Us</NavLink>
+          {user ? (
+            <>
+              <span className={styles.mobileNavSection}>{profile?.full_name || user.email}</span>
+              <button className={styles.mobileNavLink} onClick={handleSignOut} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', font: 'inherit' }}>Sign Out</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login"  className={styles.mobileNavLink} onClick={closeMenu}>Login</NavLink>
+              <NavLink to="/signup" className={styles.mobileNavLink} onClick={closeMenu}>Join Us</NavLink>
+            </>
+          )}
         </div>
       )}
     </header>

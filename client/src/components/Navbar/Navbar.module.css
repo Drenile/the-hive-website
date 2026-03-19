@@ -153,3 +153,14 @@
   .navMenu  { display: flex; }
   .logoImg  { height: 48px; }
 }
+
+/* ── AUTH ── */
+.authWrap   { display: flex; align-items: center; gap: 12px; margin-left: 8px; }
+.authName   { font-size: 15px; font-weight: 600; opacity: .75; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adminBadge { background: var(--pink); border: 2px solid #000; border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; }
+.loginBtn   { font-size: 16px; font-weight: 600; padding: 8px 20px; border-radius: 999px; border: 2px solid #000; background: transparent; transition: background .15s; }
+.loginBtn:hover { background: rgba(0,0,0,.06); }
+.signupBtn  { font-size: 16px; font-weight: 600; padding: 8px 20px; border-radius: 999px; border: 2px solid #000; background: var(--green); transition: background .15s, transform .15s; }
+.signupBtn:hover { background: #8FD44D; transform: scale(1.03); }
+.signOutBtn { font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 2px solid #000; background: transparent; cursor: pointer; font-family: inherit; transition: background .15s; }
+.signOutBtn:hover { background: rgba(0,0,0,.06); }

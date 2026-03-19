@@ -12,6 +12,8 @@ import Contact from './pages/Contact/Contact';
 import Projects from './pages/Projects/Projects';
 import GetInvolved from './pages/GetInvolved/GetInvolved';
 import HOTM from './pages/HOTM/HOTM';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
 import NotFound from './pages/NotFound/NotFound';
 import styles from './App.module.css';
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="/projects"       element={<Projects />} />
           <Route path="/get-involved"   element={<GetInvolved />} />
           <Route path="/hotm"           element={<HOTM />} />
+          <Route path="/login"          element={<Login />} />
+          <Route path="/signup"         element={<Signup />} />
           <Route path="*"               element={<NotFound />} />
         </Routes>
       </main>
