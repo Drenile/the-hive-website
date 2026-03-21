@@ -3,7 +3,6 @@ const required = [
   'SUPABASE_SERVICE_ROLE_KEY',
   'SUPABASE_ANON_KEY',
   'JWT_SECRET',
-  'CLIENT_URL',
   'PORT',
 ];
 
@@ -18,7 +17,7 @@ export function validateEnv() {
   }
 
   if (process.env.JWT_SECRET === 'changeme_use_a_long_random_string_in_production') {
-    console.error('❌ JWT_SECRET is still set to the default placeholder. Generate a secure secret.');
+    console.error('❌ JWT_SECRET is still set to the default placeholder.');
     process.exit(1);
   }
 

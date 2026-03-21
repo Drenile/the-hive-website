@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { validateEnv } from './config/validateEnv.js';
+import { corsOptions } from './config/cors.js';
 import { logger } from './middleware/logger.js';
 import eventsRouter     from './routes/events.js';
 import articlesRouter   from './routes/articles.js';
@@ -14,18 +15,13 @@ import contactRouter    from './routes/contact.js';
 import newsletterRouter from './routes/newsletter.js';
 import profilesRouter   from './routes/profiles.js';
 
-// Validate environment on startup
 validateEnv();
 
 const app = express();
 
 // ─── Security Middleware ───────────────────────────────
 app.use(helmet());
-
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 
 // Global rate limiter
 const globalLimiter = rateLimit({
