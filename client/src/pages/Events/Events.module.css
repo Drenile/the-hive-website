@@ -149,3 +149,5 @@
 @media (max-width: 560px) {
   .pastGrid { grid-template-columns: 1fr; }
 }
+.loading { text-align: center; padding: 60px 0; font-size: 16px; opacity: .55; font-weight: 600; }
+.empty   { text-align: center; padding: 60px 0; font-size: 16px; opacity: .55; font-weight: 600; }
