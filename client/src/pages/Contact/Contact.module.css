@@ -58,3 +58,9 @@
   .formMouse { display: none; }
   .heroTitle h1 { font-size: clamp(48px, 14vw, 80px); }
 }
+
+.successCard { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 40px 20px; width: 100%; }
+.successIcon { font-size: 48px; }
+.successCard h3 { font-size: 24px; font-weight: 900; margin: 0; color: #fff; }
+.successCard p  { font-size: 15px; opacity: .7; margin: 0; color: #fff; }
+.error { background: rgba(255,100,100,.15); border: 1.5px solid #FF6B6B; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 600; color: #FF6B6B; }

@@ -81,3 +81,6 @@
   transition: background .15s ease, opacity .15s ease;
 }
 .socials a:hover { background: rgba(255,255,255,.15); opacity: 1; }
+
+.successMsg { text-align: center; font-size: 14px; font-weight: 700; color: #7EBD3E; margin: -20px 0 16px; }
+.errorMsg   { text-align: center; font-size: 14px; font-weight: 700; color: #FF6B6B; margin: -20px 0 16px; }
