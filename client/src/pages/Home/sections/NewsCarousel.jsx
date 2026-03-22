@@ -3,19 +3,12 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '../../../components/shared/ScrollReveal';
 import styles from './NewsCarousel.module.css';
 import { getArticles } from '../../../services/api';
+import { getImageUrl } from '../../../utils/getImageUrl';
 import star4    from '../../../assets/4 star.png';
 import starPink from '../../../assets/pink upside empasis.png';
 
 const GAP = 22;
 
-const getImageUrl = (filename) => {
-  if (!filename) return null;
-  try {
-    return new URL(`../../../assets/${filename}`, import.meta.url).href;
-  } catch {
-    return null;
-  }
-};
 
 const btnColor = { spotlight: 'yellow', event: 'green', resource: 'pink' };
 

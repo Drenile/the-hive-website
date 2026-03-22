@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './Events.module.css';
 import { getEvents } from '../../services/api';
+import { getImageUrl } from '../../utils/getImageUrl';
 import pinkEmphasis from '../../assets/pink upside empasis.png';
 
 const EVENT_DATE = new Date('2027-01-17T09:00:00');
@@ -28,14 +29,6 @@ function useCountdown(target) {
 }
 
 // Map asset filenames to imported images
-const getImageUrl = (filename) => {
-  if (!filename) return null;
-  try {
-    return new URL(`../../assets/${filename}`, import.meta.url).href;
-  } catch {
-    return null;
-  }
-};
 
 function Events() {
   const countdown = useCountdown(EVENT_DATE);

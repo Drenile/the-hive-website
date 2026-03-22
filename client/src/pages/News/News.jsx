@@ -3,16 +3,8 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './News.module.css';
 import { getArticles } from '../../services/api';
+import { getImageUrl } from '../../utils/getImageUrl';
 import facePortrait from '../../assets/face portrait.png';
-
-const getImageUrl = (filename) => {
-  if (!filename) return null;
-  try {
-    return new URL(`../../assets/${filename}`, import.meta.url).href;
-  } catch {
-    return null;
-  }
-};
 
 const pillColor = { spotlight: 'green', event: 'pink', resource: 'yellow' };
 const pillLabel = { spotlight: 'Spotlight', event: 'Event Recap', resource: 'Resource' };
@@ -57,7 +49,7 @@ function News() {
           <div className={styles.spotlightBody}>
             <span className={styles.spotlightBadge}>✦ Membership Spotlight</span>
             <h1>Meet Adesola:<br />Hiver Of The Month!!</h1>
-            <p>Adesola is a Computer Science student passionate about building real solutions that create impact. Through The Hive, she has contributed to cross-functional projects and continuously pushed herself to grow beyond the classroom.</p>
+            <p>Adesola is a Computer Science student passionate about building real solutions that create impact.</p>
             <Link className={styles.btnPink} to="/hotm">Read More</Link>
           </div>
         </ScrollReveal>
@@ -73,13 +65,11 @@ function News() {
             </div>
           </ScrollReveal>
 
-          {/* Search */}
           <div className={styles.searchWrap}>
             <svg className={styles.searchIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input className={styles.searchInput} type="search" placeholder="Search news…" value={search} onChange={e => setSearch(e.target.value)} />
           </div>
 
-          {/* Filter */}
           <div className={styles.filterBar}>
             <button className={`${styles.filterBtn} ${activeFilter === 'all' ? styles.filterBtnActive : styles.filterBtnOutline}`} onClick={() => setActiveFilter('all')}>All Blogs</button>
             <button className={`${styles.filterBtnIcon} ${filterOpen ? styles.filterBtnIconOpen : ''}`} onClick={() => setFilterOpen(p => !p)}>
@@ -96,7 +86,6 @@ function News() {
             </div>
           )}
 
-          {/* Grid */}
           {loading ? (
             <div className={styles.loading}>Loading news...</div>
           ) : (
