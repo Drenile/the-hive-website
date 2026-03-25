@@ -6,15 +6,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import { validateEnv }    from './config/validateEnv.js';
-import { corsOptions }    from './config/cors.js';
-import { logger }         from './middleware/logger.js';
-import eventsRouter       from './routes/events.js';
-import articlesRouter     from './routes/articles.js';
-import contactRouter      from './routes/contact.js';
-import newsletterRouter   from './routes/newsletter.js';
-import profilesRouter     from './routes/profiles.js';
-import statsRouter        from './routes/stats.js';
+import { validateEnv }  from './config/validateEnv.js';
+import { corsOptions }  from './config/cors.js';
+import { logger }       from './middleware/logger.js';
+import eventsRouter     from './routes/events.js';
+import articlesRouter   from './routes/articles.js';
+import contactRouter    from './routes/contact.js';
+import newsletterRouter from './routes/newsletter.js';
+import profilesRouter   from './routes/profiles.js';
+import statsRouter      from './routes/stats.js';
 
 validateEnv();
 
@@ -23,12 +23,14 @@ const app = express();
 app.use(helmet());
 app.use(cors(corsOptions));
 
+// Rate limiter — relaxed in development, strict in production
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: process.env.NODE_ENV === 'production' ? 100 : 1000,
   message: { error: 'Too many requests, please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => process.env.NODE_ENV === 'development', // skip entirely in dev
 });
 app.use('/api', globalLimiter);
 

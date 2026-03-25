@@ -15,7 +15,7 @@ import HOTM from './pages/HOTM/HOTM';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NotFound from './pages/NotFound/NotFound';
-import TestUpload from './pages/Admin/TestUpload';
+import Admin from './pages/Admin/Admin';
 import styles from './App.module.css';
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
           <Route path="/hotm"           element={<HOTM />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/signup"         element={<Signup />} />
-          <Route path="/test-upload"      element={<TestUpload />} />
+          <Route path="/admin"           element={<Admin />} />
           <Route path="*"               element={<NotFound />} />
         </Routes>
       </main>
