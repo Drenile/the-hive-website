@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
+import { getAuthToken } from '../../../utils/getAuthToken';
 import styles from './AdminSection.module.css';
-
-async function getAuthToken() {
-  const { createClient } = await import('@supabase/supabase-js');
-  const supabase = createClient(
-    import.meta.env.VITE_SUPABASE_URL,
-    import.meta.env.VITE_SUPABASE_ANON_KEY
-  );
-  const { data: { session } } = await supabase.auth.getSession();
-  return session?.access_token;
-}
 
 function AdminContact() {
   const [submissions, setSubmissions] = useState([]);

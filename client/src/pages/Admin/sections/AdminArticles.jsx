@@ -93,7 +93,7 @@ function AdminArticles() {
             <div className={styles.formGrid}>
               <div className={styles.field}>
                 <label>Title *</label>
-                <input value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} required />
+                <input maxLength={200} value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} required />
               </div>
               <div className={styles.field}>
                 <label>Tag</label>

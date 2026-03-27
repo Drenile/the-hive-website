@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import supabase from '../services/supabase';
 
 export const AuthContext = createContext(null);
@@ -8,14 +8,20 @@ export function AuthProvider({ children }) {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch profile from our Express backend
-  const fetchProfile = async (session) => {
+  const fetchProfile = useCallback(async (session) => {
     if (!session) { setProfile(null); return; }
     try {
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/profiles/me`,
         { headers: { Authorization: `Bearer ${session.access_token}` } }
       );
+      if (res.status === 401) {
+        // Token expired or invalid — sign out
+        await supabase.auth.signOut();
+        setUser(null);
+        setProfile(null);
+        return;
+      }
       if (res.ok) {
         const { data } = await res.json();
         setProfile(data);
@@ -23,19 +29,24 @@ export function AuthProvider({ children }) {
     } catch (err) {
       console.error('Failed to fetch profile:', err);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       fetchProfile(session);
       setLoading(false);
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (event, session) => {
+        // Handle token refresh failure
+        if (event === 'TOKEN_REFRESHED' && !session) {
+          setUser(null);
+          setProfile(null);
+          setLoading(false);
+          return;
+        }
         setUser(session?.user ?? null);
         await fetchProfile(session);
         setLoading(false);
@@ -43,7 +54,7 @@ export function AuthProvider({ children }) {
     );
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [fetchProfile]);
 
   const signUp = async ({ email, password, fullName }) => {
     const { data, error } = await supabase.auth.signUp({

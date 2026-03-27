@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import ProtectedRoute from './components/shared/ProtectedRoute';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Events from './pages/Events/Events';
@@ -14,8 +15,8 @@ import GetInvolved from './pages/GetInvolved/GetInvolved';
 import HOTM from './pages/HOTM/HOTM';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import NotFound from './pages/NotFound/NotFound';
 import Admin from './pages/Admin/Admin';
+import NotFound from './pages/NotFound/NotFound';
 import styles from './App.module.css';
 
 function App() {
@@ -37,7 +38,11 @@ function App() {
           <Route path="/hotm"           element={<HOTM />} />
           <Route path="/login"          element={<Login />} />
           <Route path="/signup"         element={<Signup />} />
-          <Route path="/admin"           element={<Admin />} />
+          <Route path="/admin"          element={
+            <ProtectedRoute requiredRole="admin">
+              <Admin />
+            </ProtectedRoute>
+          } />
           <Route path="*"               element={<NotFound />} />
         </Routes>
       </main>

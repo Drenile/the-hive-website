@@ -95,7 +95,7 @@ function AdminEvents() {
             <div className={styles.formGrid}>
               <div className={styles.field}>
                 <label>Title *</label>
-                <input value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} required />
+                <input maxLength={200} value={form.title} onChange={e => setForm(p => ({ ...p, title: e.target.value }))} required />
               </div>
               <div className={styles.field}>
                 <label>Status</label>
@@ -111,7 +111,7 @@ function AdminEvents() {
               </div>
               <div className={styles.field}>
                 <label>Location</label>
-                <input value={form.location} onChange={e => setForm(p => ({ ...p, location: e.target.value }))} />
+                <input maxLength={200} value={form.location} onChange={e => setForm(p => ({ ...p, location: e.target.value }))} />
               </div>
               <div className={styles.field}>
                 <label>Tag</label>

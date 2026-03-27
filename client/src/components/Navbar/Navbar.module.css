@@ -164,3 +164,15 @@
 .signupBtn:hover { background: #8FD44D; transform: scale(1.03); }
 .signOutBtn { font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 2px solid #000; background: transparent; cursor: pointer; font-family: inherit; transition: background .15s; }
 .signOutBtn:hover { background: rgba(0,0,0,.06); }
+
+.adminLink {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid #000;
+  background: var(--yellow);
+  transition: transform .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.adminLink:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,.12); }

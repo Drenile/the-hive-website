@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
+import { getAuthToken } from '../../../utils/getAuthToken';
 import styles from './AdminSection.module.css';
-
-async function getAuthToken() {
-  const { createClient } = await import('@supabase/supabase-js');
-  const supabase = createClient(
-    import.meta.env.VITE_SUPABASE_URL,
-    import.meta.env.VITE_SUPABASE_ANON_KEY
-  );
-  const { data: { session } } = await supabase.auth.getSession();
-  return session?.access_token;
-}
 
 function AdminNewsletter() {
   const [subscribers, setSubscribers] = useState([]);
@@ -48,7 +39,7 @@ function AdminNewsletter() {
         <div className={styles.table}>
           <div className={styles.tableHeader}>
             <span>Email</span>
-            <span>Subscribed</span>
+            <span>Status</span>
             <span>Date</span>
           </div>
           {subscribers.map(sub => (

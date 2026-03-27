@@ -7,7 +7,7 @@ import logo from '../../assets/hive logo.png';
 function Navbar() {
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen]       = useState(false);
+  const [menuOpen, setMenuOpen]         = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
@@ -53,10 +53,11 @@ function Navbar() {
         {/* Auth */}
         {user ? (
           <div className={styles.authWrap}>
-            <span className={styles.authName}>{profile?.full_name || user.email}</span>
             {profile?.role === 'admin' && (
-              <span className={styles.adminBadge}>Admin</span>
+              <NavLink to="/admin" className={styles.adminLink}>⚙️ Admin</NavLink>
             )}
+            <span className={styles.authName}>{profile?.full_name || user.email}</span>
+            <span className={styles.adminBadge}>{profile?.role}</span>
             <button className={styles.signOutBtn} onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
@@ -91,6 +92,9 @@ function Navbar() {
           <NavLink to="/contact"      className={styles.mobileNavLink} onClick={closeMenu}>Contact Us</NavLink>
           {user ? (
             <>
+              {profile?.role === 'admin' && (
+                <NavLink to="/admin" className={styles.mobileNavLink} onClick={closeMenu}>⚙️ Admin Dashboard</NavLink>
+              )}
               <span className={styles.mobileNavSection}>{profile?.full_name || user.email}</span>
               <button className={styles.mobileNavLink} onClick={handleSignOut} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left', cursor: 'pointer', font: 'inherit' }}>Sign Out</button>
             </>
