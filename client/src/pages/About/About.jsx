@@ -1,34 +1,34 @@
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './About.module.css';
 
-import yellowDoodle    from '../../assets/yellow doodle.png';
-import pinkDoodleHollow from '../../assets/pink doodle hollow.png';
-import pinkDoodle      from '../../assets/pink doodle.png';
-import greenClip       from '../../assets/green clip.png';
-import greenPuzzle     from '../../assets/green puzzle.png';
-import yellowSuitcase  from '../../assets/yellow suitcase.png';
+import yellowDoodle    from '../../assets/yellow-doodle.png';
+import pinkDoodleHollow from '../../assets/pink-doodle-hollow.png';
+import pinkDoodle      from '../../assets/pink-doodle.png';
+import greenClip       from '../../assets/green-clip.png';
+import greenPuzzle     from '../../assets/green-puzzle.png';
+import yellowSuitcase  from '../../assets/yellow-suitcase.png';
 
-import photo1 from '../../assets/hands together laptop.jpg';
-import photo2 from '../../assets/leadfest 3 smile.JPG';
+import photo1 from '../../assets/hands-together-laptop.jpg';
+import photo2 from '../../assets/leadfest-3-smile.jpg';
 import photo3 from '../../assets/IMG_0943.JPG';
 import photo4 from '../../assets/IMG_0915.JPG';
 
-import storyImg   from '../../assets/students smiling.jpg';
+import storyImg   from '../../assets/students-smiling.jpg';
 import missionImg from '../../assets/hiver3.jpg';
 import visionImg  from '../../assets/IMG_4270.jpg';
 
-import teamsIcon     from '../../assets/teams .png';
+import teamsIcon     from '../../assets/teams.png';
 import projectsIcon  from '../../assets/projects.png';
 import mentorIcon    from '../../assets/mentor.png';
 import communityIcon from '../../assets/community.png';
 
-import face    from '../../assets/face portrait.png';
+import face    from '../../assets/face-portrait.png';
 import hiver1  from '../../assets/hiver1.jpg';
 import hiver2  from '../../assets/hiver2.jpg';
 import hiver3  from '../../assets/hiver3.jpg';
 import img0943 from '../../assets/IMG_0943.JPG';
 import img0915 from '../../assets/IMG_0915.JPG';
-import leadfest from '../../assets/leadfest 3 smile.JPG';
+import leadfest from '../../assets/leadfest-3-smile.jpg';
 
 const teamMembers = [
   { img: face,    name: 'Victoria Morgas', role: 'Queen Bee' },

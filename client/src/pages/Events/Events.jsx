@@ -4,7 +4,7 @@ import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './Events.module.css';
 import { getEvents } from '../../services/api';
 import { getImageUrl } from '../../utils/getImageUrl';
-import pinkEmphasis from '../../assets/pink upside empasis.png';
+import pinkEmphasis from '../../assets/pink-upside-emphasis.png';
 
 const EVENT_DATE = new Date('2027-01-17T09:00:00');
 

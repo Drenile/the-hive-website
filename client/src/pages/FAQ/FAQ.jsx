@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './FAQ.module.css';
-import laptopImg from '../../assets/hands together laptop.jpg';
+import laptopImg from '../../assets/hands-together-laptop.jpg';
 
 const faqs = [
   { cat: 'general',    q: 'What is The Hive?',                              a: 'The Hive is a student-led community at the University of Lethbridge built around collaboration, real experience, and meaningful growth. We bring together students from different programs to work on real projects, learn from each other, and build confidence before stepping into professional spaces.' },

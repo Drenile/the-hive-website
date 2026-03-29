@@ -15,12 +15,12 @@ import contactRouter    from './routes/contact.js';
 import newsletterRouter from './routes/newsletter.js';
 import profilesRouter   from './routes/profiles.js';
 import statsRouter      from './routes/stats.js';
+import auditLogsRouter  from './routes/auditLogs.js';
 
 validateEnv();
 
 const app = express();
 
-// ─── Security Headers ──────────────────────────────────
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -39,7 +39,6 @@ app.use(helmet({
 
 app.use(cors(corsOptions));
 
-// ─── Rate Limiting ────────────────────────────────────
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: process.env.NODE_ENV === 'production' ? 100 : 1000,
@@ -50,14 +49,10 @@ const globalLimiter = rateLimit({
 });
 app.use('/api', globalLimiter);
 
-// ─── Logging ──────────────────────────────────────────
 app.use(logger);
-
-// ─── Body Parsing ─────────────────────────────────────
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// ─── Routes ───────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'The Hive API is running' });
 });
@@ -68,13 +63,12 @@ app.use('/api/contact',    contactRouter);
 app.use('/api/newsletter', newsletterRouter);
 app.use('/api/profiles',   profilesRouter);
 app.use('/api/stats',      statsRouter);
+app.use('/api/audit-logs', auditLogsRouter);
 
-// ─── 404 Handler ──────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// ─── Global Error Handler ─────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({

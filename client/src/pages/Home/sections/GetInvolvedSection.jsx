@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../../../components/shared/ScrollReveal';
 import styles from './GetInvolvedSection.module.css';
-import hiverImg   from '../../../assets/hands together laptop.jpg';
-import mentorImg  from '../../../assets/leadfest 3 smile.JPG';
+import hiverImg   from '../../../assets/hands-together-laptop.jpg';
+import mentorImg  from '../../../assets/leadfest-3-smile.jpg';
 import partnerImg from '../../../assets/IMG_4270.jpg';
 
 const roles = [

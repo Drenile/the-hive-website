@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './HOTM.module.css';
-import facePortrait from '../../assets/face portrait.png';
+import facePortrait from '../../assets/face-portrait.png';
 import hiver1 from '../../assets/hiver1.jpg';
 import hiver2 from '../../assets/hiver2.jpg';
 import hiver3 from '../../assets/hiver3.jpg';
-import laptop  from '../../assets/hands together laptop.jpg';
+import laptop  from '../../assets/hands-together-laptop.jpg';
 
 function HOTM() {
   return (

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../../../components/shared/ScrollReveal';
 import styles from './HeroSection.module.css';
-import heroImg from '../../../assets/students smiling.jpg';
+import heroImg from '../../../assets/students-smiling.jpg';
 
 function HeroSection() {
   return (

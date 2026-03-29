@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block admin from search engines
+Disallow: /admin
+
+Sitemap: https://yourdomain.com/sitemap.xml

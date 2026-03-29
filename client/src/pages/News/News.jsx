@@ -4,7 +4,7 @@ import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './News.module.css';
 import { getArticles } from '../../services/api';
 import { getImageUrl } from '../../utils/getImageUrl';
-import facePortrait from '../../assets/face portrait.png';
+import facePortrait from '../../assets/face-portrait.png';
 
 const pillColor = { spotlight: 'green', event: 'pink', resource: 'yellow' };
 const pillLabel = { spotlight: 'Spotlight', event: 'Event Recap', resource: 'Resource' };

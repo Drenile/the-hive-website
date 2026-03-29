@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styles from './Projects.module.css';
-import greenPuzzle   from '../../assets/green puzzle.png';
-import yellowDoodle  from '../../assets/yellow doodle.png';
-import star4         from '../../assets/4 star.png';
+import greenPuzzle   from '../../assets/green-puzzle.png';
+import yellowDoodle  from '../../assets/yellow-doodle.png';
+import star4         from '../../assets/4-star.png';
 
 function Projects() {
   return (

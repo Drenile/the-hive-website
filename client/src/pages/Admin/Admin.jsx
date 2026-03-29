@@ -2,20 +2,22 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Admin.module.css';
-import AdminOverview      from './sections/AdminOverview';
-import AdminEvents        from './sections/AdminEvents';
-import AdminArticles      from './sections/AdminArticles';
-import AdminUsers         from './sections/AdminUsers';
-import AdminContact       from './sections/AdminContact';
-import AdminNewsletter    from './sections/AdminNewsletter';
+import AdminOverview   from './sections/AdminOverview';
+import AdminEvents     from './sections/AdminEvents';
+import AdminArticles   from './sections/AdminArticles';
+import AdminUsers      from './sections/AdminUsers';
+import AdminContact    from './sections/AdminContact';
+import AdminNewsletter from './sections/AdminNewsletter';
+import AdminAuditLog   from './sections/AdminAuditLog';
 
 const tabs = [
-  { id: 'overview',    label: '📊 Overview'    },
-  { id: 'events',      label: '📅 Events'      },
-  { id: 'articles',    label: '📰 Articles'    },
-  { id: 'users',       label: '👥 Users'       },
-  { id: 'contact',     label: '✉️ Contact'     },
-  { id: 'newsletter',  label: '📧 Newsletter'  },
+  { id: 'overview',   label: '📊 Overview'    },
+  { id: 'events',     label: '📅 Events'      },
+  { id: 'articles',   label: '📰 Articles'    },
+  { id: 'users',      label: '👥 Users'       },
+  { id: 'contact',    label: '✉️ Contact'     },
+  { id: 'newsletter', label: '📧 Newsletter'  },
+  { id: 'audit',      label: '🔍 Audit Log'   },
 ];
 
 function Admin() {
@@ -33,6 +35,7 @@ function Admin() {
       case 'users':      return <AdminUsers />;
       case 'contact':    return <AdminContact />;
       case 'newsletter': return <AdminNewsletter />;
+      case 'audit':      return <AdminAuditLog />;
       default:           return <AdminOverview />;
     }
   };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
-import logo from '../../assets/hive logo.png';
+import logo from '../../assets/hive-logo.png';
 
 function Navbar() {
   const { user, profile, signOut } = useAuth();

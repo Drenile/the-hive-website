@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Login.module.css';
-import logo from '../../assets/hive logo.png';
+import logo from '../../assets/hive-logo.png';
 
 function Login() {
   const { signIn } = useAuth();

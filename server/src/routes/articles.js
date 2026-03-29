@@ -4,15 +4,15 @@ import supabase from '../config/db.js';
 import { requireAuth, optionalAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
 import { validatePagination } from '../middleware/pagination.js';
+import { logAudit, AUDIT_ACTIONS, AUDIT_ENTITIES } from '../middleware/audit.js';
 
 const router = Router();
 
-// GET /api/articles — public (published only), admin sees all
+// GET /api/articles — public
 router.get('/', optionalAuth, validatePagination, async (req, res) => {
   try {
     const { tag, limit, offset } = req.query;
     const isAdmin = req.user?.role === 'admin';
-
     let query = supabase
       .from('articles')
       .select('*, profiles(full_name, avatar_url)')
@@ -21,7 +21,6 @@ router.get('/', optionalAuth, validatePagination, async (req, res) => {
 
     if (!isAdmin) query = query.eq('published', true);
     if (tag) query = query.eq('tag', tag);
-
     const { data, error } = await query;
     if (error) throw error;
     res.json({ data });
@@ -37,11 +36,8 @@ router.get('/:id', optionalAuth, async (req, res) => {
     let query = supabase
       .from('articles')
       .select('*, profiles(full_name, avatar_url)')
-      .eq('id', req.params.id)
-      .single();
-
+      .eq('id', req.params.id).single();
     if (!isAdmin) query = query.eq('published', true);
-
     const { data, error } = await query;
     if (error) return res.status(404).json({ error: 'Article not found' });
     res.json({ data });
@@ -63,15 +59,22 @@ router.post('/',
     try {
       const payload = {
         ...req.body,
-        author_id: req.user.id,
+        author_id:    req.user.id,
         published_at: req.body.published ? new Date().toISOString() : null,
       };
       const { data, error } = await supabase
-        .from('articles')
-        .insert(payload)
-        .select()
-        .single();
+        .from('articles').insert(payload).select().single();
       if (error) throw error;
+
+      await logAudit({
+        user:       req.user,
+        action:     AUDIT_ACTIONS.CREATE,
+        entityType: AUDIT_ENTITIES.ARTICLE,
+        entityId:   data.id,
+        newData:    data,
+        req,
+      });
+
       res.status(201).json({ data });
     } catch (err) {
       res.status(500).json({ error: 'Failed to create article' });
@@ -82,15 +85,26 @@ router.post('/',
 // PATCH /api/articles/:id — admin only
 router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
+    const { data: oldData } = await supabase
+      .from('articles').select('*').eq('id', req.params.id).single();
+
     const payload = { ...req.body };
     if (req.body.published) payload.published_at = new Date().toISOString();
+
     const { data, error } = await supabase
-      .from('articles')
-      .update(payload)
-      .eq('id', req.params.id)
-      .select()
-      .single();
+      .from('articles').update(payload).eq('id', req.params.id).select().single();
     if (error) throw error;
+
+    await logAudit({
+      user:       req.user,
+      action:     AUDIT_ACTIONS.UPDATE,
+      entityType: AUDIT_ENTITIES.ARTICLE,
+      entityId:   data.id,
+      oldData,
+      newData:    data,
+      req,
+    });
+
     res.json({ data });
   } catch (err) {
     res.status(500).json({ error: 'Failed to update article' });
@@ -100,11 +114,21 @@ router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
 // DELETE /api/articles/:id — admin only
 router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const { error } = await supabase
-      .from('articles')
-      .delete()
-      .eq('id', req.params.id);
+    const { data: oldData } = await supabase
+      .from('articles').select('*').eq('id', req.params.id).single();
+
+    const { error } = await supabase.from('articles').delete().eq('id', req.params.id);
     if (error) throw error;
+
+    await logAudit({
+      user:       req.user,
+      action:     AUDIT_ACTIONS.DELETE,
+      entityType: AUDIT_ENTITIES.ARTICLE,
+      entityId:   req.params.id,
+      oldData,
+      req,
+    });
+
     res.json({ message: 'Article deleted' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete article' });

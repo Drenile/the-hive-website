@@ -4,6 +4,7 @@ import supabase from '../config/db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
 import { validatePagination } from '../middleware/pagination.js';
+import { logAudit, AUDIT_ACTIONS, AUDIT_ENTITIES } from '../middleware/audit.js';
 
 const router = Router();
 
@@ -18,7 +19,6 @@ router.get('/', validatePagination, async (req, res) => {
       .range(offset, offset + limit - 1);
 
     if (status) query = query.eq('status', status);
-
     const { data, error } = await query;
     if (error) throw error;
     res.json({ data });
@@ -32,10 +32,7 @@ router.get('/', validatePagination, async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { data, error } = await supabase
-      .from('events')
-      .select('*')
-      .eq('id', req.params.id)
-      .single();
+      .from('events').select('*').eq('id', req.params.id).single();
     if (error) return res.status(404).json({ error: 'Event not found' });
     res.json({ data });
   } catch (err) {
@@ -58,9 +55,18 @@ router.post('/',
       const { data, error } = await supabase
         .from('events')
         .insert({ ...req.body, created_by: req.user.id })
-        .select()
-        .single();
+        .select().single();
       if (error) throw error;
+
+      await logAudit({
+        user:       req.user,
+        action:     AUDIT_ACTIONS.CREATE,
+        entityType: AUDIT_ENTITIES.EVENT,
+        entityId:   data.id,
+        newData:    data,
+        req,
+      });
+
       res.status(201).json({ data });
     } catch (err) {
       res.status(500).json({ error: 'Failed to create event' });
@@ -71,13 +77,24 @@ router.post('/',
 // PATCH /api/events/:id — admin only
 router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
+    // Get old data first
+    const { data: oldData } = await supabase
+      .from('events').select('*').eq('id', req.params.id).single();
+
     const { data, error } = await supabase
-      .from('events')
-      .update(req.body)
-      .eq('id', req.params.id)
-      .select()
-      .single();
+      .from('events').update(req.body).eq('id', req.params.id).select().single();
     if (error) throw error;
+
+    await logAudit({
+      user:       req.user,
+      action:     AUDIT_ACTIONS.UPDATE,
+      entityType: AUDIT_ENTITIES.EVENT,
+      entityId:   data.id,
+      oldData,
+      newData:    data,
+      req,
+    });
+
     res.json({ data });
   } catch (err) {
     res.status(500).json({ error: 'Failed to update event' });
@@ -87,11 +104,21 @@ router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
 // DELETE /api/events/:id — admin only
 router.delete('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const { error } = await supabase
-      .from('events')
-      .delete()
-      .eq('id', req.params.id);
+    const { data: oldData } = await supabase
+      .from('events').select('*').eq('id', req.params.id).single();
+
+    const { error } = await supabase.from('events').delete().eq('id', req.params.id);
     if (error) throw error;
+
+    await logAudit({
+      user:       req.user,
+      action:     AUDIT_ACTIONS.DELETE,
+      entityType: AUDIT_ENTITIES.EVENT,
+      entityId:   req.params.id,
+      oldData,
+      req,
+    });
+
     res.json({ message: 'Event deleted' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete event' });
