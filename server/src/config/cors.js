@@ -1,8 +1,9 @@
 const allowedOrigins = [
-  // Production — add your real domain here when deploying
-  // 'https://thehive.com',
+  // Production — update these with your real domains after deployment
+  /https:\/\/.*\.vercel\.app$/,
+  /https:\/\/.*\.railway\.app$/,
 
-  // Development — Codespaces pattern
+  // Development — Codespaces
   /https:\/\/.*\.app\.github\.dev$/,
 
   // Local development

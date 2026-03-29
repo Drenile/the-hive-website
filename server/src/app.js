@@ -21,6 +21,17 @@ validateEnv();
 
 const app = express();
 
+// ─── HTTPS redirect in production ─────────────────────
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(301, `https://${req.headers.host}${req.url}`);
+    }
+    next();
+  });
+}
+
+// ─── Security Headers ─────────────────────────────────
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -29,7 +40,7 @@ app.use(helmet({
       styleSrc:    ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc:     ["'self'", "https://fonts.gstatic.com"],
       imgSrc:      ["'self'", "data:", "blob:", "https://*.supabase.co"],
-      connectSrc:  ["'self'", "https://*.supabase.co", "https://*.app.github.dev"],
+      connectSrc:  ["'self'", "https://*.supabase.co", "https://*.app.github.dev", "https://*.railway.app", "https://*.vercel.app"],
       frameSrc:    ["'none'"],
       objectSrc:   ["'none'"],
     },
@@ -39,6 +50,7 @@ app.use(helmet({
 
 app.use(cors(corsOptions));
 
+// ─── Rate Limiting ────────────────────────────────────
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: process.env.NODE_ENV === 'production' ? 100 : 1000,
@@ -49,10 +61,14 @@ const globalLimiter = rateLimit({
 });
 app.use('/api', globalLimiter);
 
+// ─── Logging ──────────────────────────────────────────
 app.use(logger);
+
+// ─── Body Parsing ─────────────────────────────────────
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// ─── Routes ───────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'The Hive API is running' });
 });
@@ -65,10 +81,12 @@ app.use('/api/profiles',   profilesRouter);
 app.use('/api/stats',      statsRouter);
 app.use('/api/audit-logs', auditLogsRouter);
 
+// ─── 404 Handler ──────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
+// ─── Global Error Handler ─────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).json({
