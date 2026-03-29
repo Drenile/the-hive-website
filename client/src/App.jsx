@@ -17,6 +17,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Admin from './pages/Admin/Admin';
 import Privacy from './pages/Privacy/Privacy';
+import Terms  from './pages/Terms/Terms';
 import NotFound from './pages/NotFound/NotFound';
 import styles from './App.module.css';
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login"          element={<Login />} />
           <Route path="/signup"         element={<Signup />} />
           <Route path="/privacy"         element={<Privacy />} />
+          <Route path="/terms"           element={<Terms />} />
           <Route path="/admin"          element={
             <ProtectedRoute requiredRole="admin">
               <Admin />

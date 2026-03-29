@@ -75,6 +75,7 @@ function Footer() {
               <Link to="/get-involved">Get Involved</Link>
               <Link to="/faq">FAQ</Link>
               <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
             </div>
           </div>
           <div className={styles.socials} aria-label="Social links">
