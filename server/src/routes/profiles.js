@@ -66,3 +66,32 @@ router.patch('/:id/role', requireAuth, requireAdmin, async (req, res) => {
 });
 
 export default router;
+
+// DELETE /api/profiles/me — delete own account
+router.delete('/me', requireAuth, async (req, res) => {
+  try {
+    // Delete profile (cascade will handle related data)
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .delete()
+      .eq('id', req.user.id);
+    if (profileError) throw profileError;
+
+    // Delete auth user
+    const { error: authError } = await supabase.auth.admin.deleteUser(req.user.id);
+    if (authError) throw authError;
+
+    await logAudit({
+      user:       req.user,
+      action:     'DELETE',
+      entityType: 'profile',
+      entityId:   req.user.id,
+      req,
+    });
+
+    res.json({ message: 'Account deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete account' });
+  }
+});

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './Contact.module.css';
 import { submitContact } from '../../services/api';
@@ -7,27 +8,34 @@ import greenClip    from '../../assets/green-clip.png';
 import pinkEmphasis from '../../assets/pink-upside-emphasis.png';
 
 const reachCards = [
-  { title: 'Email',     desc: 'thehive.club@uleth.ca',               btn: '✉ SEND',   href: 'mailto:thehive.club@uleth.ca' },
-  { title: 'Discord',   desc: 'Join the community + ask questions',   btn: '✉ JOIN',   href: 'https://discord.com/invite/KqNYtZuVM' },
-  { title: 'Instagram', desc: 'Follow us on Instagram.',              btn: '✉ FOLLOW', href: 'https://www.instagram.com/thehive_official?igsh=a2k5YzVrbjd4bHpu&utm_source=qr' },
-  { title: 'LinkedIn',  desc: 'Follow us on LinkedIn.',               btn: '✉ FOLLOW', href: 'https://www.linkedin.com/company/the-hiveclub/' },
+  { title: 'Email',     desc: 'thehive.club@uleth.ca',             btn: '✉ SEND',   href: 'mailto:thehive.club@uleth.ca' },
+  { title: 'Discord',   desc: 'Join the community + ask questions', btn: '✉ JOIN',   href: 'https://discord.com/invite/KqNYtZuVM' },
+  { title: 'Instagram', desc: 'Follow us on Instagram.',            btn: '✉ FOLLOW', href: 'https://www.instagram.com/thehive_official?igsh=a2k5YzVrbjd4bHpu&utm_source=qr' },
+  { title: 'LinkedIn',  desc: 'Follow us on LinkedIn.',             btn: '✉ FOLLOW', href: 'https://www.linkedin.com/company/the-hiveclub/' },
 ];
 
 function Contact() {
-  const [form, setForm]           = useState({ name: '', email: '', reason: '', message: '' });
+  const [form, setForm]           = useState({ name: '', email: '', reason: '', message: '', consent: false });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending]     = useState(false);
   const [error, setError]         = useState('');
 
-  const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = e => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setForm(prev => ({ ...prev, [e.target.name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.consent) {
+      setError('Please consent to our Privacy Policy before submitting.');
+      return;
+    }
     setError('');
     setSending(true);
     try {
-      await submitContact(form);
-      setForm({ name: '', email: '', reason: '', message: '' });
+      await submitContact({ name: form.name, email: form.email, reason: form.reason, message: form.message });
+      setForm({ name: '', email: '', reason: '', message: '', consent: false });
       setSubmitted(true);
     } catch (err) {
       setError(err.error || 'Failed to send message. Please try again.');
@@ -38,7 +46,6 @@ function Contact() {
 
   return (
     <>
-      {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={styles.heroBg}><img src={heroImg} alt="Students collaborating" /></div>
         <div className={styles.heroOverlay} />
@@ -49,7 +56,6 @@ function Contact() {
         </div>
       </section>
 
-      {/* ── QUICK REACH ── */}
       <section className={styles.quickReach}>
         <div className={styles.wrap}>
           <img className={`${styles.deco} ${styles.decoLeft}`}  src={pinkEmphasis} alt="" aria-hidden="true" />
@@ -69,7 +75,6 @@ function Contact() {
         </div>
       </section>
 
-      {/* ── CONTACT FORM ── */}
       <section className={styles.formSection}>
         <div className={styles.wrap}>
           <ScrollReveal>
@@ -112,8 +117,24 @@ function Contact() {
                       <label htmlFor="message">MESSAGE</label>
                       <textarea id="message" name="message" rows="5" placeholder="Tell us more..." value={form.message} onChange={handleChange} required />
                     </div>
+
+                    {/* PIPA Consent */}
+                    <div className={styles.consentField}>
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        name="consent"
+                        checked={form.consent}
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="consent">
+                        I consent to The Hive collecting and using my personal information to respond to my inquiry, in accordance with our <Link to="/privacy" className={styles.consentLink}>Privacy Policy</Link>. I understand I can withdraw consent at any time.
+                      </label>
+                    </div>
+
                     {error && <div className={styles.error}>{error}</div>}
-                    <button className={styles.submit} type="submit" disabled={sending}>
+                    <button className={styles.submit} type="submit" disabled={sending || !form.consent}>
                       {sending ? 'Sending...' : '✉ SEND'}
                     </button>
                   </form>

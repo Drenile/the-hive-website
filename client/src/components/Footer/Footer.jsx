@@ -6,16 +6,18 @@ import subscribeIcon from '../../assets/subscribe.png';
 
 function Footer() {
   const [email, setEmail]     = useState('');
+  const [consent, setConsent] = useState(false);
   const [status, setStatus]   = useState('idle');
   const [message, setMessage] = useState('');
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !consent) return;
     setStatus('loading');
     try {
       await subscribeNewsletter(email);
       setEmail('');
+      setConsent(false);
       setStatus('success');
       setMessage("You're subscribed!");
     } catch (err) {
@@ -40,11 +42,24 @@ function Footer() {
             onChange={e => { setEmail(e.target.value); setStatus('idle'); }}
             required
           />
-          <button className={styles.btn} type="submit" disabled={status === 'loading'}>
+          <button className={styles.btn} type="submit" disabled={status === 'loading' || !consent}>
             <img src={subscribeIcon} alt="" aria-hidden="true" width="20" height="20" />
             {status === 'loading' ? 'SUBSCRIBING...' : 'SUBSCRIBE'}
           </button>
         </form>
+
+        {/* CASL Consent */}
+        <div className={styles.consentWrap}>
+          <input
+            type="checkbox"
+            id="newsletterConsent"
+            checked={consent}
+            onChange={e => setConsent(e.target.checked)}
+          />
+          <label htmlFor="newsletterConsent">
+            I consent to receiving emails from The Hive. I can unsubscribe at any time. See our <Link to="/privacy" className={styles.consentLink}>Privacy Policy</Link>.
+          </label>
+        </div>
 
         {status === 'success' && <p className={styles.successMsg}>✅ {message}</p>}
         {status === 'error'   && <p className={styles.errorMsg}>❌ {message}</p>}
@@ -59,7 +74,7 @@ function Footer() {
             <div className={styles.col}>
               <Link to="/get-involved">Get Involved</Link>
               <Link to="/faq">FAQ</Link>
-              <Link to="/projects">Projects</Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </div>
           </div>
           <div className={styles.socials} aria-label="Social links">

@@ -1,0 +1,35 @@
+.page { background: #fff; min-height: 100vh; padding: 60px 0 80px; }
+.wrap { max-width: 780px; margin: 0 auto; padding-inline: var(--side-pad); }
+
+.header { margin-bottom: 48px; }
+.badge  { display: inline-flex; background: var(--yellow); border: 2px solid #000; border-radius: 999px; padding: 4px 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.header h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; margin: 0 0 8px; }
+.meta { font-size: 14px; opacity: .5; margin: 0; }
+
+.body { display: flex; flex-direction: column; gap: 36px; }
+
+.section h2 { font-size: clamp(18px, 2vw, 22px); font-weight: 800; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 2px solid rgba(0,0,0,.08); }
+.section p  { font-size: 15px; line-height: 1.8; opacity: .8; margin: 0 0 12px; }
+.section p:last-child { margin-bottom: 0; }
+.section ul { padding-left: 20px; margin: 0; }
+.section li { font-size: 15px; line-height: 1.8; opacity: .8; margin-bottom: 6px; }
+.section a  { color: var(--ink); font-weight: 700; text-decoration: underline; }
+.section a:hover { color: var(--green); }
+
+.contactBlock {
+  background: #F5F5F5; border: 2px solid rgba(0,0,0,.1);
+  border-radius: 14px; padding: 20px 24px;
+  font-size: 15px; line-height: 1.8;
+  margin: 16px 0;
+}
+.contactBlock a { color: var(--ink); font-weight: 700; text-decoration: underline; }
+
+.footer { margin-top: 56px; padding-top: 32px; border-top: 2px solid rgba(0,0,0,.08); }
+.backBtn {
+  display: inline-flex; align-items: center;
+  background: var(--ink); color: #fff;
+  border-radius: 999px; padding: 12px 24px;
+  font-size: 14px; font-weight: 700;
+  text-decoration: none; transition: background .15s;
+}
+.backBtn:hover { background: #333; }

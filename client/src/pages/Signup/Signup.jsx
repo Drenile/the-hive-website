@@ -126,6 +126,7 @@ function Signup() {
           </button>
         </form>
 
+        <p className={styles.privacyNote}>By creating an account, you agree to our <Link to="/privacy">Privacy Policy</Link> and consent to the collection of your personal information.</p>
         <p className={styles.footer}>
           Already have an account? <Link to="/login">Sign in</Link>
         </p>

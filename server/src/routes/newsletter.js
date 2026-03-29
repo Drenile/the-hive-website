@@ -42,3 +42,22 @@ router.get('/', requireAuth, requireAdmin, async (req, res) => {
 });
 
 export default router;
+
+// POST /api/newsletter/unsubscribe — public
+router.post('/unsubscribe',
+  [body('email').isEmail().normalizeEmail()],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .update({ subscribed: false })
+        .eq('email', req.body.email);
+      if (error) throw error;
+      res.json({ message: 'Successfully unsubscribed' });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to unsubscribe' });
+    }
+  }
+);

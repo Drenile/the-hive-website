@@ -65,3 +65,12 @@
 
 .footer { font-size: 13px; margin-top: 24px; opacity: .65; text-align: center; }
 .footer a { font-weight: 700; color: var(--ink); text-decoration: underline; }
+
+.privacyNote {
+  font-size: 12px;
+  opacity: .55;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.privacyNote a { color: var(--ink); font-weight: 700; text-decoration: underline; }

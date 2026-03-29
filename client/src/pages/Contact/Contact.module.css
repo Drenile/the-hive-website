@@ -64,3 +64,37 @@
 .successCard h3 { font-size: 24px; font-weight: 900; margin: 0; color: #fff; }
 .successCard p  { font-size: 15px; opacity: .7; margin: 0; color: #fff; }
 .error { background: rgba(255,100,100,.15); border: 1.5px solid #FF6B6B; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 600; color: #FF6B6B; }
+
+.consentField {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.08);
+  border: 1.5px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+}
+.consentField input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #FF66C4;
+  border: none;
+  padding: 0;
+}
+.consentField label {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: .85;
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+}
+.consentLink {
+  color: #FF66C4 !important;
+  font-weight: 700;
+  text-decoration: underline;
+}
