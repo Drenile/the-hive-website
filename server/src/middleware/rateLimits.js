@@ -26,3 +26,12 @@ export const adminLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
+
+// Stats limiter — prevent database hammering on public endpoint
+export const statsLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30,
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});

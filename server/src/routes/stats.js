@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import supabase from '../config/db.js';
+import { statsLimiter } from '../middleware/rateLimits.js';
 
 const router = Router();
 
-// GET /api/stats — public, returns community stats
-router.get('/', async (req, res) => {
+// GET /api/stats — public, rate limited
+router.get('/', statsLimiter, async (req, res) => {
   try {
     const [profilesRes, eventsRes, projectsRes] = await Promise.all([
       supabase.from('profiles').select('id', { count: 'exact', head: true }),
