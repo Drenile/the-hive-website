@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-
-# Block admin from search engines
 Disallow: /admin
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://thehivecommunity.ca/sitemap.xml
