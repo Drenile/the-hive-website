@@ -5,6 +5,7 @@ import { requireAuth, optionalAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
 import { validatePagination } from '../middleware/pagination.js';
 import { logAudit, AUDIT_ACTIONS, AUDIT_ENTITIES } from '../middleware/audit.js';
+import { sanitizeText, sanitizeHTML } from '../utils/sanitize.js';
 
 const router = Router();
 
@@ -58,6 +59,9 @@ router.post('/',
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     try {
       const payload = {
+        title:   req.body.title   ? sanitizeText(req.body.title)   : undefined,
+        excerpt: req.body.excerpt ? sanitizeText(req.body.excerpt) : undefined,
+        content: req.body.content ? sanitizeHTML(req.body.content) : undefined,
         ...req.body,
         author_id:    req.user.id,
         published_at: req.body.published ? new Date().toISOString() : null,
@@ -88,7 +92,10 @@ router.patch('/:id', requireAuth, requireAdmin, async (req, res) => {
     const { data: oldData } = await supabase
       .from('articles').select('*').eq('id', req.params.id).single();
 
-    const payload = { ...req.body };
+    const payload = {
+        title:   req.body.title   ? sanitizeText(req.body.title)   : undefined,
+        excerpt: req.body.excerpt ? sanitizeText(req.body.excerpt) : undefined,
+        content: req.body.content ? sanitizeHTML(req.body.content) : undefined, ...req.body };
     if (req.body.published) payload.published_at = new Date().toISOString();
 
     const { data, error } = await supabase

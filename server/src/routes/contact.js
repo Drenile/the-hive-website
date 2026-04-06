@@ -4,6 +4,7 @@ import supabase from '../config/db.js';
 import { requireAuth } from '../middleware/auth.js';
 import { requireAdmin } from '../middleware/rbac.js';
 import { formLimiter } from '../middleware/rateLimits.js';
+import { sanitizeText } from '../utils/sanitize.js';
 
 const router = Router();
 
@@ -23,7 +24,12 @@ router.post('/',
       const { name, email, reason, message } = req.body;
       const { error } = await supabase
         .from('contact_submissions')
-        .insert({ name, email, reason, message });
+        .insert({
+          name:    sanitizeText(name),
+          email,
+          reason:  sanitizeText(reason),
+          message: sanitizeText(message),
+        });
       if (error) throw error;
       res.status(201).json({ message: 'Message sent successfully' });
     } catch (err) {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '../../components/shared/ScrollReveal';
 import styles from './Contact.module.css';
 import { submitContact } from '../../services/api';
+import { trimFormFields } from '../../utils/sanitize';
 import heroImg      from '../../assets/students-smiling.jpg';
 import greenClip    from '../../assets/green-clip.png';
 import pinkEmphasis from '../../assets/pink-upside-emphasis.png';
@@ -34,7 +35,7 @@ function Contact() {
     setError('');
     setSending(true);
     try {
-      await submitContact({ name: form.name, email: form.email, reason: form.reason, message: form.message });
+      await submitContact(trimFormFields({ name: form.name, email: form.email, reason: form.reason, message: form.message }));
       setForm({ name: '', email: '', reason: '', message: '', consent: false });
       setSubmitted(true);
     } catch (err) {
