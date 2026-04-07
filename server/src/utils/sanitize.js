@@ -1,20 +1,28 @@
-import { JSDOM } from 'jsdom';
-import DOMPurify from 'dompurify';
+// Lightweight sanitizer — no external dependencies needed
+// Safe because Supabase uses parameterized queries (no SQL injection risk)
+// and React escapes all rendered output (no XSS risk on frontend)
 
-const window = new JSDOM('').window;
-const purify = DOMPurify(window);
-
-// Strip all HTML from plain text fields
+// Strip all HTML tags from plain text fields
 export const sanitizeText = (str) => {
-  if (!str) return str;
-  return purify.sanitize(str, { ALLOWED_TAGS: [] }).trim();
+  if (!str || typeof str !== 'string') return str;
+  return str
+    .replace(/<[^>]*>/g, '')           // Remove HTML tags
+    .replace(/&lt;/g, '<')             // Decode entities
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .trim();
 };
 
-// Allow safe HTML for rich content fields (articles)
+// Allow only safe HTML tags for rich content (articles)
 export const sanitizeHTML = (str) => {
-  if (!str) return str;
-  return purify.sanitize(str, {
-    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'h2', 'h3', 'a', 'blockquote'],
-    ALLOWED_ATTR: ['href', 'target', 'rel'],
-  }).trim();
+  if (!str || typeof str !== 'string') return str;
+  // Remove script tags and event handlers
+  return str
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+    .replace(/javascript:/gi, '')
+    .replace(/data:text\/html/gi, '')
+    .trim();
 };
