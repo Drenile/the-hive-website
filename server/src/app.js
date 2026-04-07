@@ -70,6 +70,13 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Routes ───────────────────────────────────────────
+// Prevent search engines from indexing the API
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send('User-agent: *
+Disallow: /');
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'The Hive API is running' });
 });

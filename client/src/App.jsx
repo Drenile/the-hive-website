@@ -20,11 +20,13 @@ import Privacy from './pages/Privacy/Privacy';
 import Terms  from './pages/Terms/Terms';
 import NotFound from './pages/NotFound/NotFound';
 import styles from './App.module.css';
+import SessionWarning from './components/shared/SessionWarning';
 
 function App() {
   return (
     <div className={styles.app}>
       <Navbar />
+      <SessionWarning />
       <main className={styles.main}>
         <Routes>
           <Route path="/"               element={<Home />} />

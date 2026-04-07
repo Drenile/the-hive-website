@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import { getEvents, createEvent, updateEvent, deleteEvent } from '../../../services/api';
 import ImageUpload from '../../../components/shared/ImageUpload';
+import ConfirmModal from '../../../components/shared/ConfirmModal';
 import styles from './AdminSection.module.css';
 
 const emptyForm = { title: '', description: '', event_date: '', location: '', image_url: '', tag: '', status: 'upcoming' };
 
 function AdminEvents() {
-  const [events, setEvents]     = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [showForm, setShowForm] = useState(false);
-  const [editing, setEditing]   = useState(null);
-  const [form, setForm]         = useState(emptyForm);
-  const [saving, setSaving]     = useState(false);
-  const [error, setError]       = useState('');
+  const [events, setEvents]       = useState([]);
+  const [loading, setLoading]     = useState(true);
+  const [showForm, setShowForm]   = useState(false);
+  const [editing, setEditing]     = useState(null);
+  const [form, setForm]           = useState(emptyForm);
+  const [saving, setSaving]       = useState(false);
+  const [error, setError]         = useState('');
+  const [confirm, setConfirm]     = useState({ open: false, id: null });
 
   const fetchEvents = async () => {
     try {
@@ -71,18 +73,31 @@ function AdminEvents() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm('Delete this event?')) return;
+  const handleDeleteClick = (id) => setConfirm({ open: true, id });
+
+  const handleDeleteConfirm = async () => {
     try {
-      await deleteEvent(id);
+      await deleteEvent(confirm.id);
+      setConfirm({ open: false, id: null });
       await fetchEvents();
     } catch (err) {
-      alert('Failed to delete event');
+      setError('Failed to delete event');
+      setConfirm({ open: false, id: null });
     }
   };
 
   return (
     <div>
+      <ConfirmModal
+        isOpen={confirm.open}
+        title="Delete Event"
+        message="Are you sure you want to delete this event? This action cannot be undone and will be recorded in the audit log."
+        confirmLabel="Delete"
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setConfirm({ open: false, id: null })}
+        danger
+      />
+
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Events</h1>
         <button className={styles.btnPrimary} onClick={handleNew}>+ New Event</button>
@@ -127,12 +142,7 @@ function AdminEvents() {
               <label>Description</label>
               <textarea rows="3" value={form.description} onChange={e => setForm(p => ({ ...p, description: e.target.value }))} />
             </div>
-            <ImageUpload
-              folder="events"
-              label="Event Image"
-              currentUrl={form.image_url}
-              onUpload={(url) => setForm(p => ({ ...p, image_url: url }))}
-            />
+            <ImageUpload folder="events" label="Event Image" currentUrl={form.image_url} onUpload={(url) => setForm(p => ({ ...p, image_url: url }))} />
             {error && <div className={styles.error}>{error}</div>}
             <div className={styles.formActions}>
               <button type="button" className={styles.btnSecondary} onClick={() => setShowForm(false)}>Cancel</button>
@@ -147,10 +157,7 @@ function AdminEvents() {
       ) : (
         <div className={styles.table}>
           <div className={styles.tableHeader}>
-            <span>Title</span>
-            <span>Status</span>
-            <span>Date</span>
-            <span>Actions</span>
+            <span>Title</span><span>Status</span><span>Date</span><span>Actions</span>
           </div>
           {events.length === 0 ? (
             <div className={styles.empty}>No events yet. Create your first one!</div>
@@ -161,7 +168,7 @@ function AdminEvents() {
               <span className={styles.tableMeta}>{ev.event_date ? new Date(ev.event_date).toLocaleDateString() : '—'}</span>
               <span className={styles.tableActions}>
                 <button className={styles.btnEdit} onClick={() => handleEdit(ev)}>Edit</button>
-                <button className={styles.btnDelete} onClick={() => handleDelete(ev.id)}>Delete</button>
+                <button className={styles.btnDelete} onClick={() => handleDeleteClick(ev.id)}>Delete</button>
               </span>
             </div>
           ))}
