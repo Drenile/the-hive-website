@@ -69,18 +69,18 @@ app.use(logger);
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// ─── Routes ───────────────────────────────────────────
-// Prevent search engines from indexing the API
+// ─── Robots ───────────────────────────────────────────
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send('User-agent: *
-Disallow: /');
+  res.send('User-agent: *\nDisallow: /');
 });
 
+// ─── Health ───────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'The Hive API is running' });
 });
 
+// ─── Routes ───────────────────────────────────────────
 app.use('/api/events',     eventsRouter);
 app.use('/api/articles',   articlesRouter);
 app.use('/api/contact',    contactRouter);
