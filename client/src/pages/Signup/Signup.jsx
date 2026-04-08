@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import PasswordStrength, { isPasswordValid } from '../../components/shared/PasswordStrength';
 import styles from './Signup.module.css';
 import logo from '../../assets/hive-logo.png';
 
@@ -19,12 +20,12 @@ function Signup() {
     e.preventDefault();
     setError('');
 
-    if (form.password !== form.confirm) {
-      setError('Passwords do not match');
+    if (!isPasswordValid(form.password)) {
+      setError('Password does not meet the requirements below.');
       return;
     }
-    if (form.password.length < 8) {
-      setError('Password must be at least 8 characters');
+    if (form.password !== form.confirm) {
+      setError('Passwords do not match.');
       return;
     }
 
@@ -36,10 +37,7 @@ function Signup() {
     });
     setLoading(false);
 
-    if (error) {
-      setError(error.message);
-      return;
-    }
+    if (error) { setError(error.message); return; }
     setSuccess(true);
   };
 
@@ -68,65 +66,32 @@ function Signup() {
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <div className={styles.field}>
             <label htmlFor="fullName">Full Name</label>
-            <input
-              id="fullName"
-              name="fullName"
-              type="text"
-              placeholder="Your full name"
-              value={form.fullName}
-              onChange={handleChange}
-              required
-              autoComplete="name"
-            />
+            <input id="fullName" name="fullName" type="text" placeholder="Your full name" value={form.fullName} onChange={handleChange} required autoComplete="name" />
           </div>
           <div className={styles.field}>
             <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="your@email.com"
-              value={form.email}
-              onChange={handleChange}
-              required
-              autoComplete="email"
-            />
+            <input id="email" name="email" type="email" placeholder="your@email.com" value={form.email} onChange={handleChange} required autoComplete="email" />
           </div>
           <div className={styles.field}>
             <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Min. 8 characters"
-              value={form.password}
-              onChange={handleChange}
-              required
-              autoComplete="new-password"
-            />
+            <input id="password" name="password" type="password" placeholder="Create a strong password" value={form.password} onChange={handleChange} required autoComplete="new-password" />
+            <PasswordStrength password={form.password} />
           </div>
           <div className={styles.field}>
             <label htmlFor="confirm">Confirm Password</label>
-            <input
-              id="confirm"
-              name="confirm"
-              type="password"
-              placeholder="Repeat your password"
-              value={form.confirm}
-              onChange={handleChange}
-              required
-              autoComplete="new-password"
-            />
+            <input id="confirm" name="confirm" type="password" placeholder="Repeat your password" value={form.confirm} onChange={handleChange} required autoComplete="new-password" />
           </div>
 
           {error && <div className={styles.error}>{error}</div>}
 
-          <button className={styles.submit} type="submit" disabled={loading}>
+          <button className={styles.submit} type="submit" disabled={loading || !isPasswordValid(form.password)}>
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
-        <p className={styles.privacyNote}>By creating an account, you agree to our <Link to="/privacy">Privacy Policy</Link> and consent to the collection of your personal information.</p>
+        <p className={styles.privacyNote}>
+          By creating an account, you agree to our <Link to="/privacy">Privacy Policy</Link> and consent to the collection of your personal information.
+        </p>
         <p className={styles.footer}>
           Already have an account? <Link to="/login">Sign in</Link>
         </p>
