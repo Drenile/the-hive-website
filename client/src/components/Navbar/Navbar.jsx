@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
@@ -9,9 +9,19 @@ function Navbar() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen]         = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const closeTimer = useRef(null);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
   const closeMenu  = () => setMenuOpen(false);
+
+  const handleDropdownEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setDropdownOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    closeTimer.current = setTimeout(() => setDropdownOpen(false), 200);
+  };
 
   const handleSignOut = async () => {
     await signOut();
@@ -32,14 +42,19 @@ function Navbar() {
 
         <div
           className={styles.navDropdown}
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
+          onMouseEnter={handleDropdownEnter}
+          onMouseLeave={handleDropdownLeave}
         >
           <button className={styles.navDropdownTrigger} aria-haspopup="true" aria-expanded={dropdownOpen} type="button">
             Community <span className={styles.navChevron} aria-hidden="true">▾</span>
           </button>
           {dropdownOpen && (
-            <div className={styles.navDropdownMenu} aria-label="Community submenu">
+            <div
+              className={styles.navDropdownMenu}
+              onMouseEnter={handleDropdownEnter}
+              onMouseLeave={handleDropdownLeave}
+              aria-label="Community submenu"
+            >
               <NavLink to="/events" className={styles.navDropdownItem} onClick={() => setDropdownOpen(false)}>Events</NavLink>
               <NavLink to="/news"   className={styles.navDropdownItem} onClick={() => setDropdownOpen(false)}>News</NavLink>
             </div>
@@ -50,7 +65,6 @@ function Navbar() {
         <NavLink to="/projects"     className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Projects</NavLink>
         <NavLink to="/contact"      className={({ isActive }) => `${styles.navItem} ${isActive ? styles.isActive : ''}`}>Contact Us</NavLink>
 
-        {/* Auth */}
         {user ? (
           <div className={styles.authWrap}>
             {profile?.role === 'admin' && (
